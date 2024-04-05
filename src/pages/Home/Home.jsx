@@ -6,19 +6,11 @@ const Home = () => {
 
   return (
     <div className='home'>
-      <div className='box'>
+      <div className='box' style={{height: '40px'}}>
+        슬라이드
       </div>
-      <div className='box'>
-      </div>
-      <div className='box'>
-      </div>
-      <div className='box'>
-      </div>
-      <div className='box'>
-      </div>
-      <div className='box'>
-      </div>
-      <div className='box'>
+      <div className='box' style={{height: '450px'}}>
+        단어장
       </div>
     </div>
   );

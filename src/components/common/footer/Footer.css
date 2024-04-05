@@ -1,0 +1,6 @@
+.footer {
+    display: flex;
+    min-height: 100px; /* 뷰포트의 전체 높이 */
+    background-color: black;
+}
+  

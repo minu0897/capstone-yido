@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Header from './components/common/header/Header';
+import Footer from './components/common/footer/Footer';
 import Navigation from './components/common/navigation/Navigation';
 import Home from './pages/Home/Home';
 import Note from './pages/Note/Note';
@@ -22,6 +23,7 @@ root.render(
         <Route path='/Note' element={<Note />} />
         <Route path='/Recommand' element={<Recommand />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   </div>
 );
