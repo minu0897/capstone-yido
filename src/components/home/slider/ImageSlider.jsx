@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import Slider from 'react-slick';
 import './ImageSlider.css'
-import img1 from '../../../sample/1.jpg'
+import img1 from '../../../sample/1.webp'
 import img2 from '../../../sample/2.jpg'
 import img3 from '../../../sample/3.jpg'
 import img4 from '../../../sample/4.jpg'
