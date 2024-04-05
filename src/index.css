@@ -16,3 +16,10 @@ code {
   flex-direction: column;
   height: 100vh; /* 전체 뷰포트 높이 */
 }
+.box{
+  left: 10%;
+  right: 10%;
+  background-color: blue;
+  height: 200px;
+  margin-top: 10px;
+}

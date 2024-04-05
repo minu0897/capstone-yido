@@ -2,4 +2,5 @@
   background-color: yellow;
   padding: 10px;
   flex-grow: 1; /* 나머지 공간 차지 */
+  overflow: scroll;
 }
