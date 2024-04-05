@@ -15,10 +15,10 @@ code {
   display: flex;
   flex-direction: column;
   height: 100vh; /* 전체 뷰포트 높이 */
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .box{
-  background-color: #F4F4F4;
   height: 200px;
   margin-top: 10px;
 }

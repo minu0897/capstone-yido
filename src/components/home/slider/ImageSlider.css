@@ -1,0 +1,94 @@
+.slick-slider .slick-initialized {
+  height: 100%;
+}
+
+.slider-div {
+  width: 100%; /* 전체 너비를 사용 */
+  height: 400px; 
+  margin: auto; /* 중앙 정렬 */
+  flex-grow: 1; /* 각 항목이 슬라이드 내부 공간을 균등하게 차지하도록 */
+  display: flex; /* 내부 항목도 플렉스 레이아웃 적용 */
+}
+
+.slider-title {
+  width: 55%; /* 전체 너비의 60% 차지 */
+  max-width: 55%;
+  min-height: 100%;
+  display: flex; /* 플렉스 레이아웃 사용 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  flex-wrap: wrap; /* 줄바꿈 허용 */
+}
+
+.slider-img {
+  width: 40%; /* 전체 너비의 40% 차지 */
+  display: flex;
+  justify-content: center; /* 이미지 가로 중앙 정렬 */
+  align-items: center; /* 이미지 세로 중앙 정렬 */
+}
+
+.span-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.p-title {
+  font-size: 40px;
+}
+
+p {
+  font-size: 20px;
+}
+
+.test-css {
+  bottom: -45px;
+  width: 100%;
+  list-style: none;
+  text-align: end;
+  position: absolute;
+  right: 15px;
+  padding: 0;
+}
+
+.test-css li {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  /*margin: 1px;*/
+  padding: 0;
+  cursor: pointer;
+}
+
+.test-css li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: 0;
+  background: 0 0;
+}
+
+.test-css li button:before {
+  font-size: 2.7rem;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  content: '•';
+  text-align: center;
+  opacity: .75;
+  color: #D9D9D9;
+}
+
+.test-css li.slick-active button:before {
+  opacity: .75;
+  color: #6D6968;
+}
