@@ -18,10 +18,6 @@ root.render(
       <Header />
       <Navigation />
       <Routes>
-        <Route path='/' element={<Home/>} /> 
-        <Route path='/Community' element={<Community />} />
-        <Route path='/Note' element={<Note />} />
-        <Route path='/Recommand' element={<Recommand />} />
       </Routes>
       <Footer />
     </BrowserRouter>
