@@ -8,7 +8,7 @@ const Home = () => {
     <div className='home'>
       <div className='box' style={{height: '40px'}}>
         슬라이드
-      </div>
+      </div> 
       <div className='box' style={{height: '450px'}}>
         단어장
       </div>
