@@ -8,24 +8,12 @@ import Col from 'react-bootstrap/Col';
 const Navigation = () => {
 
   return (
-      <Container>
-        <Row>
-          <Col>
-            <Link to={'/'}>Home</Link>
-          </Col>
-          <Col>
-            <Link to={'/Community'}>Community</Link>
-          </Col>
-          <Col>
-            <Link to={'/Note'}>Note</Link>
-          </Col>
-          <Col>
-            <Link to={'/Recommand'}>Recommand</Link>
-          </Col>
-        </Row>
-      </Container>
-
-      
+    <div className='navigation'>
+      <Link to={'/'}>Home</Link>
+      <Link to={'/Community'}>Community</Link>
+      <Link to={'/Note'}>Note</Link>
+      <Link to={'/Recommand'}>Recommand</Link>
+    </div>
   );
 };
 

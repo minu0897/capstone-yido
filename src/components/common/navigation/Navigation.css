@@ -1,5 +1,15 @@
 .navigation {
-    height: 118px;
-    background-color: red;
+    height: 60px;
+    background-color: white;
+    font-size: 32px;
+    display: flex;             
+    justify-content: space-between; /* 링크 사이에 균등 간격 */
+    align-items: center;       
+    text-decoration: none;
+    padding: 0 300px;  /* 좌우 양쪽에 300px 패딩 적용 */
 }
-  
+
+.navigation a, .navigation a:visited, .navigation a:hover, .navigation a:active {
+    color: inherit; /* 링크 텍스트 색상을 상위 요소와 동일하게 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
