@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import icon from '../../../sample/sejong.png'
 
 const Header = () => {
 
@@ -13,7 +14,7 @@ const Header = () => {
     <div className='header'>
         <div>
         <Link to={'/'}>
-          <img src="https://www.dummyimage.com/400x400/bdbfff/0011ff&text=logo" width="40px" height="40px" style={{ marginLeft: '250px'}} />
+          <img src={icon} width="40px" height="40px" style={{ marginLeft: '250px'}} />
         </Link>
         </div>
         <div style={{marginLeft:'1%'}}>
