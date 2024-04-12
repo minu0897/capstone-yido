@@ -1,6 +1,7 @@
 .footer {
     display: flex;
-    min-height: 100px; /* 뷰포트의 전체 높이 */
-    background-color: black;
+    justify-content: center; /* 가로 방향 중앙 정렬 */
+    min-height: 100px;       /* 최소 높이 설정 */
+    background-color: black; /* 배경색 */
+    color: white;            /* 글자색 */
 }
-  
