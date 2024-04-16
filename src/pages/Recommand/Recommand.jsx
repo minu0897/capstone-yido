@@ -6,6 +6,7 @@ const Recommand = () => {
 
   return (
     <div className='recommand'>
+      
     </div>
   );
 };

@@ -1,5 +1,26 @@
 .community {
-  background-color: blueviolet;
-  padding: 10px;
-  flex-grow: 1; /* 나머지 공간 차지 */
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* 자식 요소들을 세로로 배열 */
+  align-items: center; /* 모든 자식을 수직으로 중앙에 위치시키지만 */
+  height: 100vh;
+}
+
+.centerDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d1e1ff;
+  margin-top: 40px;
+  width: 200px;
+  height: 80px;
+  font-style: normal;
+  font-size: 30px;
+  border-radius: 20px;
 }
