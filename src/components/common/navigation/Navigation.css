@@ -1,5 +1,5 @@
 .navigation {
-    height: 60px;
+    min-height: 60px;
     background-color: white;
     font-size: 26px;
     display: flex;             
