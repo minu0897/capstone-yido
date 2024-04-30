@@ -30,7 +30,7 @@ const ImageSlider = () => {
   };
 
   return (
-    <div style={{ padding: "10px 10px 30px 10px", alignItems: "center", overflowX: "hidden", overflowY: "hidden" }}>
+    <div style={{ padding: "0px 10px 30px 10px", alignItems: "center", overflowX: "hidden", overflowY: "hidden" }}>
       <Slider {...settings}  dotsClass="dots-css">
         {images.map((arr, index) => (
           <div key={index}>

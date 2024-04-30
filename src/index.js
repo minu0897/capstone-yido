@@ -8,6 +8,8 @@ import Home from './pages/Home/Home';
 import Note from './pages/Note/Note';
 import Community from './pages/Community/Community';
 import Recommand from './pages/Recommand/Recommand';
+import Login from './pages/Login/Login';
+import Signup from './pages/Signup/Signup';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,6 +24,8 @@ root.render(
         <Route path='/Community' element={<Community />} />
         <Route path='/Note' element={<Note />} />
         <Route path='/Recommand' element={<Recommand />} />
+        <Route path='/Signup' element={<Signup />} />
+        <Route path='/Login' element={<Login />} />
       </Routes>
       <Footer />
     </BrowserRouter>
