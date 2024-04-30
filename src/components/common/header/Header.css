@@ -1,12 +1,22 @@
-.header {
-    height: 60px;
-    min-height: 60px;
-    display: flex;
-    align-items: center; /* Align items vertically */
-    justify-content: start; /* Align items horizontally */
-    background-color: black;
+.header-back {
+  display: absolute;
+  justify-content: center; /* 가로 방향 중앙 정렬 */
+  min-height: 60px;       /* 최소 높이 설정 */
+  height: 60px;
+  background-color: black; /* 배경색 */
+  align-items: center;
+  left: 0px;
+  margin: auto;
 }
-  
+
+.header {
+  display: flex;
+  width: 1200px;
+  height: 50px; /* Adjust the height as needed */
+  align-items: center;
+  margin: auto;
+}
+
 .inputdeco {
     width: 300px; /* input의 너비 */
     height: 35px; /* input의 높이 */
@@ -15,17 +25,17 @@
     padding: 0 10px; /* 내부 여백 */
     padding-right: 30px;
     /* 필요한 경우 여기에 추가 스타일링 */
-  }
+}
   
-  .search-button {
-    background: transparent;
-    border: none;
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
+.search-button {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
 
   .search-container {
   position: relative;

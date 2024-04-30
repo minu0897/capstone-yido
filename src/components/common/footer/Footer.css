@@ -1,7 +1,16 @@
-.footer {
-    display: flex;
+.footer-back {
+    display: absolute;
     justify-content: center; /* 가로 방향 중앙 정렬 */
     min-height: 100px;       /* 최소 높이 설정 */
     background-color: black; /* 배경색 */
     color: white;            /* 글자색 */
+    align-items: center;
+    left: 0px;
+    margin:auto;
 }
+.footer {
+    width: 1200px;
+    height: 50px; /* Adjust the height as needed */
+    align-items: center;
+    margin:auto;
+  }

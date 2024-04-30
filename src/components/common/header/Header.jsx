@@ -11,20 +11,22 @@ const Header = () => {
   };
 
   return (  
-    <div className='header'>
+    <div className='header-back'>
+      <div className='header'>
         <div>
         <Link to={'/'}>
-          <img src={icon} width="40px" height="40px" style={{ marginLeft: '250px'}} />
+          <img src={icon} width="40px" height="40px" />
         </Link>
         </div>
-        <div style={{marginLeft:'1%'}}>
-          <div style={{color: 'white'}}>
+        <div width="150px" style={{marginLeft:"13px"}}>
+          <div style={{color: 'white',width:"100px"}}>
             Yido
           </div>
-          <div style={{color: 'white'}}>
+          <div style={{color: 'white',width:"100px"}}>
             이도
           </div>
         </div>
+        
         <form onSubmit={handleSubmit} className="search-container" style={{ marginLeft: '250px' }}>
           <input type="text" className="inputdeco" />
           <button type="submit" className="search-button">
@@ -32,18 +34,19 @@ const Header = () => {
           </button>
         </form>
 
-        <div style={{color:'white', marginLeft:'300px'}} >
-          log in
+        <div style={{color:'white', marginLeft: '280px',width:"50px"}}>
+          <span width="50px">log in</span>
         </div>
-        <div style={{color:'white', marginLeft:'10px'}} >
+        <div style={{color:'white', marginLeft:'0px'}} >
           | 
         </div>
-        <div style={{color:'white', marginLeft: '10px'}}>
-          sign up
+        <div style={{color:'white', marginLeft: '10px',width:"70px"}}>
+          <span width="70px">sign up</span>
         </div>
-        <div style={{ marginLeft:"100px"}}>
+        <div style={{ marginRight:"5px"}}>
           <img src="https://us.123rf.com/450wm/get4net/get4net1711/get4net171100432/89002328-%EC%A2%85-%EC%95%84%EC%9D%B4%EC%BD%98.jpg" width="20px" height="20px"/>
         </div>
+      </div>
     </div>
   );
 };
