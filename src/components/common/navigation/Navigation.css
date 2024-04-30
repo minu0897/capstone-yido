@@ -2,9 +2,12 @@
     min-height: 60px;
     background-color: white;
     font-size: 26px;
-    display: flex;             
+    display: flex;          
+    justify-content: space-between; /* 링크 사이에 동일 간격 */   
     align-items: center;       
     text-decoration: none;
+    width: 1200px;
+    margin: auto;
 }
 
 .navigation a, .navigation a:visited, .navigation a:hover, .navigation a:active {
