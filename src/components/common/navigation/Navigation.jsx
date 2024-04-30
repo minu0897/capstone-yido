@@ -9,10 +9,10 @@ const Navigation = () => {
 
   return (
     <div className='navigation'>
-      <Link to={'/'}>Home</Link>
-      <Link to={'/Recommand'}>Recommand</Link>
-      <Link to={'/Note'}>Note</Link>
-      <Link to={'/Community'}>Community</Link>
+      <Link to={'/'} style={{marginLeft:'300px'}}>Home</Link>
+      <Link to={'/Recommand'} style={{marginLeft:'200px'}}>Recommand</Link>
+      <Link to={'/Note'} style={{marginLeft:'200px'}}>Note</Link>
+      <Link to={'/Community'} style={{marginLeft:'200px'}}>Community</Link>
     </div>
   );
 };

@@ -37,7 +37,7 @@
   cursor: pointer;
 }
 
-  .search-container {
+.search-container {
   position: relative;
   display: inline-block;
 }
@@ -47,6 +47,7 @@
   text-decoration: none; /* 밑줄 제거 */
   font-size: 16px; /* 폰트 크기 */
 }
+
 .login-a:active{
   color: white; /* 링크의 기본 색상 */
   text-decoration: none; /* 밑줄 제거 */
