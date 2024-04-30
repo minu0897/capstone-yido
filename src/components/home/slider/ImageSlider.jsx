@@ -30,8 +30,8 @@ const ImageSlider = () => {
   };
 
   return (
-    <div >
-      <Slider {...settings}  dotsClass="test-css">
+    <div style={{ padding: "10px 10px 30px 10px", alignItems: "center", overflowX: "hidden", overflowY: "hidden" }}>
+      <Slider {...settings}  dotsClass="dots-css">
         {images.map((arr, index) => (
           <div key={index}>
             <div className='slider-div' style={{ backgroundColor: arr[1] }} >

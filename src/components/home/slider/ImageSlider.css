@@ -3,7 +3,7 @@
 }
 
 .slider-div {
-  width: 100%; /* 전체 너비를 사용 */
+  width: 99%; /* 전체 너비를 사용 */
   height: 400px; 
   margin: auto; /* 중앙 정렬 */
   flex-grow: 1; /* 각 항목이 슬라이드 내부 공간을 균등하게 차지하도록 */
@@ -40,7 +40,7 @@ p {
   font-size: 20px;
 }
 
-.test-css {
+.dots-css {
   bottom: -45px;
   width: 100%;
   list-style: none;
@@ -50,7 +50,7 @@ p {
   padding: 0;
 }
 
-.test-css li {
+.dots-css li {
   position: relative;
   display: inline-block;
   width: 20px;
@@ -60,7 +60,7 @@ p {
   cursor: pointer;
 }
 
-.test-css li button {
+.dots-css li button {
   font-size: 0;
   line-height: 0;
   display: block;
@@ -74,7 +74,7 @@ p {
   background: 0 0;
 }
 
-.test-css li button:before {
+.dots-css li button:before {
   font-size: 2.7rem;
   line-height: 20px;
   position: absolute;
@@ -88,7 +88,7 @@ p {
   color: #D9D9D9;
 }
 
-.test-css li.slick-active button:before {
+.dots-css li.slick-active button:before {
   opacity: .75;
   color: #6D6968;
 }
