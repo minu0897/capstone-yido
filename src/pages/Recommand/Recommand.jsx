@@ -6,7 +6,9 @@ const Recommand = () => {
 
   return (
     <div className='recommand'>
-      
+        <Link to={'/videoplayer?id=1'}>
+            video
+        </Link>
     </div>
   );
 };
