@@ -12,6 +12,7 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import VideoPlayer from './pages/VideoPlayer/VideoPlayer';
 import reportWebVitals from './reportWebVitals';
+import RegisterVideo from './pages/RegisterVideo/RegisterVideo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -28,6 +29,7 @@ root.render(
         <Route path='/Signup' element={<Signup />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/videoplayer' element={<VideoPlayer />} />
+        <Route path='/RegisterVideo' element={<RegisterVideo/>}/>
       </Routes>
       <Footer />
     </BrowserRouter>

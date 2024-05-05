@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactPlayer from 'react-player';
+//import ReactPlayer from 'react-player';
 import './Player.css'; // CSS 파일을 import
 
 const Player = () => {
