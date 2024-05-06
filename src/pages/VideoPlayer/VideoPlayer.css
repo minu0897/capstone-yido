@@ -2,6 +2,39 @@
     width: 1200px;
     display: flex;
     flex-direction: column; /* 자식 요소들을 세로로 배열 */
-    background-color: aqua;
     margin: auto;
+}
+.player {
+    width: 800px;  /* 또는 원하는 크기 */
+    height: 450px; /* 또는 원하는 크기 */
+    position: relative; /* 자식 요소를 위한 위치 컨텍스트 */
+}
+
+.subtitles {
+    margin-left: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.subtitle-show {
+    display: block;
+}
+
+.subtitle-hide {
+    display: none;
+}
+
+.video-subtitles-container {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 3px;
+    height: 450px;
+    width: 370px;
+}
+
+
+.pk:hover,.pt:hover,.pe:hover{
+    font-weight: bold;
 }
