@@ -32,7 +32,7 @@ const RegisterVideo = () => {
         const formData = new FormData();
         formData.append("video", file);
         formData.append("title", title);
-        formData.append("videoTags", ['가','나','다']);
+        formData.append("videoTags", videoTags); // tags 배열을 직접 전달
         // const jsonBlob = new Blob([JSON.stringify({ tags: tags })], {
         //     type: 'application/json'
         // });
@@ -60,12 +60,12 @@ const RegisterVideo = () => {
                 <input name="title" type="text" value={title} onChange={handleTitleChange} placeholder="Enter title" />
                 
                 <input type="text" value={tagInput} onChange={handleInputChange} placeholder="Enter a tag" />
-                {/* <button type="button" onClick={handleAddTag}>Add Tag</button>
+                <button type="button" onClick={handleAddTag}>Add Tag</button>
                 <ul>
                     {tags.map((tag, index) => (
                         <li key={index}>{tag}</li>
                     ))}
-                </ul> */}
+                </ul>
                 <button type="submit">Upload</button>
             </form>
         </div>
