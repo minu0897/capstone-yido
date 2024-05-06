@@ -27,9 +27,7 @@ const RegisterVideo = () => {
     };
 
     // Axios 인스턴스 생성
-    const api = axios.create({
-        baseURL: 'http://101.235.73.77:8080'
-    });
+
     
     const handleSubmit = async event => {
         event.preventDefault();
@@ -40,7 +38,7 @@ const RegisterVideo = () => {
 
         // Axios 인스턴스를 사용하여 POST 요청
         try {
-            const response = await api.post('/api/video', formData, {
+            const response = await axios.post('/api/video', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
