@@ -26,15 +26,17 @@ const RegisterVideo = () => {
         }
     };
 
-    // Axios 인스턴스 생성
-
-    
     const handleSubmit = async event => {
         event.preventDefault();
 
         const formData = new FormData();
         formData.append("video", file);
         formData.append("title", title);
+
+        const jsonBlob = new Blob([JSON.stringify({ tags: tags })], {
+            type: 'application/json'
+        });
+        formData.append("json", jsonBlob);
 
         // Axios 인스턴스를 사용하여 POST 요청
         try {
