@@ -4,8 +4,8 @@ import axios from 'axios';
 const RegisterVideo = () => {
     const [file, setFile] = useState(null);
     const [title, setTitle] = useState("");
-    // const [tags, setTags] = useState([]);
-    // const [tagInput, setTagInput] = useState("");
+    const [tags, setTags] = useState([]);
+    const [tagInput, setTagInput] = useState("");
 
     const handleFileChange = event => {
         setFile(event.target.files[0]);
