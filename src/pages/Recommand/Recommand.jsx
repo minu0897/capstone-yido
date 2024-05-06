@@ -6,7 +6,7 @@ const Recommand = () => {
 
   return (
     <div className='recommand'>
-        <Link to={'/videoplayer?id=1'}>
+        <Link to={'/videoplayer?id=8'}>
             video
         </Link>
     </div>
