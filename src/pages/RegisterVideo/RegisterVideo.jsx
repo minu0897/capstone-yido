@@ -32,7 +32,7 @@ const RegisterVideo = () => {
         const formData = new FormData();
         formData.append("video", file);
         formData.append("title", title);
-        formData.append("videoTags", videoTags); // tags 배열을 직접 전달
+        formData.append("videoTags", []); // tags 배열을 직접 전달
         // const jsonBlob = new Blob([JSON.stringify({ tags: tags })], {
         //     type: 'application/json'
         // });
