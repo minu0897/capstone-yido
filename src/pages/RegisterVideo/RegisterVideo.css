@@ -7,23 +7,24 @@
 }
 
 .button-container {
+    width: 100%;
     display: flex;          /* 플렉스박스 설정 */
     justify-content: space-between; /* 양쪽 버튼을 끝으로 정렬 */
 }
 
-div{
-    width: 100%;
+.container-regi div{
     margin-bottom: 10px;
     text-align: center;
 }
 
 .btn_none{
     background-color : transparent;
-    height: 0px;
+    max-height: 0px;
+    padding: 0px;
     cursor: default;
 }
 
-button{
+.button-container button{
     background-color: #A09E9E;
     border: none;
     height: 22px;
@@ -76,6 +77,14 @@ button{
     font-weight: 400;
 }
 
+.submit_btn{
+    width: 80px;
+    background-color: #A09E9E;
+    border: none;
+    height: 22px;
+    cursor: pointer;
+    border-radius: 15px;
+}
 
 .overlayout{
     position: fixed;

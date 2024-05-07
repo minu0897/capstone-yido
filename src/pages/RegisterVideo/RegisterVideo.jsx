@@ -127,21 +127,6 @@ const RegisterVideo = () => {
     
     return (
         <div className="container-regi">
-        {/* 
-            <form onSubmit={handleSubmit}>
-                <input name ="video" type="file" onChange={handleFileChange} />
-                <input name="title" type="text" value={title} onChange={handleTitleChange} placeholder="Enter title" />
-                
-                <input type="text" value={tagInput} onChange={handleInputChange} placeholder="Enter a tag" />
-                <button type="button" onClick={handleAddTag}>Add Tag</button>
-                <ul>
-                    {tags.map((tag, index) => (
-                        <li key={index}>{tag}</li>
-                    ))}
-                </ul>
-                <button type="submit">Upload</button>
-            </form>
-        */}
             {
                 page <= 4 &&<>
                 <div style={{minHeight:"30px",display:"grid",placeItems:"center",marginTop:"30px",marginBottom:"0px"}}>
@@ -185,10 +170,10 @@ const RegisterVideo = () => {
             }
             {
                 page === 1 && <>
-                    <div style={{minHeight:"500px", backgroundColor:"#D9D9D9",display:"grid",placeItems:"center",borderRadius:"15px",marginBottom:"0px"}}>
+                    <div style={{minHeight:"500px", backgroundColor:"#D9D9D9",display:"grid",placeItems:"center",borderRadius:"15px",marginBottom:"0px",width:"100%"}}>
                         <div>
                             <input ref={fileInputRef} name ="fileInput" accept="video/mp4"   type="file" onChange={handleFileChange} style={{display:"none"}} />
-                            <button onClick={handleUploadClick} aria-label="Upload file" style={{width:"220px" ,height:"260px",backgroundColor:"transparent",cursor:"pointer"}}>
+                            <button onClick={handleUploadClick} aria-label="Upload file" style={{width:"220px" ,height:"260px",backgroundColor:"transparent",cursor:"pointer",border:"0px solid black"}}>
                                 <img style={{width:"220px"}} src={videoicon}></img>
                                 <h4 style={{marginTop:"0px"}}>Upload<br/>Video<br/>(Click me)</h4>
                             </button>
@@ -212,7 +197,7 @@ const RegisterVideo = () => {
             }
             {
                 page === 4 && <>
-                    <button onClick={handleSubmit} style={{width:"80px"}}>Complete</button>
+                    <button onClick={handleSubmit} className="submit_btn" >Complete</button>
                     { videoSrc !== null && <video height="400px" width="100%" controls src={videoSrc} />}
                 </>
             }
@@ -228,7 +213,6 @@ const RegisterVideo = () => {
             { vloding && (
               <div className='overlayout'>
                 <div style={{width:"110px"}}>
-                    
                     <BeatLoader color="#000000" size={30}/>
                 </div>
                 <h3 style={{minWidth:"110px",paddingLeft:"15px",marginTop:"0px"}}> Loding...</h3>
