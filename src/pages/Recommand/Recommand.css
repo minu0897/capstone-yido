@@ -1,5 +1,24 @@
 .recommand {
-  background-color: orange;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(100% / 6 - 20px), 1fr)); /* 최소 폭 설정 */
+  gap: 20px; /* 항목 간 간격 */
+  padding: 20px;
+}
+
+.video-link {
+  text-decoration: none;
+  color: black; /* 링크 색상 */
+}
+
+.video-container {
+  border: 1px solid #ccc;
   padding: 10px;
-  flex-grow: 1; /* 나머지 공간 차지 */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.video-container:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }

@@ -2,33 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Recommand.css';
 import VideoContainer from './VideoContainer';
+import videoData from './videoarray.json';
 
 const Recommand = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    const fetchVideos = async () => {
-      try {
-        const response = await fetch('/api/video/recommend');
-        const data = await response.json();
-        setVideos(data);
-      } catch (error) {
-        console.error('Failed to fetch videos:', error);
-      }
-    };
-
-    fetchVideos();
+    setVideos(videoData);
   }, []);
 
   return (
     <div className='recommand'>
       {videos.map(video => (
-        <div key={video.videoId}>
-          <Link to={`/videoplayer?id=${video.videoId}`}>
-            Watch {video.title}
-          </Link>
+        <Link to={`/videoplayer?id=${video.videoId}`} className="video-link" key={video.videoId}>
           <VideoContainer video={video} />
-        </div>
+        </Link>
       ))}
     </div>
   );
