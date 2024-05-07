@@ -3,6 +3,7 @@
 }
 
 .slider-div {
+  min-width: 1200px;
   width: 99%; /* 전체 너비를 사용 */
   height: 400px; 
   margin: auto; /* 중앙 정렬 */

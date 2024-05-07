@@ -1,0 +1,76 @@
+.container-regi{
+    width: 700px;
+    display: flex;
+    flex-direction: column; 
+    margin: auto;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;          /* 플렉스박스 설정 */
+    justify-content: space-between; /* 양쪽 버튼을 끝으로 정렬 */
+}
+
+div{
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.btn_none{
+    background-color : transparent;
+    height: 0px;
+    cursor: default;
+}
+
+button{
+    background-color: #A09E9E;
+    border: none;
+    height: 22px;
+    width: 52px;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+.status_d{
+    min-width: 100px;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center; /* 가로 방향 중앙 정렬 */
+    align-items: center;     /* 세로 방향 중앙 정렬 */
+}
+
+.status_o{
+    width: 20px;
+    height: 20px;
+    background-color: #0047FF;
+    border-radius: 13px;
+    border: 1px solid #0047FF;
+    margin: 0px;   
+}
+.status_x{
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 13px;
+    border: 1px solid black;
+    margin: 0px;  
+}
+
+.input-css{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    min-height: 35px;
+    border: none;
+    background-color: #F1F1F1;
+    padding-left: 10px; 
+    outline: none;
+    font-size: 13px;
+    font-weight: 400;
+}
