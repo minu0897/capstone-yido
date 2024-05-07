@@ -86,9 +86,6 @@ const RegisterVideo = () => {
 
 
     const handleSubmit = async event => {
-        setPage(5);//완료 창으로
-
-        return;
         setLoding(true);
         //---------------------------------
         // Tag처리
