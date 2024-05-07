@@ -42,10 +42,10 @@ const Header = () => {
         </Link>
         </div>
         <div width="150px" style={{marginLeft:"13px", marginTop:"5px"}}>
-          <div style={{color: 'white',width:"100px"}}>
+          <div className='header-title' style={{color: 'white',width:"100px"}}>
             Yido
           </div>
-          <div style={{color: 'white',width:"100px"}}>
+          <div className='header-title' style={{color: 'white',width:"100px"}}>
             이도
           </div>
         </div>
