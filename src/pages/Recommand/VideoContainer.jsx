@@ -4,6 +4,7 @@ import './VideoContainer.css';
 const VideoContainer = ({ video }) => {  // Accepting video object as a prop
     return (
         <div className="video-container">
+            <img src="https://dummyimage.com/600x400/000/fff&text=video"/>
             <h3>{video.title}</h3>
             <p>{video.content}</p>
             <p>Likes: {video.likes}</p>
