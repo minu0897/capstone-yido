@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Recommand.css';
-import VideoContainer from './VideoContainer';
+import VideoContainer from './VideoContainer.jsx';
 import videoData from './videoarray.json';
 
 const Recommand = () => {
