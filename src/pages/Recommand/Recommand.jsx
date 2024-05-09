@@ -11,28 +11,30 @@ const Recommand = () => {
     setVideos(videoData);
   }, []);
 
-  const recommandvideoarray={
+  const recommandvideoarray = {
     display: 'flex',
-    justifyContent: 'center', // 중앙 정렬을 위해 추가
-    flexWrap: 'wrap', // 여러 줄로 나열되도록 처리
-    gap: '20px', // 각 아이템 간의 간격
+    justifyContent: 'center', // Keeps items centered
+    flexWrap: 'wrap', // Allows multiple lines
+    gap: '20px', // Space between items
+    margin: '0 auto', // Centers the container
+    maxWidth: '1368px', // Adjust based on the sum of all items' widths in a row
   };
 
-  const videolink={
+  const videolink = {
     textDecoration: 'none',
     color: 'black',
-    width: '322px',
-  }
+    width: '322px', // Width of each link to fit 4 items per row (taking into account the gap)
+  };
 
   return (
-    <div style={{marginTop:'20px'}}>
-    <div style={recommandvideoarray}>
-      {videos.map(video => (
-        <Link to={`/videoplayer?id=${video.videoId}`} key={video.videoId} style={videolink}>
-          <VideoContainer video={video} />
-        </Link>
-      ))}
-    </div>
+    <div style={{marginTop: '20px'}}>
+      <div style={recommandvideoarray}>
+        {videos.map(video => (
+          <Link to={`/videoplayer?id=${video.videoId}`} key={video.videoId} style={videolink}>
+            <VideoContainer video={video} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
