@@ -1,38 +1,32 @@
 .video-container {
   display: grid;
   grid-template-columns: 1fr; 
-  gap: 10px;
+  gap: 1px; /* 간격을 조금 늘렸습니다 */
   width: 300px;
-  height: 380px;
   border: 1px solid #ccc;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   background-color: #fff; 
-  border-radius: 8px;      
+  border-radius: 8px;
   transition: transform 0.2s;
 }
 
 .video-container:hover {
-  transform: scale(1.001);
+  scale: 1.01;
 }
 
 .video-container img {
   min-width: 300px;
-  max-height: 170px;
-  width: 200px;          
-  height: auto;
+  max-height: 170px; 
   border-radius: 8px;
   object-fit: contain; /* 이미지의 원본 비율을 유지하면서 최적의 크기로 조정 */
   object-position: center; /* 이미지를 컨테이너 중앙에 위치 */
-  border: 1px solid black
+  border: 1px solid black;
 }
 
-.video-container h3,
-.video-container p {
-  margin: 1px 0;         
+.video-container h3, .video-container span {
+  font-size: 15px;
+  margin: 1px 0; /* 위, 아래 간격 동일하게 조정 */
 }
 
-.video-container a {
-  text-decoration: none;
-  color: inherit;
-}
+

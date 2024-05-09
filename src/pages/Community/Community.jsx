@@ -17,7 +17,7 @@ const Community = () => {
           Community
         </div>
       </div>
-      <Link to={'/write'} style={{textDecoration:'none', color:'black'}}>
+      <Link to={'/WriteCommunity'} style={{textDecoration:'none', color:'black'}}>
       <div className='write' style={{marginLeft:'1000px'}}>
         <img src="https://png.pngtree.com/png-clipart/20211020/ourlarge/pngtree-red-pencil-clipart-png-image_3995136.png" width={'20px'} height={'20px'}/>
         Write
