@@ -73,26 +73,25 @@ const WriteCommunity = () => {
                     onChange={handleTagsChange}
                 />
             </div>
-            
-            <button type="submit">Submit</button>
+            <div style={{placeItems:"center", display:"grid"}}>
+            <div className="wr-input-css1" style={{marginLeft:'0px'}}>
+            <div style={{ display: 'flex', width: '800px', height:'50px', backgroundColor:'white'}}>
+            <button style={{fontSize: '16px',borderRadius: '15px', border:'1px solid gray', width:'100px'}}>
+            add photo
+            </button>
+            <div style={{ width: '20px' }} /> {/* 첫 번째와 두 번째 버튼 사이의 간격 */}
+            <button style={{fontSize: '16px',borderRadius: '15px' , border:'1px solid gray', width:'150px' }}>
+            add video URL
+            </button>
+            <div style={{ width: '530px' }} /> {/* 두 번째와 세 번째 버튼 사이의 간격 */}
+            <button  type="submit" style={{ fontSize: '16px',borderRadius: '15px' , border:'1px solid gray' , width:'100px'}}>
+            POST
+            </button>
+            </div>
+            </div>
+            </div>
         </form>
-        <div style={{placeItems:"center", display:"grid"}}>
-        <div className="wr-input-css1" style={{marginLeft:'0px'}}>
-        <div style={{ display: 'flex', width: '800px', height:'50px', backgroundColor:'white'}}>
-        <button style={{fontSize: '16px',borderRadius: '15px', border:'1px solid gray', width:'100px'}}>
-          add photo
-        </button>
-        <div style={{ width: '20px' }} /> {/* 첫 번째와 두 번째 버튼 사이의 간격 */}
-        <button style={{fontSize: '16px',borderRadius: '15px' , border:'1px solid gray', width:'150px' }}>
-          add video URL
-        </button>
-        <div style={{ width: '530px' }} /> {/* 두 번째와 세 번째 버튼 사이의 간격 */}
-        <button style={{ fontSize: '16px',borderRadius: '15px' , border:'1px solid gray' , width:'100px'}}>
-          write
-        </button>
-        </div>
-        </div>
-        </div>
+        
       </div>
     );
 };
