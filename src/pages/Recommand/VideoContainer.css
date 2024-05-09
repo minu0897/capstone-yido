@@ -17,9 +17,14 @@
 }
 
 .video-container img {
-  width: 100%;          
+  min-width: 300px;
+  max-height: 170px;
+  width: 200px;          
   height: auto;
   border-radius: 8px;
+  object-fit: contain; /* 이미지의 원본 비율을 유지하면서 최적의 크기로 조정 */
+  object-position: center; /* 이미지를 컨테이너 중앙에 위치 */
+  border: 1px solid black
 }
 
 .video-container h3,

@@ -2,9 +2,12 @@ import React from "react";
 import './VideoContainer.css';
 
 const VideoContainer = ({ video }) => {  // Accepting video object as a prop
+
+    const imageUrl = `http://101.235.73.77:8088/video/thumbnail/${video.videoId}.jpg`;
+
     return (
         <div className="video-container">
-            <img src="https://dummyimage.com/600x400/000/fff&text=video"/>
+            <img src={imageUrl} alt="thumbnail" height="200px"/>
             <h3>{video.title}</h3>
             <p>{video.content}</p>
             <p>Likes: {video.likes}</p>
