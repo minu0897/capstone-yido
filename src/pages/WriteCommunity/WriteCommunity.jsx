@@ -47,18 +47,19 @@ const WriteCommunity = () => {
     };
 
     return (
+        <div>
         <form onSubmit={handleSubmit}>
             <div  style={{minHeight:"40px", display:"grid", placeItems:"center", marginTop:"0px"}}>
                 <h3>Write</h3>
                 <input
                     type='text'
-                    className='input-css'
+                    className='wr-input-css'
                     placeholder="Please enter a Title"
                     value={title}
                     onChange={handleTitleChange}
                 />
                 <textarea
-                    className='input-css'
+                    className='wr-input-css'
                     placeholder="Please enter a Content"
                     style={{minHeight:"300px", paddingTop:"10px"}}
                     value={content}
@@ -66,14 +67,33 @@ const WriteCommunity = () => {
                 />
                 <input
                     type='text'
-                    className='input-css'
+                    className='wr-input-css'
                     placeholder="Please enter a Tags (Each tag is separated by #) Ex #Tag #Yido"
                     value={tags}
                     onChange={handleTagsChange}
                 />
             </div>
+            
             <button type="submit">Submit</button>
         </form>
+        <div style={{placeItems:"center", display:"grid"}}>
+        <div className="wr-input-css1" style={{marginLeft:'0px'}}>
+        <div style={{ display: 'flex', width: '800px', height:'50px', backgroundColor:'white'}}>
+        <button style={{fontSize: '16px',borderRadius: '15px', border:'1px solid gray', width:'100px'}}>
+          add photo
+        </button>
+        <div style={{ width: '20px' }} /> {/* 첫 번째와 두 번째 버튼 사이의 간격 */}
+        <button style={{fontSize: '16px',borderRadius: '15px' , border:'1px solid gray', width:'150px' }}>
+          add video URL
+        </button>
+        <div style={{ width: '530px' }} /> {/* 두 번째와 세 번째 버튼 사이의 간격 */}
+        <button style={{ fontSize: '16px',borderRadius: '15px' , border:'1px solid gray' , width:'100px'}}>
+          write
+        </button>
+        </div>
+        </div>
+        </div>
+      </div>
     );
 };
 

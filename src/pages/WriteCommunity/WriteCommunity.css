@@ -1,4 +1,4 @@
-.input-css{
+.wr-input-css{
     display: block;
     margin-left: 10px;
     margin-right: 10px;
@@ -9,6 +9,21 @@
     border-radius: 4px;
     background-color: #F1F1F1;
     padding-left: 10px; 
+    outline: none;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.wr-input-css1{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 800px;
+    min-height: 35px;
+    border: none;
+    border-radius: 4px;
+    background-color: #F1F1F1;
     outline: none;
     font-size: 13px;
     font-weight: 400;
