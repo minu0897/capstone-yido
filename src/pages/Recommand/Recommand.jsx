@@ -26,6 +26,20 @@ const Recommand = () => {
     width: '322px', // Width of each link to fit 4 items per row (taking into account the gap)
   };
 
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const response = await fetch('/api/video/recommend');
+        const data = await response.json();
+        setVideos(data);
+      } catch (error) {
+        console.error('Failed to fetch videos:', error);
+      }
+    };
+
+    fetchVideos();
+  }, []);
+  
   return (
     <div style={{marginTop: '20px'}}>
       <div style={recommandvideoarray}>
