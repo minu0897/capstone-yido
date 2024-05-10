@@ -78,16 +78,15 @@ const WriteCommunity = () => {
             <div style={{placeItems:"center", display:"grid"}}>
             <div className="wr-input-css1" style={{marginLeft:'0px'}}>
             <div style={{ display: 'flex', width: '800px', height:'50px', backgroundColor:'white'}}>
-            <button style={{fontSize: '16px', borderRadius: '15px', border:'1px solid gray', width:'100px'}}>
-            사진 추가
+            <button style={{fontSize: '16px', borderRadius: '15px', border:'1px solid gray', width:'100px'}} className="wr-button-css">
+            add time
             </button>
             <div style={{ width: '20px' }} />
-            <button style={{fontSize: '16px', borderRadius: '15px', border:'1px solid gray', width:'150px' }}>
-            비디오 URL 추가
+            <button style={{fontSize: '16px', borderRadius: '15px', border:'1px solid gray', width:'150px', marginRight:'50px' }}  className="wr-button-css">
+            add video URL
             </button>
-            <div style={{ width: '530px' }} />
-            <button type="submit" style={{ fontSize: '16px', borderRadius: '15px', border:'1px solid gray', width:'100px'}}>
-            게시하기
+            <button type="submit" style={{ fontSize: '16px', borderRadius: '15px', border:'1px solid gray', width:'100px', marginLeft:'400px'}}  className="wr-button-css">
+            POST
             </button>
             </div>
             </div>

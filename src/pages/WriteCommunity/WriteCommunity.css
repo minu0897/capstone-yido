@@ -28,3 +28,7 @@
     font-size: 13px;
     font-weight: 400;
 }
+
+.wr-button-css:hover {
+    background-color:darkkhaki;
+}

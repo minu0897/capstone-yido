@@ -17,12 +17,13 @@ const Community = () => {
           Community
         </div>
       </div>
-      <Link to={'/WriteCommunity'} style={{textDecoration:'none', color:'black'}}>
       <div className='write' style={{marginLeft:'1000px'}}>
+      <Link to={'/WriteCommunity'} style={{textDecoration:'none', color:'black'}}>
         <img src="https://png.pngtree.com/png-clipart/20211020/ourlarge/pngtree-red-pencil-clipart-png-image_3995136.png" width={'20px'} height={'20px'}/>
         Write
-      </div>
       </Link>
+      </div>
+
 
       <div style={communityboxarray}>
       <Card 
