@@ -22,7 +22,7 @@ const WriteCommunity = () => {
         };
 
         try {
-            const response = await fetch('/api/post', {
+            const response = await fetch('http://101.235.73.77:8080/api/post', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
