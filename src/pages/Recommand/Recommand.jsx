@@ -27,8 +27,8 @@ const Recommand = () => {
         const response = await fetch('/api/video/recommend');
         const data = await response.json();
         console.log(data); // 데이터 구조 확인
-        if (data && Array.isArray(data.videos)) {
-          setVideos(data.videos);
+        if (Array.isArray(data)) { // data가 배열인지 확인
+          setVideos(data);
         } else {
           console.error('Videos data is not an array:', data);
           setVideos([]); // 안전하게 비어 있는 배열 설정
