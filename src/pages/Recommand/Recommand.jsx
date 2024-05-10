@@ -2,14 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Recommand.css';
 import VideoContainer from './VideoContainer.jsx';
-import videoData from './videoarray.json';
 
 const Recommand = () => {
   const [videos, setVideos] = useState([]);
-
-  useEffect(() => {
-    setVideos(videoData);
-  }, []);
 
   const recommandvideoarray = {
     display: 'flex',
@@ -31,14 +26,22 @@ const Recommand = () => {
       try {
         const response = await fetch('/api/video/recommend');
         const data = await response.json();
-        setVideos(data);
+        console.log(data); // 데이터 구조 확인
+        if (data && Array.isArray(data.videos)) {
+          setVideos(data.videos);
+        } else {
+          console.error('Videos data is not an array:', data);
+          setVideos([]); // 안전하게 비어 있는 배열 설정
+        }
       } catch (error) {
         console.error('Failed to fetch videos:', error);
+        setVideos([]); // 오류 발생 시 비어 있는 배열 설정
       }
     };
-
+  
     fetchVideos();
   }, []);
+  
   
   return (
     <div style={{marginTop: '20px'}}>
