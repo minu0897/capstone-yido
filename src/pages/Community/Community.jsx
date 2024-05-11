@@ -9,7 +9,7 @@ const Community = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/community');
+        const response = await fetch('/api/video/community');
         const result = await response.json();
         if (result.posts && Array.isArray(result.posts)) { // 'posts' 키를 확인하고 배열인지 검사
           setPosts(result.posts); // 'posts' 배열을 상태에 저장
