@@ -9,20 +9,20 @@ const Community = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/posts'); // 백엔드 API 경로에서 데이터 가져오기
-        const data = await response.json(); // 응답을 JSON 형태로 변환
-        if (Array.isArray(data)) {  // 데이터가 배열인지 확인
-          setPosts(data); // 상태에 데이터 설정
+        const response = await fetch('/api/community');
+        const result = await response.json();
+        if (result.posts && Array.isArray(result.posts)) { // 'posts' 키를 확인하고 배열인지 검사
+          setPosts(result.posts); // 'posts' 배열을 상태에 저장
         } else {
-          console.error('Received data is not an array:', data);
+          console.error('Expected posts array but received:', result);
         }
       } catch (error) {
-        console.error('Error fetching posts:', error); // 오류 발생시 콘솔에 출력
+        console.error('Error fetching posts:', error);
       }
     };
 
-    fetchData(); // 데이터 가져오기 함수 호출
-  }, []); // 컴포넌트 마운트시 한 번만 실행
+    fetchData();
+  }, []);
 
   const communityBoxStyle = {
     display: 'flex',
@@ -56,7 +56,7 @@ const Community = () => {
             />
           ))
         ) : (
-          <p>Loading posts...</p> // 로딩 메시지 표시
+          <p>Loading posts...</p>
         )}
       </div>
     </div>
