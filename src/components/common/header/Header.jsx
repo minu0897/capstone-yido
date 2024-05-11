@@ -1,51 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
-import icon from '../../../sample/sejong.png'
-import { useState } from 'react';
+import icon from '../../../sample/sejong.png';
 
 const Header = () => {
-
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate(); // useNavigate 훅 추가
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await fetch('url 입력', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ search: searchTerm })
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      console.log('Server response:', data);
-      // 서버 응답 처리 로직 추가
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    // 검색어를 URL에 포함시켜 navigate 함수로 페이지 이동
+    navigate(`/api/search?query=${encodeURIComponent(searchTerm)}`);
   };
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  return (  
+  return (
     <div className='header-back'>
       <div className='header'>
         <div style={{marginTop:'10px'}}>
-        <Link to={'/'}>
-          <img src={icon} width="40px" height="40px" />
-        </Link>
+          <Link to={'/'}>
+            <img src={icon} width="40px" height="40px" />
+          </Link>
         </div>
         <div width="150px" style={{marginLeft:"13px", marginTop:"5px"}}>
-          <div className='header-title' style={{color: 'white',width:"100px"}}>
+          <div className='header-title' style={{color: 'white', width:"100px"}}>
             Yido
           </div>
-          <div className='header-title' style={{color: 'white',width:"100px"}}>
+          <div className='header-title' style={{color: 'white', width:"100px"}}>
             이도
           </div>
         </div>
@@ -58,7 +42,7 @@ const Header = () => {
         </form>
 
         <div style={{color:'white', marginLeft: '280px',width:"50px",marginTop:'5px'}}>
-          <Link to={'/Login'}  style={{textDecoration:'none'}}>
+          <Link to={'/Login'} style={{textDecoration:'none'}}>
             <a className="login-a">Sign In</a>
           </Link>
         </div>
@@ -70,9 +54,9 @@ const Header = () => {
         </div>
 
         <div style={{ marginRight:"0px", marginTop:'13px'}}>
-        <Link to={'/RegisterVideo'} style={{}}>
-          <img src="https://us.123rf.com/450wm/get4net/get4net1711/get4net171100432/89002328-%EC%A2%85-%EC%95%84%EC%9D%B4%EC%BD%98.jpg" width="20px" height="20px"/>
-        </Link>
+          <Link to={'/RegisterVideo'} style={{}}>
+            <img src="https://us.123rf.com/450wm/get4net/get4net1711/get4net171100432/89002328-%EC%A2%85-%EC%95%84%EC%9D%B4%EC%BD%98.jpg" width="20px" height="20px"/>
+          </Link>
         </div>
       </div>
     </div>
