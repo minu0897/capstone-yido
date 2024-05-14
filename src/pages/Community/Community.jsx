@@ -21,10 +21,13 @@ const Community = () => {
           throw new Error('Bad request');
         }
         const result = await response.json();
-        if (result.postList && Array.isArray(result.postList)) {
+        // Adjust the handling based on the structure of your backend response
+        if (Array.isArray(result)) {
+          setPosts(result); // Assuming direct array if result is an array
+        } else if (result.postList && Array.isArray(result.postList)) {
           setPosts(result.postList);
         } else {
-          console.error('Expected postList array but received:', result);
+          console.error('Expected array of posts but received:', result);
         }
       } catch (error) {
         console.error('Error fetching posts:', error);
