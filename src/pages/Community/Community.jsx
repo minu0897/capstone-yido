@@ -9,16 +9,23 @@ const Community = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/video/community');
-        const result = await response.json();
-        if (response.ok) {
-          if (result.postList && Array.isArray(result.postList)) { // 'postList'가 배열인지 확인
-            setPosts(result.postList); // 'postList' 배열을 상태에 저장
-          } else {
-            console.error('Expected postList array but received:', result);
+        const response = await fetch('/api/video/community', {
+          method: 'GET', // 서버 문서에 따라 메소드 확인
+          headers: {
+            'Content-Type': 'application/json', // 필요한 경우
           }
+        });
+        if (!response.ok) {
+          // 서버에서 정상적인 응답을 받지 못한 경우 에러 로깅
+          const errorResult = await response.json(); // 에러 메시지 파싱
+          console.error('Server responded with an error:', errorResult);
+          throw new Error('Bad request'); // 적절한 에러 처리
+        }
+        const result = await response.json();
+        if (result.postList && Array.isArray(result.postList)) {
+          setPosts(result.postList);
         } else {
-          console.error('Server responded with an error:', result);
+          console.error('Expected postList array but received:', result);
         }
       } catch (error) {
         console.error('Error fetching posts:', error);
