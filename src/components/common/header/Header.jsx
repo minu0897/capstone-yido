@@ -12,7 +12,7 @@ const Header = () => {
     event.preventDefault();
     try {
       // Make an HTTP POST request to the backend
-      const response = await axios.get('/api/search', { query: searchTerm });
+      const response = await axios.get('/api/search?query=', { query: searchTerm });
       // Navigate to a new page with the response if needed, or handle response data here
       console.log('Search response:', response.data);
       navigate(`/search-results`); // You might want to navigate based on the response or handle differently
