@@ -11,10 +11,16 @@ const Community = () => {
       try {
         const response = await fetch('/api/video/community');
         const result = await response.json();
-        if (result.posts && Array.isArray(result.posts)) { // 'posts' 키를 확인하고 배열인지 검사
-          setPosts(result.posts); // 'posts' 배열을 상태에 저장
+        if (result.posts && typeof result.posts === 'object' && !Array.isArray(result.posts)) { // 'posts' 키를 확인하고 객체인지 검사
+          // 객체 형태의 posts를 배열로 변환하여 상태에 저장합니다.
+          // 객체의 키를 배열로 변환하고, 각 키에 해당하는 값을 사용합니다.
+          const postsArray = Object.keys(result.posts).map(key => ({
+            ...result.posts[key],
+            postId: key // postId를 키로 설정
+          }));
+          setPosts(postsArray);
         } else {
-          console.error('Expected posts array but received:', result);
+          console.error('Expected posts object but received:', result);
         }
       } catch (error) {
         console.error('Error fetching posts:', error);
