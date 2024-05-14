@@ -4,7 +4,7 @@ import './Community.css';
 import Card from './Card';
 
 const Community = () => {
-  const [posts, setPosts] = useState([]); // Store post data
+  const [posts, setPosts] = useState([]); // 게시글 데이터를 저장할 상태
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,20 +17,18 @@ const Community = () => {
         });
         if (!response.ok) {
           const errorResult = await response.json();
-          console.error('Server responded with an error:', errorResult);
-          throw new Error('Bad request');
+          console.error('서버로부터 오류 응답:', errorResult);
+          throw new Error('잘못된 요청');
         }
         const result = await response.json();
-        // Adjust the handling based on the structure of your backend response
-        if (Array.isArray(result)) {
-          setPosts(result); // Assuming direct array if result is an array
-        } else if (result.postList && Array.isArray(result.postList)) {
-          setPosts(result.postList);
+        // 객체로 데이터를 받을 때 객체 내의 게시글 목록에 접근
+        if (result.posts && Array.isArray(result.posts)) {
+          setPosts(result.posts); // posts 키에 접근하여 상태 설정
         } else {
-          console.error('Expected array of posts but received:', result);
+          console.error('게시글 배열이 예상대로 받지 못함:', result);
         }
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.error('게시글을 불러오는 중 오류 발생:', error);
       }
     };
 
@@ -46,12 +44,12 @@ const Community = () => {
   return (
     <div className='community'>
       <div className='centerDiv'>
-        <div className='heading'>Community</div>
+        <div className='heading'>커뮤니티</div>
       </div>
       <div className='write' style={{ marginLeft: '1000px' }}>
         <Link to={'/WriteCommunity'} style={{ textDecoration: 'none', color: 'black' }}>
           <img src="https://png.pngtree.com/png-clipart/20211020/ourlarge/pngtree-red-pencil-clipart-png-image_3995136.png" width={'20px'} height={'20px'}/>
-          Write
+          글쓰기
         </Link>
       </div>
       <div style={communityBoxStyle}>
@@ -64,11 +62,11 @@ const Community = () => {
               content={post.content}
               likes={post.likes}
               dislikes={post.dislikes}
-              tags={post.tags} // Ensure that tags is passed as an array
+              tags={post.tags} // 태그는 배열로 전달
             />
           ))
         ) : (
-          <p>Loading posts...</p>
+          <p>게시글을 불러오는 중...</p>
         )}
       </div>
     </div>
