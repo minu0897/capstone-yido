@@ -9,10 +9,10 @@
   padding: 20px;
   margin-top: 50px;
   margin-bottom: 50px;
-  border: 2px solid #555;
+  /*border: 2px solid #555;*/
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .su-span-bold {
