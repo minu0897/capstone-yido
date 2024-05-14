@@ -4,17 +4,21 @@ import './Community.css';
 import Card from './Card';
 
 const Community = () => {
-  const [posts, setPosts] = useState({}); // 객체 형태로 상태 초기화
+  const [posts, setPosts] = useState([]); // 게시글 데이터를 저장할 상태
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('/api/video/community');
         const result = await response.json();
-        if (result.posts && typeof result.posts === 'object' && !Array.isArray(result.posts)) { // 객체인지 확인
-          setPosts(result.posts); // 객체 그대로 상태에 저장
+        if (response.ok) {
+          if (result.postList && Array.isArray(result.postList)) { // 'postList'가 배열인지 확인
+            setPosts(result.postList); // 'postList' 배열을 상태에 저장
+          } else {
+            console.error('Expected postList array but received:', result);
+          }
         } else {
-          console.error('Expected posts object but received:', result);
+          console.error('Server responded with an error:', result);
         }
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -44,11 +48,11 @@ const Community = () => {
         </Link>
       </div>
       <div style={communityBoxStyle}>
-        {Object.keys(posts).length > 0 ? (
-          Object.values(posts).map((post, index) => (
+        {posts.length > 0 ? (
+          posts.map(post => (
             <Card
-              key={index}
-              postId={post.postId} // postId는 객체 내부에 포함되어 있어야 합니다
+              key={post.postId}
+              postId={post.postId}
               title={post.title}
               content={post.content}
               likes={post.likes}
