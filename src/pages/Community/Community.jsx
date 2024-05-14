@@ -21,9 +21,9 @@ const Community = () => {
           throw new Error('잘못된 요청');
         }
         const result = await response.json();
-        // 객체로 데이터를 받을 때 객체 내의 게시글 목록에 접근
-        if (result.posts && Array.isArray(result.posts)) {
-          setPosts(result.posts); // posts 키에 접근하여 상태 설정
+        // postResponseList 내부의 데이터를 상태로 설정
+        if (result.postResponseList && Array.isArray(result.postResponseList)) {
+          setPosts(result.postResponseList);
         } else {
           console.error('게시글 배열이 예상대로 받지 못함:', result);
         }
@@ -62,7 +62,7 @@ const Community = () => {
               content={post.content}
               likes={post.likes}
               dislikes={post.dislikes}
-              tags={post.tags} // 태그는 배열로 전달
+              tags={post.postTags} // postTags로 태그 배열을 전달
             />
           ))
         ) : (
