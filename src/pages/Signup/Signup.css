@@ -1,22 +1,53 @@
-.signup {
+/* Signup.css */
+.su-signup {
   display: flex;
-  flex-direction: column;  /* 자식 요소들을 세로 방향으로 배열 */
-  justify-content: space-between; /* 링크 사이에 동일 간격 */   
-  width: 500px;         
-  align-items: left;  
+  flex-direction: column;
+  justify-content: space-between;
+  width: 400px;         
+  align-items: center;  
   margin: auto;
-  padding: 10px 10px 10px 20px;     
-  margin-top: 100px;
+  padding: 20px;
+  margin-top: 50px;
   margin-bottom: 50px;
-  border: 1px solid #353535;
-  border-radius: 8px;
+  border: 2px solid #555;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.span-blod{
+.su-span-bold {
   font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
 }
-span{
+
+.su-span {
   display: block;
-  font-size: 20px;
-  flex: 1 0 100%;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.su-input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.su-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.su-button:hover {
+  background-color: #45a049;
 }
