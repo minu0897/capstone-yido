@@ -4,21 +4,15 @@ import './Community.css';
 import Card from './Card';
 
 const Community = () => {
-  const [posts, setPosts] = useState([]); // 게시글 데이터를 저장할 상태
+  const [posts, setPosts] = useState({}); // 객체 형태로 상태 초기화
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('/api/video/community');
         const result = await response.json();
-        if (result.posts && typeof result.posts === 'object' && !Array.isArray(result.posts)) { // 'posts' 키를 확인하고 객체인지 검사
-          // 객체 형태의 posts를 배열로 변환하여 상태에 저장합니다.
-          // 객체의 키를 배열로 변환하고, 각 키에 해당하는 값을 사용합니다.
-          const postsArray = Object.keys(result.posts).map(key => ({
-            ...result.posts[key],
-            postId: key // postId를 키로 설정
-          }));
-          setPosts(postsArray);
+        if (result.posts && typeof result.posts === 'object' && !Array.isArray(result.posts)) { // 객체인지 확인
+          setPosts(result.posts); // 객체 그대로 상태에 저장
         } else {
           console.error('Expected posts object but received:', result);
         }
@@ -50,11 +44,11 @@ const Community = () => {
         </Link>
       </div>
       <div style={communityBoxStyle}>
-        {posts.length > 0 ? (
-          posts.map(post => (
+        {Object.keys(posts).length > 0 ? (
+          Object.values(posts).map((post, index) => (
             <Card
-              key={post.postId}
-              postId={post.postId}
+              key={index}
+              postId={post.postId} // postId는 객체 내부에 포함되어 있어야 합니다
               title={post.title}
               content={post.content}
               likes={post.likes}
