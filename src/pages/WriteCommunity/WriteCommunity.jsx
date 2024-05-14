@@ -52,7 +52,7 @@ const WriteCommunity = () => {
         <div>
         <form onSubmit={handleSubmit}>
             <div style={{minHeight:"40px", display:"grid", placeItems:"center", marginTop:"0px"}}>
-                <h3>글 작성하기</h3>
+                <h3>Write Post</h3>
                 <input
                     type='text'
                     className='wr-input-css'
