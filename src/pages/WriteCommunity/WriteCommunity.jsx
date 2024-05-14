@@ -21,8 +21,7 @@ const WriteCommunity = ({videoId, videoName}) => {
         const formData = {
             title,
             content,
-            tags: tagsArray, // 이제 태그는 배열로 관리
-            videoiD
+            tags: tagsArray // 이제 태그는 배열로 관리
         };
 
         try {
