@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import './WriteCommunity.css';
 
-const WriteCommunity = ({videoId}) => {
+const WriteCommunity = ({videoId, videoName}) => {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [tags, setTags] = useState(''); // 태그를 일단 문자열로 입력 받음
-    const [videoid, setVideoid] = useState(''); //비디오 아이디 넘겨주기
+    const [videoiD, setVideoiD] = useState(videoId); //비디오 아이디 넘겨주기
 
     const handleTitleChange = (e) => setTitle(e.target.value);
     const handleContentChange = (e) => setContent(e.target.value);
     const handleTagsChange = (e) => setTags(e.target.value); // 입력된 전체 문자열을 저장
+    const handleVideoidChange = (e) => setTags(e.target.value);
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // 폼 제출 시 페이지 리로드 방지
@@ -20,7 +21,8 @@ const WriteCommunity = ({videoId}) => {
         const formData = {
             title,
             content,
-            tags: tagsArray // 이제 태그는 배열로 관리
+            tags: tagsArray, // 이제 태그는 배열로 관리
+            videoiD
         };
 
         try {
