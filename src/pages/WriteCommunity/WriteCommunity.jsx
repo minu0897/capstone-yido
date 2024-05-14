@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import './WriteCommunity.css';
 
-const WriteCommunity = () => {
+const WriteCommunity = ({videoId}) => {
+
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [tags, setTags] = useState(''); // 태그를 일단 문자열로 입력 받음
+    const [videoid, setVideoid] = useState(''); //비디오 아이디 넘겨주기
 
     const handleTitleChange = (e) => setTitle(e.target.value);
     const handleContentChange = (e) => setContent(e.target.value);
@@ -78,7 +80,7 @@ const WriteCommunity = () => {
             <div style={{placeItems:"center", display:"grid"}}>
             <div className="wr-input-css1" style={{marginLeft:'0px'}}>
             <div style={{ display: 'flex', width: '800px', height:'50px', backgroundColor:'white'}}>
-            <button style={{fontSize: '16px', borderRadius: '15px', border:'1px solid gray', width:'100px'}} className="wr-button-css">
+            <button style={{fontSize: '16px', borderRadius: '15px', border:'1px solid gray', width:'150px'}} className="wr-button-css">
             add video URL
             </button>
             <div style={{ width: '20px' }} />

@@ -4,22 +4,21 @@ import './Community.css';
 import Card from './Card';
 
 const Community = () => {
-  const [posts, setPosts] = useState([]); // 게시글 데이터를 저장할 상태
+  const [posts, setPosts] = useState([]); // Store post data
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/video/community', {
-          method: 'GET', // 서버 문서에 따라 메소드 확인
+        const response = await fetch('/api/post', {
+          method: 'GET',
           headers: {
-            'Content-Type': 'application/json', // 필요한 경우
+            'Content-Type': 'application/json',
           }
         });
         if (!response.ok) {
-          // 서버에서 정상적인 응답을 받지 못한 경우 에러 로깅
-          const errorResult = await response.json(); // 에러 메시지 파싱
+          const errorResult = await response.json();
           console.error('Server responded with an error:', errorResult);
-          throw new Error('Bad request'); // 적절한 에러 처리
+          throw new Error('Bad request');
         }
         const result = await response.json();
         if (result.postList && Array.isArray(result.postList)) {
@@ -44,9 +43,7 @@ const Community = () => {
   return (
     <div className='community'>
       <div className='centerDiv'>
-        <div className='heading'>
-          Community
-        </div>
+        <div className='heading'>Community</div>
       </div>
       <div className='write' style={{ marginLeft: '1000px' }}>
         <Link to={'/WriteCommunity'} style={{ textDecoration: 'none', color: 'black' }}>
@@ -64,6 +61,7 @@ const Community = () => {
               content={post.content}
               likes={post.likes}
               dislikes={post.dislikes}
+              tags={post.tags} // Ensure that tags is passed as an array
             />
           ))
         ) : (
