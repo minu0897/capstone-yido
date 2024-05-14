@@ -2,15 +2,23 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import icon from '../../../sample/sejong.png';
+import axios from 'axios'; // Import axios
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate(); // useNavigate 훅 추가
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // 검색어를 URL에 포함시켜 navigate 함수로 페이지 이동
-    navigate(`/api/search?query=${encodeURIComponent(searchTerm)}`);
+    try {
+      // Make an HTTP POST request to the backend
+      const response = await axios.post('/api/search', { query: searchTerm });
+      // Navigate to a new page with the response if needed, or handle response data here
+      console.log('Search response:', response.data);
+      navigate(`/search-results`); // You might want to navigate based on the response or handle differently
+    } catch (error) {
+      console.error('Search error:', error);
+    }
   };
 
   const handleInputChange = (event) => {
