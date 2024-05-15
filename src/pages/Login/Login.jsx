@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
-  const [userId, setUserId] = useState('');
+  const [memberId, setmemberId] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const loginData = {
-      userId,
+      memberId,
       password,
     };
 
@@ -37,15 +37,15 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="Login-login-form">
         <h2 className="Login-h2">Login</h2>
         <div className="Login-form-group">
-          <label htmlFor="userId" className="Login-label">User ID</label>
+          <label htmlFor="memberId" className="Login-label">User ID</label>
           <input
             type="text"
-            id="userId"
-            name="userId"
+            id="memberId"
+            name="memberId"
             required
             className='Login-input'
-            value={userId}
-            onChange={e => setUserId(e.target.value)}
+            value={memberId}
+            onChange={e => setmemberId(e.target.value)}
           />
         </div>
         <div className="Login-form-group">
