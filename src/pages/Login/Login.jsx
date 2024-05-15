@@ -26,7 +26,7 @@ const Login = () => {
 
       if (response.status === 200) { // Check if status code is 200
         console.log('Login Success:', await response.json());
-        navigate('/home'); // Redirect to the Home component
+        navigate('/'); // Redirect to the Home component
       } else {
         throw new Error('Failed to log in');
       }
