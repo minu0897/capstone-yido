@@ -13,17 +13,22 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+     // Check if passwords match
+      if (password !== rePassword) {
+      alert('Passwords do not match.');
+      return; // Prevent the form from being submitted
+    }
+
     const userData = {
       name: username,
       userId,
       mobileNumber,
       email,
       password,
-      rePassword,
     };
 
     try {
-      const response = await fetch('api/login', {
+      const response = await fetch('api/login', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
