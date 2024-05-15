@@ -4,8 +4,7 @@ import './Signup.css';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
-  const [userId, setUserId] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
+  const [memberId, setmemberId] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
@@ -21,8 +20,7 @@ const Signup = () => {
 
     const userData = {
       name: username,
-      userId,
-      mobileNumber,
+      memberId,
       email,
       password,
     };
@@ -59,26 +57,15 @@ const Signup = () => {
           onChange={e => setUsername(e.target.value)}
         />
 
-        <label className='su-span' htmlFor="userId">Your ID</label>
+        <label className='su-span' htmlFor="memberId">Your ID</label>
         <input
           type="text"
-          id="userId"
-          name="userId"
+          id="memberId"
+          name="memberId"
           required
           className='su-input'
-          value={userId}
-          onChange={e => setUserId(e.target.value)}
-        />
-
-        <label className='su-span' htmlFor="mobileNumber">Mobile number</label>
-        <input
-          type="tel"
-          id="mobileNumber"
-          name="mobileNumber"
-          required
-          className='su-input'
-          value={mobileNumber}
-          onChange={e => setMobileNumber(e.target.value)}
+          value={memberId}
+          onChange={e => setmemberId(e.target.value)}
         />
 
         <label className='su-span' htmlFor="email">Email</label>
