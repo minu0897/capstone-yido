@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Login.css';
 
 const Login = () => {
   const [loginId, setloginId] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Create navigate instance
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,12 +24,15 @@ const Login = () => {
         body: JSON.stringify(loginData),
       });
 
-      const data = await response.json();
-      console.log('Login Success:', data);
-      // Redirect to dashboard or handle login success scenario
+      if (response.status === 200) { // Check if status code is 200
+        console.log('Login Success:', await response.json());
+        navigate('/home'); // Redirect to the Home component
+      } else {
+        throw new Error('Failed to log in');
+      }
     } catch (error) {
       console.error('Login Error:', error);
-      // Handle login error scenario
+      // Optionally handle login error scenario, maybe show a message to the user
     }
   };
 
