@@ -14,6 +14,7 @@ import VideoPlayer from './pages/VideoPlayer/VideoPlayer';
 import reportWebVitals from './reportWebVitals';
 import RegisterVideo from './pages/RegisterVideo/RegisterVideo';
 import WriteCommunity from './pages/WriteCommunity/WriteCommunity';
+import Post from './pages/Community/Post';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -32,6 +33,7 @@ root.render(
         <Route path='/videoplayer' element={<VideoPlayer />} />
         <Route path='/RegisterVideo' element={<RegisterVideo/>}/>
         <Route path='/WriteCommunity' element={<WriteCommunity/>}/>
+        <Route path="/api/post/:postId" component={Post} />
       </Routes>
       <Footer />
     </BrowserRouter>
