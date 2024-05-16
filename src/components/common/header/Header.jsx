@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import icon from '../../../sample/sejong.png';
 import axios from 'axios'; // Import axios
+import { useAuth } from '../../../pages/Login/AuthContext';
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,6 +24,11 @@ const Header = () => {
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  const { user, logout } = useAuth();  // 로그인된 사용자 정보와 로그아웃 함수 사용
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -49,17 +55,17 @@ const Header = () => {
           </button>
         </form>
 
-        <div style={{color:'white', marginLeft: '280px',width:"50px",marginTop:'5px'}}>
-          <Link to={'/Login'} style={{textDecoration:'none'}}>
-            <a className="login-a">Sign In</a>
-          </Link>
-        </div>
-        
-        <div style={{color:'white', marginLeft: '10px',width:"70px",marginTop:'5px'}}>
-          <Link to={'/Signup'} style={{textDecoration:'none'}}>
-            <a className="login-a">Sign Up</a>
-          </Link>
-        </div>
+          {user ? (
+          <div>
+            <span>Hello, {user.username}</span> {/* 로그인한 사용자의 이름 표시 */}
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <div>
+            <Link to="/login">Sign In</Link>
+            <Link to="/signup">Sign Up</Link>
+          </div>
+        )}
 
         <div style={{ marginRight:"0px", marginTop:'13px'}}>
           <Link to={'/RegisterVideo'} style={{}}>

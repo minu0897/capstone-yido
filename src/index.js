@@ -1,5 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
+import { AuthProvider } from './pages/Login/AuthContext';
 import './index.css';
 import Header from './components/common/header/Header';
 import Footer from './components/common/footer/Footer';
@@ -19,26 +21,27 @@ import Post from './pages/Community/Post';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <div class="container">
-    <BrowserRouter>
-      <Header />
-      <Navigation />
-      <Routes>
-        <Route path='/' element={<Home/>} /> 
-        <Route path='/Community' element={<Community />} />
-        <Route path='/Note' element={<Note />} />
-        <Route path='/Recommand' element={<Recommand />} />
-        <Route path='/Signup' element={<Signup />} />
-        <Route path='/Login' element={<Login />} />
-        <Route path='/videoplayer' element={<VideoPlayer />} />
-        <Route path='/RegisterVideo' element={<RegisterVideo/>}/>
-        <Route path='/WriteCommunity' element={<WriteCommunity/>}/>
-        <Route path='/api/post/:postId' element={<Post />} /> 
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+  <div className="container"> 
+    <AuthProvider>  
+      <BrowserRouter>
+        <Header />
+        <Navigation />
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/Community' element={<Community />} />
+          <Route path='/Note' element={<Note />} />
+          <Route path='/Recommand' element={<Recommand />} />
+          <Route path='/Signup' element={<Signup />} />
+          <Route path='/Login' element={<Login />} />
+          <Route path='/videoplayer' element={<VideoPlayer />} />
+          <Route path='/RegisterVideo' element={<RegisterVideo/>}/>
+          <Route path='/WriteCommunity' element={<WriteCommunity/>}/>
+          <Route path='/api/post/:postId' element={<Post />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
   </div>
 );
-
 
 reportWebVitals();
