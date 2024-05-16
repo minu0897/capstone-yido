@@ -33,7 +33,7 @@ root.render(
         <Route path='/videoplayer' element={<VideoPlayer />} />
         <Route path='/RegisterVideo' element={<RegisterVideo/>}/>
         <Route path='/WriteCommunity' element={<WriteCommunity/>}/>
-        <Route path="/api/post/:postId" component={Post} />
+        <Route path='/api/post/:postId' element={<Post />} /> 
       </Routes>
       <Footer />
     </BrowserRouter>
