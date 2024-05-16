@@ -73,6 +73,7 @@ const Header = () => {
           </Link>
         </div>
       </div>
+      {user};
     </div>
   );
 };
