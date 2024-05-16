@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 import './Login.css';
 
 const Login = () => {
   const [loginId, setloginId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Create navigate instance
+  const { login } = useAuth();  // Context에서 login 함수 사용
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
     const loginData = {
       loginId,
       password,
@@ -25,6 +26,8 @@ const Login = () => {
       });
   
       if (response.status === 200) { // 상태 코드 200 확인
+        const userData = await response.json();
+        login(userData);  // 사용자 데이터를 AuthContext에 저장
         console.log('로그인 성공');
         navigate('/'); // 로그인 성공 시 홈페이지로 리디렉션
       } else {
