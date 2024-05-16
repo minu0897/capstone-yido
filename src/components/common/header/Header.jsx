@@ -67,7 +67,7 @@ const Header = () => {
           </div>
         )}
 
-        <div style={{ marginRight:"0px", marginTop:'13px'}}>
+        <div style={{ marginLeft:"30px", marginTop:'13px'}}>
           <Link to={'/RegisterVideo'} style={{}}>
             <img src="https://us.123rf.com/450wm/get4net/get4net1711/get4net171100432/89002328-%EC%A2%85-%EC%95%84%EC%9D%B4%EC%BD%98.jpg" width="20px" height="20px"/>
           </Link>
