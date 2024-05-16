@@ -57,13 +57,13 @@ const Header = () => {
 
           {user ? (
           <div>
-            <span style={{color:'white', marginLeft: '280px',width:"50px",marginTop:'5px'}}>Hello, {user.username}</span> {/* 로그인한 사용자의 이름 표시 */}
-            <button onClick={handleLogout} style={{color:'white', marginLeft: '10px',width:"70px",marginTop:'5px'}}>Logout</button>
+            <span style={{color:'white', marginLeft: '280px',width:"50px",marginTop:'5px', textDecoration:'none'}}>Hello, {user.username}</span> {/* 로그인한 사용자의 이름 표시 */}
+            <button onClick={handleLogout} style={{color:'white', marginLeft: '10px',width:"70px",marginTop:'5px', textDecoration:'none'}}>Logout</button>
           </div>
         ) : (
           <div>
-            <Link to="/login" style={{color:'white', marginLeft: '280px',width:"50px",marginTop:'5px'}}>Sign In</Link>
-            <Link to="/signup" style={{color:'white', marginLeft: '10px',width:"70px",marginTop:'5px'}}>Sign Up</Link>
+            <Link to="/login" style={{color:'white', marginLeft: '280px',width:"50px",marginTop:'5px', textDecoration:'none'}}>Sign In</Link>
+            <Link to="/signup" style={{color:'white', marginLeft: '10px',width:"70px",marginTop:'5px', textDecoration:'none'}}>Sign Up</Link>
           </div>
         )}
 
