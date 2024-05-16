@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
@@ -26,7 +26,7 @@ const Login = () => {
 
       if (response.status === 200) { // Check if status code is 200
         console.log('Login Success:', await response.json());
-        navigate('/'); // Redirect to the Home component
+        navigate('/Home'); // Redirect to the Home component if path is /Home
       } else {
         throw new Error('Failed to log in');
       }
