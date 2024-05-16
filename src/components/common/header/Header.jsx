@@ -56,12 +56,12 @@ const Header = () => {
         </form>
 
           {user ? (
-          <div>
+          <div style={{color:'white', marginLeft: '280px',width:"50px",marginTop:'5px'}}>
             <span>Hello, {user.username}</span> {/* 로그인한 사용자의 이름 표시 */}
             <button onClick={handleLogout}>Logout</button>
           </div>
         ) : (
-          <div>
+          <div style={{color:'white', marginLeft: '280px',width:"50px",marginTop:'5px'}}>
             <Link to="/login">Sign In</Link>
             <Link to="/signup">Sign Up</Link>
           </div>
