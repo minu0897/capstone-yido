@@ -26,7 +26,7 @@ const Login = () => {
   
       if (response.status === 200) { // 상태 코드 200 확인
         console.log('로그인 성공');
-        navigate('/Home'); // 로그인 성공 시 홈페이지로 리디렉션
+        navigate('/'); // 로그인 성공 시 홈페이지로 리디렉션
       } else {
         console.error('로그인 실패, 상태 코드:', response.status);
         throw new Error('로그인 실패');
