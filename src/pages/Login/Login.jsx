@@ -9,12 +9,12 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const loginData = {
       loginId,
       password,
     };
-
+  
     try {
       const response = await fetch('api/login', {
         method: 'POST',
@@ -23,18 +23,20 @@ const Login = () => {
         },
         body: JSON.stringify(loginData),
       });
-
-      if (response.status === 200) { // Check if status code is 200
-        console.log('Login Success:', await response.json());
-        navigate('/Home'); // Redirect to the Home component if path is /Home
+  
+      if (response.status === 200) { // 상태 코드 200 확인
+        console.log('로그인 성공');
+        navigate('/Home'); // 로그인 성공 시 홈페이지로 리디렉션
       } else {
-        throw new Error('Failed to log in');
+        console.error('로그인 실패, 상태 코드:', response.status);
+        throw new Error('로그인 실패');
       }
     } catch (error) {
-      console.error('Login Error:', error);
-      // Optionally handle login error scenario, maybe show a message to the user
+      console.error('로그인 에러:', error);
+      // 사용자에게 로그인 실패 메시지를 표시할 수 있는 부분을 추가할 수 있습니다.
     }
   };
+  
 
   return (
     <div className='Login-login'>
