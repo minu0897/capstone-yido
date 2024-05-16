@@ -44,12 +44,12 @@ const Community = () => {
   return (
     <div className='community'>
       <div className='centerDiv'>
-        <div className='heading'>커뮤니티</div>
+        <div className='heading'>Community</div>
       </div>
       <div className='write' style={{ marginLeft: '1000px' }}>
         <Link to={'/WriteCommunity'} style={{ textDecoration: 'none', color: 'black' }}>
           <img src="https://png.pngtree.com/png-clipart/20211020/ourlarge/pngtree-red-pencil-clipart-png-image_3995136.png" width={'20px'} height={'20px'}/>
-          글쓰기
+          post
         </Link>
       </div>
       <div style={communityBoxStyle}>
@@ -68,7 +68,7 @@ const Community = () => {
             </Link>
           ))
         ) : (
-          <p>게시글을 불러오는 중...</p>
+          <p>Loading Posts...</p>
         )}
       </div>
     </div>
