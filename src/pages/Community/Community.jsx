@@ -38,7 +38,7 @@ const Community = () => {
   const communityBoxStyle = {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   };
 
   return (
@@ -55,15 +55,17 @@ const Community = () => {
       <div style={communityBoxStyle}>
         {posts.length > 0 ? (
           posts.map(post => (
-            <Card
-              key={post.postId}
-              postId={post.postId}
-              title={post.title}
-              content={post.content}
-              likes={post.likes}
-              dislikes={post.dislikes}
-              tags={post.postTags} // postTags로 태그 배열을 전달
-            />
+            <Link to={`/api/post/id=${post.postId}`} key={posts.postId}>
+              <Card
+                key={post.postId}
+                postId={post.postId}
+                title={post.title}
+                content={post.content}
+                likes={post.likes}
+                dislikes={post.dislikes}
+                tags={post.postTags} // postTags로 태그 배열을 전달
+              />
+            </Link>
           ))
         ) : (
           <p>게시글을 불러오는 중...</p>
