@@ -27,12 +27,6 @@ const Post = () => {
                 <article>
                     <h1>{post.title}</h1>
                     <p>{post.content}</p>
-                    {/* Display other post details as needed */}
-                    {tags.map((tag, index) => (
-                    <span key={index} className="card-tag">{tag}</span> // 각 태그를 span 태그로 래핑
-                    ))}
-                    <span className="card-likes">{likes} likes</span>
-          <span>{dislikes} dislikes</span>
                 </article>
             ) : (
                 <p>Loading post...</p>
