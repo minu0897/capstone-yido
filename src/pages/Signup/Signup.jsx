@@ -4,18 +4,18 @@ import './Signup.css';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
-  const [memberId, setmemberId] = useState('');
+  const [memberId, setMemberId] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
+  const [role, setRole] = useState('USER'); // Default role
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-     // Check if passwords match
-      if (password !== rePassword) {
+    if (password !== rePassword) {
       alert('Passwords do not match.');
-      return; // Prevent the form from being submitted
+      return;
     }
 
     const userData = {
@@ -23,6 +23,7 @@ const Signup = () => {
       memberId,
       email,
       password,
+      role, // Include the role in the user data
     };
 
     try {
@@ -65,7 +66,7 @@ const Signup = () => {
           required
           className='su-input'
           value={memberId}
-          onChange={e => setmemberId(e.target.value)}
+          onChange={e => setMemberId(e.target.value)}
         />
 
         <label className='su-span' htmlFor="email">Email</label>
@@ -100,6 +101,13 @@ const Signup = () => {
           value={rePassword}
           onChange={e => setRePassword(e.target.value)}
         />
+
+        <div>
+          <label className='su-span'>Select your role:</label>
+          <label><input type="radio" name="role" value="ADMIN" checked={role === 'ADMIN'} onChange={() => setRole('ADMIN')} /> ADMIN</label>
+          <label><input type="radio" name="role" value="PROVIDER" checked={role === 'PROVIDER'} onChange={() => setRole('PROVIDER')} /> PROVIDER</label>
+          <label><input type="radio" name="role" value="USER" checked={role === 'USER'} onChange={() => setRole('USER')} /> USER</label>
+        </div>
 
         <button className='su-button' type="submit">Sign Up</button>
       </form>
