@@ -102,13 +102,6 @@ const Signup = () => {
           onChange={e => setRePassword(e.target.value)}
         />
 
-        <div>
-          <label className='su-span'>Select your role:</label>
-          <label><input type="radio" name="role" value="ADMIN" checked={role === 'ADMIN'} onChange={() => setRole('ADMIN')} /> ADMIN</label>
-          <label><input type="radio" name="role" value="PROVIDER" checked={role === 'PROVIDER'} onChange={() => setRole('PROVIDER')} /> PROVIDER</label>
-          <label><input type="radio" name="role" value="USER" checked={role === 'USER'} onChange={() => setRole('USER')} /> USER</label>
-        </div>
-
         <button className='su-button' type="submit">Sign Up</button>
       </form>
     </div>
