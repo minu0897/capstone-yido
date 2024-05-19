@@ -56,8 +56,8 @@ const Header = () => {
         </form>
 
           {user ? (
-          <div>
-            <span style={{color:'white', marginLeft: '280px',width:"50px",marginTop:'5px', textDecoration:'none'}}>Hello, {user.username}</span> {/* 로그인한 사용자의 이름 표시 */}
+          <div style={{display:"flex"}}>
+            <span style={{overflow:"hidden", color:'white', marginLeft: '250px',width:"AuthContext",marginTop:'5px',textAlign:"right", textDecoration:'none'}}>Hello,aaaaa{user.username}</span> {/* 로그인한 사용자의 이름 표시 */}
             <button onClick={handleLogout} style={{color:'white', marginLeft: '10px',width:"70px",marginTop:'5px', textDecoration:'none'}}>Logout</button>
           </div>
         ) : (
