@@ -21,9 +21,9 @@ const Community = () => {
           throw new Error('잘못된 요청');
         }
         const result = await response.json();
-        // postResponseList 내부의 데이터를 상태로 설정
-        if (result.postResponseList && Array.isArray(result.postResponseList)) {
-          setPosts(result.postResponseList);
+        // 직접 배열을 사용하도록 변경
+        if (Array.isArray(result)) {
+          setPosts(result);
         } else {
           console.error('게시글 배열이 예상대로 받지 못함:', result);
         }
@@ -55,15 +55,14 @@ const Community = () => {
       <div style={communityBoxStyle}>
         {posts.length > 0 ? (
           posts.map(post => (
-            <Link to={`/api/post/${post.postId}`} key={posts.postId}>
+            <Link to={`/post/${post.postId}`} key={post.postId}>
               <Card
                 key={post.postId}
                 postId={post.postId}
                 title={post.title}
                 content={post.content}
-                likes={post.likes}
-                dislikes={post.dislikes}
-                tags={post.postTags} // postTags로 태그 배열을 전달
+                likes={post.like}
+                tags={post.postTags}
               />
             </Link>
           ))
