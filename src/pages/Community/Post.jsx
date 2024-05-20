@@ -29,7 +29,7 @@ const Post = () => {
     const submitComment = async () => {
         const commentData = {
             postId: postId, // URL에서 가져온 postId 사용
-            parentCommentId: null, // 현재는 null로 설정, 필요에 따라 변경 가능
+            parentCommentId: '', // 현재는 null로 설정, 필요에 따라 변경 가능
             content: comment // 사용자가 입력한 댓글 내용
         };
     
@@ -63,7 +63,6 @@ const Post = () => {
                         <button onClick={submitComment} className="btn edit">Edit</button>
                         <button onClick={submitComment} className="btn delete">Delete</button>
                         <button onClick={submitComment} className="btn like">Like</button>
-                        {postId}
                     </div>
                     <div className="comment-section">
                         <textarea
