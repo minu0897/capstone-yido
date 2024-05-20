@@ -1,32 +1,72 @@
-/* General styling for the post container */
+/* General styles for buttons */
+.btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: background-color 0.3s;
+}
+
+.edit {
+    background-color: #4CAF50; /* Green */
+}
+
+.edit:hover {
+    background-color: #45a049;
+}
+
+.delete {
+    background-color: #f44336; /* Red */
+}
+
+.delete:hover {
+    background-color: #da190b;
+}
+
+.like {
+    background-color: #008CBA; /* Blue */
+}
+
+.like:hover {
+    background-color: #007ba7;
+}
+
+.post-actions {
+    margin-top: 20px;
+}
+
+/* Ensure continued styles for other elements */
 .post-container {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     border-radius: 8px;
     font-family: 'Arial', sans-serif;
 }
 
-/* Styling for the post title */
 .post-title {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 28px;
+    margin-bottom: 30px;
+    color: #2a2a2a;
+    font-size: 32px;
     font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
 }
 
-/* Styling for the post content */
 .post-content {
-    color: #666;
-    font-size: 16px;
-    line-height: 1.6;
+    color: #444;
+    font-size: 18px;
+    line-height: 1.8;
+    padding-top: 20px;
 }
 
-/* Loading message style */
 .loading {
-    font-size: 16px;
+    font-size: 18px;
     color: #888;
     text-align: center;
 }
