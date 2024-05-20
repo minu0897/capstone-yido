@@ -31,7 +31,7 @@
 
 /* Style for all input fields to ensure they occupy the full available width */
 .su-input {
-  width: 100%;
+  width: 300px;
   padding: 8px;
   margin-top: 5px;
   margin-bottom: 15px;
