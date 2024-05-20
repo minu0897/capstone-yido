@@ -61,7 +61,7 @@ const Community = () => {
         ) : (
           posts.length > 0 ? (
             posts.map(post => (
-              <Link to={`api/post/${post.postId}`} key={post.postId}>
+              <Link to={`/api/post/${post.postId}`} key={post.postId}>
                 <Card
                   key={post.postId}
                   postId={post.postId}
