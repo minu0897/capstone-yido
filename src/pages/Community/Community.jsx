@@ -62,7 +62,6 @@ const Community = () => {
                 title={post.title}
                 content={post.content}
                 likes={post.likes}
-                dislikes={post.dislikes}
                 tags={post.postTags} // postTags로 태그 배열을 전달
               />
             </Link>
