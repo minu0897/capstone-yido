@@ -22,14 +22,14 @@ const Post = () => {
     }, [postId]);
 
     return (
-        <div>
+        <div className="post-container">
             {post ? (
                 <article>
-                    <h1>{post.title}</h1>
-                    <p>{post.content}</p>
+                    <h1 className="post-title">{post.title}</h1>
+                    <p className="post-content">{post.content}</p>
                 </article>
             ) : (
-                <p>Loading post...</p>
+                <p className="loading">Loading post...</p>
             )}
         </div>
     );

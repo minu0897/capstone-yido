@@ -1,0 +1,32 @@
+/* General styling for the post container */
+.post-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Styling for the post title */
+.post-title {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Styling for the post content */
+.post-content {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Loading message style */
+.loading {
+    font-size: 16px;
+    color: #888;
+    text-align: center;
+}
