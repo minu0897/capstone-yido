@@ -5,6 +5,7 @@ import Card from './Card';
 
 const Community = () => {
   const [posts, setPosts] = useState([]); // 게시글 데이터를 저장할 상태
+  const [loading, setLoading] = useState(true); // 로딩 상태 관리
 
   
   useEffect(() => {
