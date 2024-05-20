@@ -17,14 +17,14 @@ const Community = () => {
           }
         });
         if (!response.ok) {
-          // 응답이 성공적이지 않을 때
-          const errorResult = await response.json();
-          console.error('서버로부터 오류 응답:', errorResult);
-          throw new Error('Server response was not ok.');
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json(); // 데이터 파싱
+        console.log('API response:', result); // 데이터 구조 확인
+
+        // 배열인지 확인 후 상태 업데이트
         if (Array.isArray(result)) {
-          setPosts(result); // 상태 업데이트
+          setPosts(result);
         } else {
           console.error('게시글 배열이 예상대로 받지 못함:', result);
         }
