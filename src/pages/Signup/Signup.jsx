@@ -8,7 +8,28 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
-  const [role, setRole] = useState('USER'); // Default role
+  const [role, setRole] = useState('USER');
+  const [idAvailable, setIdAvailable] = useState(true);
+  const [idCheckError, setIdCheckError] = useState('');
+
+  const checkIdAvailability = async (id) => {
+    try {
+      const response = await fetch('/api/login/checkId', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      const isAvailable = await response.json(); // Assuming the response is directly the boolean value
+      setIdAvailable(isAvailable);
+      setIdCheckError(isAvailable ? '' : 'This ID is already taken.');
+    } catch (error) {
+      console.error('Failed to check ID availability:', error);
+      setIdCheckError('Failed to check ID availability.');
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,16 +39,21 @@ const Signup = () => {
       return;
     }
 
+    if (!idAvailable) {
+      alert('Please choose a different member ID.');
+      return;
+    }
+
     const userData = {
       name: username,
       memberId,
       email,
       password,
-      role, // Include the role in the user data
+      role,
     };
 
     try {
-      const response = await fetch('api/members', { 
+      const response = await fetch('api/members', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,8 +92,12 @@ const Signup = () => {
           required
           className='su-input'
           value={memberId}
-          onChange={e => setMemberId(e.target.value)}
+          onChange={e => {
+            setMemberId(e.target.value);
+            checkIdAvailability(e.target.value);
+          }}
         />
+        {idCheckError && <div className="error-message">{idCheckError}</div>}
 
         <label className='su-span' htmlFor="email">Email</label>
         <input
@@ -102,7 +132,7 @@ const Signup = () => {
           onChange={e => setRePassword(e.target.value)}
         />
 
-<label className='su-span' htmlFor="role">Role:</label>
+        <label className='su-span' htmlFor="role">Role:</label>
         <div className="su-radio-group">
           <label>
             <input
