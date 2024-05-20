@@ -27,19 +27,26 @@ const Post = () => {
     };
 
     const submitComment = async () => {
+        const commentData = {
+            postId: postId, // URL에서 가져온 postId 사용
+            parentCommentId: null, // 현재는 null로 설정, 필요에 따라 변경 가능
+            content: comment // 사용자가 입력한 댓글 내용
+        };
+    
         try {
             const response = await fetch(`/api/comments`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ comment })
+                body: JSON.stringify(commentData) // 전송할 데이터를 JSON 문자열로 변환
             });
             if (response.ok) {
                 console.log('Comment added');
-                setComment(''); // Clear the input after sending
+                setComment(''); // 댓글 입력란 초기화
             } else {
-                throw new Error('Failed to add comment');
+                const errorResponse = await response.json();
+                throw new Error(`Failed to add comment: ${errorResponse.message}`);
             }
         } catch (error) {
             console.error('Error posting comment:', error);
