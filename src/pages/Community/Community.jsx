@@ -6,29 +6,32 @@ import Card from './Card';
 const Community = () => {
   const [posts, setPosts] = useState([]); // 게시글 데이터를 저장할 상태
 
+  
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true); // 로딩 시작
       try {
         const response = await fetch('/api/post', {
-          method: 'GET',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           }
         });
         if (!response.ok) {
+          // 응답이 성공적이지 않을 때
           const errorResult = await response.json();
           console.error('서버로부터 오류 응답:', errorResult);
-          throw new Error('잘못된 요청');
+          throw new Error('Server response was not ok.');
         }
-        const result = await response.json();
-        // 직접 배열을 사용하도록 변경
+        const result = await response.json(); // 데이터 파싱
         if (Array.isArray(result)) {
-          setPosts(result);
+          setPosts(result); // 상태 업데이트
         } else {
           console.error('게시글 배열이 예상대로 받지 못함:', result);
         }
       } catch (error) {
         console.error('게시글을 불러오는 중 오류 발생:', error);
+      } finally {
+        setLoading(false); // 로딩 종료
       }
     };
 
