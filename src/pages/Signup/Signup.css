@@ -51,3 +51,21 @@
 .su-button:hover {
   background-color: #45a049;
 }
+
+.su-radio-group {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 15px; /* Maintain consistent spacing */
+}
+
+.su-radio-group label {
+  margin-right: 20px; /* Space out the radio button options */
+  font-size: 16px; /* Match font size to other form labels */
+  color: #333; /* Consistent text color */
+  cursor: pointer; /* Indicates clickable options */
+}
+
+.su-radio-group input[type="radio"] {
+  margin-right: 5px; /* Small space between radio button and label text */
+  cursor: pointer;
+}
