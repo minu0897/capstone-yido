@@ -21,7 +21,7 @@ const Community = () => {
         }
         const result = await response.json(); // 데이터 파싱
         console.log('API response:', result); // 데이터 구조 확인
-
+        console.log(result.Array);
         // 배열인지 확인 후 상태 업데이트
         if (Array.isArray(result)) {
           setPosts(result);
