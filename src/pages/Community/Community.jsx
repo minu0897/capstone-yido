@@ -21,10 +21,10 @@ const Community = () => {
         }
         const result = await response.json(); // 데이터 파싱
         console.log('API response:', result); // 데이터 구조 확인
-        console.log(result.postSimpleResponses);
-        // 배열인지 확인 후 상태 업데이트
-        if (Array.isArray(result)) {
-          setPosts(result);
+
+        // 'postSimpleResponses' 배열을 확인 후 상태 업데이트
+        if (result.postSimpleResponses && Array.isArray(result.postSimpleResponses)) {
+          setPosts(result.postSimpleResponses);
         } else {
           console.error('게시글 배열이 예상대로 받지 못함:', result);
         }
