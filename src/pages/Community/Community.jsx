@@ -7,7 +7,6 @@ const Community = () => {
   const [posts, setPosts] = useState([]); // 게시글 데이터를 저장할 상태
   const [loading, setLoading] = useState(true); // 로딩 상태 관리
 
-  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true); // 로딩 시작
@@ -57,21 +56,25 @@ const Community = () => {
         </Link>
       </div>
       <div style={communityBoxStyle}>
-        {posts.length > 0 ? (
-          posts.map(post => (
-            <Link to={`/post/${post.postId}`} key={post.postId}>
-              <Card
-                key={post.postId}
-                postId={post.postId}
-                title={post.title}
-                content={post.content}
-                likes={post.like}
-                tags={post.postTags}
-              />
-            </Link>
-          ))
-        ) : (
+        {loading ? (
           <p>Loading Posts...</p>
+        ) : (
+          posts.length > 0 ? (
+            posts.map(post => (
+              <Link to={`/post/${post.postId}`} key={post.postId}>
+                <Card
+                  key={post.postId}
+                  postId={post.postId}
+                  title={post.title}
+                  content={post.content}
+                  likes={post.like}
+                  tags={post.postTags}
+                />
+              </Link>
+            ))
+          ) : (
+            <p>No posts to display.</p>
+          )
         )}
       </div>
     </div>
