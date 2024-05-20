@@ -4,12 +4,12 @@ import './Community.css';
 import Card from './Card';
 
 const Community = () => {
-  const [posts, setPosts] = useState([]); // 게시글 데이터를 저장할 상태
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/post', {
+        const response = await fetch('/api/posts', { // 엔드포인트 경로 확인
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -21,9 +21,8 @@ const Community = () => {
           throw new Error('잘못된 요청');
         }
         const result = await response.json();
-        // postResponseList 내부의 데이터를 상태로 설정
-        if (result.postResponseList && Array.isArray(result.postResponseList)) {
-          setPosts(result.postResponseList);
+        if (result && Array.isArray(result)) { // 배열 직접 확인
+          setPosts(result);
         } else {
           console.error('게시글 배열이 예상대로 받지 못함:', result);
         }
@@ -47,7 +46,7 @@ const Community = () => {
         <div className='heading'>Community</div>
       </div>
       <div className='write' style={{ marginLeft: '1000px' }}>
-        <Link to={'/WriteCommunity'} style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to={'/write-community'} style={{ textDecoration: 'none', color: 'black' }}>
           <img src="https://png.pngtree.com/png-clipart/20211020/ourlarge/pngtree-red-pencil-clipart-png-image_3995136.png" width={'20px'} height={'20px'}/>
           post
         </Link>
@@ -55,14 +54,14 @@ const Community = () => {
       <div style={communityBoxStyle}>
         {posts.length > 0 ? (
           posts.map(post => (
-            <Link to={`/api/post/${post.postId}`} key={posts.postId}>
+            <Link to={`/post/${post.postId}`} key={post.postId}>
               <Card
                 key={post.postId}
                 postId={post.postId}
                 title={post.title}
                 content={post.content}
-                likes={post.like}
-                tags={post.postTags} // postTags로 태그 배열을 전달
+                likes={post.like} // 'like' 속성을 'likes'로 변경해야 할 수도 있음
+                tags={post.postTags}
               />
             </Link>
           ))
