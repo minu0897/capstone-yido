@@ -28,7 +28,7 @@ const Post = () => {
 
     const submitComment = async () => {
         try {
-            const response = await fetch(`/api/post/${postId}/comment`, {
+            const response = await fetch(`/api/comments`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
