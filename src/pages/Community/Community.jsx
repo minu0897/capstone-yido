@@ -61,7 +61,7 @@ const Community = () => {
                 postId={post.postId}
                 title={post.title}
                 content={post.content}
-                likes={post.likes}
+                likes={post.like}
                 tags={post.postTags} // postTags로 태그 배열을 전달
               />
             </Link>
