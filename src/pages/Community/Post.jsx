@@ -63,6 +63,7 @@ const Post = () => {
                         <button onClick={submitComment} className="btn edit">Edit</button>
                         <button onClick={submitComment} className="btn delete">Delete</button>
                         <button onClick={submitComment} className="btn like">Like</button>
+                        {postId}
                     </div>
                     <div className="comment-section">
                         <textarea
