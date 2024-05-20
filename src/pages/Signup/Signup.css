@@ -1,4 +1,4 @@
-/* Signup.css */
+/* Main container for the signup form */
 .su-signup {
   display: flex;
   flex-direction: column;
@@ -9,12 +9,12 @@
   padding: 20px;
   margin-top: 50px;
   margin-bottom: 50px;
-  /*border: 2px solid #555;*/
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #f9f9f9;
 }
 
+/* Style for the main title in bold */
 .su-span-bold {
   font-weight: bold;
   margin-bottom: 10px;
@@ -22,12 +22,14 @@
   color: #333;
 }
 
+/* General style for labels */
 .su-span {
   display: block;
   font-size: 16px;
   margin-top: 10px;
 }
 
+/* Style for all input fields to ensure they occupy the full available width */
 .su-input {
   width: 100%;
   padding: 8px;
@@ -37,6 +39,7 @@
   border-radius: 4px;
 }
 
+/* Style for the action button (submit button) */
 .su-button {
   padding: 10px 20px;
   font-size: 18px;
@@ -48,24 +51,29 @@
   transition: background-color 0.3s;
 }
 
+/* Hover effect for the action button */
 .su-button:hover {
   background-color: #45a049;
 }
 
+/* Styles for the radio button group */
 .su-radio-group {
   display: flex;
   justify-content: start;
-  margin-bottom: 15px; /* Maintain consistent spacing */
+  margin-bottom: 15px;
 }
 
+/* Individual labels in the radio group to ensure proper alignment and spacing */
 .su-radio-group label {
-  margin-right: 20px; /* Space out the radio button options */
-  font-size: 16px; /* Match font size to other form labels */
-  color: #333; /* Consistent text color */
-  cursor: pointer; /* Indicates clickable options */
+  margin-right: 20px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
 }
 
+/* Ensuring radio buttons do not take the full width, only the space they need */
 .su-radio-group input[type="radio"] {
-  margin-right: 5px; /* Small space between radio button and label text */
+  width: auto;
+  margin-right: 5px;
   cursor: pointer;
 }
