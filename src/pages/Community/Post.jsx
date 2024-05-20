@@ -50,8 +50,8 @@ const Post = () => {
         <div className="post-container">
             {post ? (
                 <article>
-                    <h1 className="post-title">{post.title}</h1>
-                    <p className="post-content">{post.content}</p>
+                    <h1 className="post-title">{post.posttitle}</h1>
+                    <p className="post-content">{post.postcontent}</p>
                     <div className="post-actions">
                         <button onClick={submitComment} className="btn edit">Edit</button>
                         <button onClick={submitComment} className="btn delete">Delete</button>
