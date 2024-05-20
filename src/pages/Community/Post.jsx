@@ -5,6 +5,7 @@ import './Post.css';
 const Post = () => {
     const { postId } = useParams();
     const [post, setPost] = useState(null);
+    const [comment, setComment] = useState('');
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -21,10 +22,29 @@ const Post = () => {
         fetchPost();
     }, [postId]);
 
-    // Dummy function placeholders
-    const handleDelete = () => console.log("Delete post");
-    const handleEdit = () => console.log("Edit post");
-    const handleLike = () => console.log("Like post");
+    const handleCommentChange = (event) => {
+        setComment(event.target.value);
+    };
+
+    const submitComment = async () => {
+        try {
+            const response = await fetch(`/api/post/${postId}/comment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ comment })
+            });
+            if (response.ok) {
+                console.log('Comment added');
+                setComment(''); // Clear the input after sending
+            } else {
+                throw new Error('Failed to add comment');
+            }
+        } catch (error) {
+            console.error('Error posting comment:', error);
+        }
+    };
 
     return (
         <div className="post-container">
@@ -33,9 +53,18 @@ const Post = () => {
                     <h1 className="post-title">{post.title}</h1>
                     <p className="post-content">{post.content}</p>
                     <div className="post-actions">
-                        <button onClick={handleEdit} className="btn edit">Edit</button>
-                        <button onClick={handleDelete} className="btn delete">Delete</button>
-                        <button onClick={handleLike} className="btn like">Like</button>
+                        <button onClick={submitComment} className="btn edit">Edit</button>
+                        <button onClick={submitComment} className="btn delete">Delete</button>
+                        <button onClick={submitComment} className="btn like">Like</button>
+                    </div>
+                    <div className="comment-section">
+                        <textarea
+                            value={comment}
+                            onChange={handleCommentChange}
+                            className="comment-input"
+                            placeholder="Write a comment..."
+                        ></textarea>
+                        <button onClick={submitComment} className="btn comment-btn">Post Comment</button>
                     </div>
                 </article>
             ) : (
