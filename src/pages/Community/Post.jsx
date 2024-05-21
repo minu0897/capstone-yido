@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './Post.css';
 
 const Post = () => {
     const { postId } = useParams();
+    const navigate = useNavigate();
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
@@ -57,6 +58,15 @@ const Post = () => {
         }
     };
 
+    const editPost = () => {
+        // Navigate to WriteCommunity with current post data
+        navigate(`/edit/${postId}`, { state: { post } });
+    };
+
+    const deletePost = async () => {
+        // Your existing delete logic here
+    };
+
     return (
         <div className="post-container">
             {post ? (
@@ -64,8 +74,8 @@ const Post = () => {
                     <h1 className="post-title">{post.postTitle}</h1>
                     <p className="post-content">{post.postContent}</p>
                     <div className="post-actions">
-                        <button onClick={submitComment} className="btn edit">Edit</button>
-                        <button onClick={submitComment} className="btn delete">Delete</button>
+                        <button onClick={editPost} className="btn edit">Edit</button>
+                        <button onClick={deletePost} className="btn delete">Delete</button>
                         <button onClick={submitComment} className="btn like">Like</button>
                     </div>
                     <div className="comment-section">
