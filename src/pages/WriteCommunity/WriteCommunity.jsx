@@ -44,10 +44,10 @@ const WriteCommunity = ({videoId, videoName}) => {
             setTitle('');
             setContent('');
             setTags('');
-            alert('게시글이 성공적으로 제출되었습니다!');
+            alert('Post has been successfully submitted!');
         } catch (error) {
             console.error('게시글 제출에 실패했습니다:', error);
-            alert('게시글을 제출하는데 실패했습니다.');
+            alert('please try again after logging in');
         }
     };
 
@@ -59,13 +59,13 @@ const WriteCommunity = ({videoId, videoName}) => {
                 <input
                     type='text'
                     className='wr-input-css'
-                    placeholder="제목을 입력하세요"
+                    placeholder="Please enter a title"
                     value={title}
                     onChange={handleTitleChange}
                 />
                 <textarea
                     className='wr-input-css'
-                    placeholder="내용을 입력하세요"
+                    placeholder="Please enter a content"
                     style={{minHeight:"300px", paddingTop:"10px"}}
                     value={content}
                     onChange={handleContentChange}
@@ -73,7 +73,7 @@ const WriteCommunity = ({videoId, videoName}) => {
                 <input
                     type='text'
                     className='wr-input-css'
-                    placeholder="태그를 입력하세요 (각 태그는 #으로 구분됩니다) 예: #태그1 #태그2"
+                    placeholder="Enter tags (each tag is separated by #) Example: #Tag1 #Tag2"
                     value={tags}
                     onChange={handleTagsChange}
                 />
