@@ -13,12 +13,12 @@
     width: 90%;
     height: 200px; /* 이미지 높이를 설정합니다 */
     object-fit: cover; /* 이미지 비율을 유지하면서 채웁니다 */
-    margin: 15px 15px 10px;
+    margin: 15px 15px 0px;
     border-radius: 10px;
   }
   
   .card-content {
-    padding: 4px 16px 16px;
+    padding: 0px 16px 16px;
   }
   
   .card-title {
