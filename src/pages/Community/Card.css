@@ -1,48 +1,49 @@
-/* Card.css */
+.card-wrapper {
+  margin: 16px; /* 카드 간의 간격을 설정합니다 */
+}
+
 .card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin: 16px;
-    width: 300px; /* 카드의 폭을 설정합니다 */
-    border: 1px solid gray;
-  }
-  
-  .card-image {
-    width: 90%;
-    height: 200px; /* 이미지 높이를 설정합니다 */
-    object-fit: cover; /* 이미지 비율을 유지하면서 채웁니다 */
-    margin: 15px 15px 0px;
-    border-radius: 10px;
-  }
-  
-  .card-content {
-    padding: 0px 16px 16px;
-  }
-  
-  .card-title {
-    margin: 0;
-    color: #333;
-    font-size: 1.5em; /* 타이틀 폰트 크기를 설정합니다 */
-  }
-  
-  .card-subtitle {
-    color: #666;
-    font-size: 1em;
-    margin: 4px 0;
-  }
-  
-  .card-stats {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 8px;
-  }
-  
-  .card-likes,
-  .card-comments {
-    font-size: 0.8em;
-    color: #999;
-  }
-  
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px; /* 카드의 폭을 설정합니다 */
+  border: 1px solid gray;
+}
+
+.card-image {
+  width: 90%;
+  height: 200px; /* 이미지 높이를 설정합니다 */
+  object-fit: cover; /* 이미지 비율을 유지하면서 채웁니다 */
+  margin: 15px 15px 0px;
+  border-radius: 10px;
+}
+
+.card-content {
+  padding: 0px 16px 16px;
+}
+
+.card-title {
+  margin: 0;
+  color: #333;
+  font-size: 1.5em; /* 타이틀 폰트 크기를 설정합니다 */
+}
+
+.card-subtitle {
+  color: #666;
+  font-size: 1em;
+  margin: 4px 0;
+}
+
+.card-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.card-likes,
+.card-comments {
+  font-size: 0.8em;
+  color: #999;
+}
