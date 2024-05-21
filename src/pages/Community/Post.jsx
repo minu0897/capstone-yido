@@ -5,6 +5,7 @@ import './Post.css';
 const Post = () => {
     const { postId } = useParams();
     const [post, setPost] = useState(null);
+    const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
 
     useEffect(() => {
@@ -14,6 +15,7 @@ const Post = () => {
                 if (!response.ok) throw new Error('Post could not be fetched');
                 const data = await response.json();
                 setPost(data);
+                setComments(data.comments); // Set the comments from the response data
             } catch (error) {
                 console.error('Error fetching post:', error);
             }
@@ -42,8 +44,10 @@ const Post = () => {
                 body: JSON.stringify(commentData) // 전송할 데이터를 JSON 문자열로 변환
             });
             if (response.ok) {
-                console.log('Comment added');
+                const newComment = await response.json(); // Retrieve the added comment
+                setComments([...comments, newComment]); // Update the comments state to include the new comment
                 setComment(''); // 댓글 입력란 초기화
+                console.log('Comment added');
             } else {
                 const errorResponse = await response.json();
                 throw new Error(`Failed to add comment: ${errorResponse.message}`);
@@ -72,6 +76,18 @@ const Post = () => {
                             placeholder="Write a comment..."
                         ></textarea>
                         <button onClick={submitComment} className="btn comment-btn">Post Comment</button>
+                        <div className="comments-list">
+                            {comments.map((c) => (
+                                <div key={c.commentId} className="comment">
+                                    <p className="comment-content">{c.commentContent}</p>
+                                    <p className="comment-writer">By {c.commentWriter}</p>
+                                    <div className="comment-stats">
+                                        <span className="likes">{c.commentLike} Likes</span>
+                                        <span className="dislikes">{c.commentDislike} Dislikes</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </article>
             ) : (
