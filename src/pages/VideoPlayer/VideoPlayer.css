@@ -20,6 +20,16 @@
     font-weight: bold;
 }
 
+.vp-span-word {
+    color: black; /* 기본 색상 */
+    transition: color 0.3s ease; /* 색상 변경 애니메이션 */
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.vp-span-word:hover {
+    color: red; /* 마우스 오버 시 색상 */
+}
 
 .video-subtitles-container {
     display: flex;
@@ -27,11 +37,30 @@
     border: 1px solid black;
     border-radius: 6px;
     padding: 3px;
-    height: 450px;
-    width: 370px;
 }
 
+.pt{
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.pe{
+    margin-bottom: 40px;
+    margin-top: 5px;
+}
 
 .pk:hover,.pt:hover,.pe:hover{
     font-weight: bold;
+}
+
+.vp-word-title{
+    color: #637BC8;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.vp-word-meaning{
+    color: white;
+    margin-top: 0px;
 }

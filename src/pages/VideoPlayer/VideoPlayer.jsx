@@ -173,7 +173,10 @@ const VideoPlayer = () => {
   const [subtitles, setSubtitles] = useState(null);
   const subtitlesRef = useRef(null); // 스크롤을 위한 ref 생성
   const activeSubtitleRef = useRef(null);
-
+  const [wordId, setwordId] = useState(null);
+  const [wordApiData, setwordApiData] = useState(null);
+  const [showWord, setshowWord] = useState(false);
+  
   //-------------------------------------------
   //player 변수
   //-------------------------------------------
@@ -338,14 +341,36 @@ const VideoPlayer = () => {
 
 //-------------------------------------------
 //yido 함수
-//-------------------------------------------
+//-------------------------------------------// 단어 클릭 핸들러
+  const handleWordClick = (word) => {
+    console.log(word);
+    setwordId(word.subtitleWordId);
+    // 여기에 클릭된 단어에 대한 처리 로직 추가
+  };
+
+  useEffect(() => {
+    axios.get('/api/dictionary?subtitleWordId='+wordId)
+      .then(response => {
+        setwordApiData(response.data);
+        console.log('----------------------');
+        console.log(wordApiData);
+        setshowWord(true);
+      })
+      .catch(error => {
+      });
+  },[wordId]);
+
+  useEffect(() => {
+    console.log("asdss");
+    console.log(wordApiData);
+  },[wordApiData]);
+
   useEffect(() => {
     const url = '/api/video/'+videoId;
 
     axios.get(url)
       .then(response => {
         setData(response.data);
-        console.log(response.data);
       })
       .catch(error => {
       });
@@ -360,6 +385,8 @@ const VideoPlayer = () => {
   useEffect(() => {
     if(data !=null){
       setSubtitles(data.subtitleSentences);
+      //console.log(data.subtitleSentences);
+      //console.log(data);
       //setPlaying(true); // 1초 후 재생 상태를 true로 설정
     }
   }, [data]);
@@ -472,21 +499,43 @@ const VideoPlayer = () => {
           </div>
         </div>
         <div style={{height:"450px",width:"370px"}}>
-          <div className="video-subtitles-container">
+          <div className="video-subtitles-container" style={{height:showWord ? "300px":'450px'}} >
               <div className="subtitles" ref={subtitlesRef}>
                   {
                     subtitles != null &&
                       subtitles.map((subtitle, index) => (
                           <div key={index} className={subtitle.isFocus ? 'subtitle-show' : ''} ref={subtitle.isFocus ? activeSubtitleRef : null}>
                               <p className='pt'>{parseInt(subtitle.startTime/60)}:{String(parseInt(subtitle.startTime)%60).padStart(2, "0")}{/* .{String(subtitle.startTime).split('.', 1)}  */}</p>
-                              <p className='pk'>{subtitle.korText}</p>
+                              {
+                                //<p className='pk'>{subtitle.korText}</p>
+                              }
+                              {
+                              subtitle.korWords.map((word, index) => (
+                                <span key={index} className='vp-span-word' onClick={() => handleWordClick(word)} style={{ cursor: 'pointer' }}>
+                                  {word.subtitleWordName}
+                                </span>
+                              ))
+                              }
                               <p className='pe'>{subtitle.engText}</p>
-                              <br/>
                           </div>
                       ))
                   }
               </div>
           </div>
+          {
+            showWord &&
+            <div style={{height:"140px",width:"370px",border:"1px solid black",marginTop:"10px",borderRadius: "6px",overflowY:"auto",backgroundColor:"#383933"}}>
+            {
+              wordApiData.dictionaryDetailResponses.map((word, index) => (
+                <div style={{paddingLeft:"5px"}}>
+                  <p className='vp-word-title'>{word.wordName} <sup>{index+1}</sup></p>
+                  <p className='vp-word-meaning'>{word.wordMeaning}</p>
+                </div>
+              ))
+              }
+              
+            </div>
+          }
         </div>
       </div>
       {
