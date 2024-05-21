@@ -51,12 +51,13 @@ const Post = () => {
             });
             if (response.ok) {
                 const newComment = await response.json();
-                // 새 댓글 객체 구조 확인
-                console.log('New Comment:', newComment);
-    
-                // 상태 업데이트 로직
-                setComments(prevComments => [...prevComments, newComment]); // 함수형 업데이트 사용
+                setComments(prevComments => [...prevComments, newComment]); // 새 댓글 추가
                 setComment(''); // 입력란 초기화
+    
+                // 댓글 추가 후 0.2초 지연 시키고 강제 재렌더링
+                setTimeout(() => {
+                    window.location.reload();
+                }, 200);
             } else {
                 const errorResponse = await response.json();
                 throw new Error(`Failed to add comment: ${errorResponse.message}`);
