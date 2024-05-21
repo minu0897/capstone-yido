@@ -162,6 +162,7 @@ const format = (seconds) => {
 let count = 0;
 
 const VideoPlayer = () => {
+  
   //-------------------------------------------
   //yido 변수
   //-------------------------------------------
@@ -171,6 +172,7 @@ const VideoPlayer = () => {
   const videoId = searchParams.get('id');
   const [subtitles, setSubtitles] = useState(null);
   const subtitlesRef = useRef(null); // 스크롤을 위한 ref 생성
+  const activeSubtitleRef = useRef(null);
 
   //-------------------------------------------
   //player 변수
@@ -212,7 +214,7 @@ const VideoPlayer = () => {
     seeking,
     volume,
   } = state;
-
+  
   
   //-------------------------------------------
   //player 함수
@@ -230,20 +232,13 @@ const VideoPlayer = () => {
   };
 
   const handleProgress = (changeState) => {
-    if (count > 3) {
-      //controlsRef.current.style.visibility = "visible";
-      count = 0;
-    }
-    //if (controlsRef.current.style.visibility == "visible") {
-      count += 1;
-    //}
     if (!state.seeking) {
       setState({ ...state, ...changeState });
     }
   };
 
   const handleSeekChange = (e, newValue) => {
-    console.log({ newValue });
+    //console.log({ newValue });
     setState({ ...state, played: parseFloat(newValue / 100) });
   };
 
@@ -252,7 +247,7 @@ const VideoPlayer = () => {
   };
 
   const handleSeekMouseUp = (e, newValue) => {
-    console.log({ value: e.target });
+    //console.log({ value: e.target });
     setState({ ...state, seeking: false });
     // console.log(sliderRef.current.value)
     playerRef.current.seekTo(newValue / 100, "fraction");
@@ -279,13 +274,12 @@ const VideoPlayer = () => {
   };
 
   const handleMouseMove = () => {
-    console.log("mousemove");
     controlsRef.current.style.visibility = "visible";
     count = 0;
   };
 
   const hanldeMouseLeave = () => {
-    controlsRef.current.style.visibility = "visible";
+    controlsRef.current.style.visibility = "hidden";
     count = 0;
   };
 
@@ -341,7 +335,6 @@ const VideoPlayer = () => {
       : `-${format(duration - currentTime)}`;
 
   const totalDuration = format(duration);
-  
 
 //-------------------------------------------
 //yido 함수
@@ -367,21 +360,22 @@ const VideoPlayer = () => {
   useEffect(() => {
     if(data !=null){
       setSubtitles(data.subtitleSentences);
-      console.log(data);
       //setPlaying(true); // 1초 후 재생 상태를 true로 설정
     }
   }, [data]);
 
   useEffect(() => {
     if(subtitles!= null){
-      const updatedSubtitles = subtitles.map(subtitle => {
+      const updatedSubtitles = subtitles.map((subtitle, index) => {
           return {
               ...subtitle,
-              show: subtitle.startTime <= currentTime
+              show: true,
+              isFocus : currentTime >= subtitle.startTime && 
+              (subtitles[index + 1] ? currentTime < subtitles[index + 1].startTime : true),
           };
       });
       setSubtitles(updatedSubtitles);
-      
+      scrollToActiveSubtitle();
       //if (subtitlesRef.current) {
         //const element = subtitlesRef.current;
         // 자막 컨테이너의 스크롤 높이만큼 스크롤 위치 설정
@@ -390,6 +384,16 @@ const VideoPlayer = () => {
     }
   }, [currentTime]);
 
+  // 스크롤 조정 함수
+  const scrollToActiveSubtitle = () => {
+    if (activeSubtitleRef.current) {
+      activeSubtitleRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  };
+
 //-------------------------------------------
 //render
 //-------------------------------------------
@@ -397,78 +401,83 @@ const VideoPlayer = () => {
     <div className='videoplayer'>
       <h1>{ data!=null && data.title}</h1>
       <div style={{height:"500px",display:"flex",flexDirection:"row"}}>
-        <div style={{height:"450px",width:"800px",paddingRight:"15px"}}>
-          <div className="player">
-            {false &&
-              <ReactPlayer
-                  url={"http://101.235.73.77:8088/video/video/"+videoId+".mp4"}
-                  onProgress={handleProgress}
-                  controls={true} 
-                  progressInterval={100} // 500ms 마다 onProgress 이벤트 발생
-                  ref={playerRef}
-                  playing={playing}   
-                  width="100%"
-                  height="50%"
-              />
+        <div style={{height:"500px",width:"800px",paddingRight:"15px"}}>
+          <div className="player" style={{height:"500px"}}>
+            <Container maxWidth="md" style={{ height: '100vh', padding: '0px' }}>
+              <div
+                onMouseMove={handleMouseMove}
+                onMouseLeave={hanldeMouseLeave}
+                ref={playerContainerRef}
+                className={classes.playerWrapper}
+                style={{padding:"0px"}}
+              >
+              
+                <ReactPlayer
+                  url=
+                  { 
+                    (
+                      window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")
+                    )?
+                    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                    :"http://101.235.73.77:8088/video/video/"+videoId+".mp4"
 
-            }
-            <ReactPlayer
-              //url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
-              url="http://101.235.73.77:8088/video/video/36.mp4"
-              ref={playerRef}
-              width="100%"
-              height="50%"
-              pip={pip}
-              playing={playing}
-              controls={false}
-              light={light}
-              loop={loop}
-              playbackRate={playbackRate}
-              volume={volume}
-              muted={muted}
-              onProgress={handleProgress}
-              config={{
-                file: {
-                  attributes: {
-                    crossorigin: "anonymous",
-                  },
-                },
-              }}
-            />
-              {
-                <Controls
-                  ref={controlsRef}
-                  onSeek={handleSeekChange}
-                  onSeekMouseDown={handleSeekMouseDown}
-                  onSeekMouseUp={handleSeekMouseUp}
-                  onDuration={handleDuration}
-                  onRewind={handleRewind}
-                  onPlayPause={handlePlayPause}
-                  onFastForward={handleFastForward}
+                  }
+                  ref={playerRef}
+                  width="100%"
+                  height="100%"
+                  pip={pip}
                   playing={playing}
-                  played={played}
-                  elapsedTime={elapsedTime}
-                  totalDuration={totalDuration}
-                  onMute={hanldeMute}
-                  muted={muted}
-                  onVolumeChange={handleVolumeChange}
-                  onVolumeSeekDown={handleVolumeSeekDown}
-                  onChangeDispayFormat={handleDisplayFormat}
+                  controls={false}
+                  light={light}
+                  loop={loop}
                   playbackRate={playbackRate}
-                  onPlaybackRateChange={handlePlaybackRate}
-                  onToggleFullScreen={toggleFullScreen}
                   volume={volume}
-                  onBookmark={addBookmark}/>
-              }
+                  muted={muted}
+                  onProgress={handleProgress}
+                  config={{
+                    file: {
+                      attributes: {
+                        crossorigin: "anonymous",
+                      },
+                    },
+                  }}
+                />
+                  {
+                    <Controls
+                      ref={controlsRef}
+                      onSeek={handleSeekChange}
+                      onSeekMouseDown={handleSeekMouseDown}
+                      onSeekMouseUp={handleSeekMouseUp}
+                      onDuration={handleDuration}
+                      onRewind={handleRewind}
+                      onPlayPause={handlePlayPause}
+                      onFastForward={handleFastForward}
+                      playing={playing}
+                      played={played}
+                      elapsedTime={elapsedTime}
+                      totalDuration={totalDuration}
+                      onMute={hanldeMute}
+                      muted={muted}
+                      onVolumeChange={handleVolumeChange}
+                      onVolumeSeekDown={handleVolumeSeekDown}
+                      onChangeDispayFormat={handleDisplayFormat}
+                      playbackRate={playbackRate}
+                      onPlaybackRateChange={handlePlaybackRate}
+                      onToggleFullScreen={toggleFullScreen}
+                      volume={volume}
+                      onBookmark={addBookmark}/>
+                  }
+                </div>
+              </Container>
           </div>
         </div>
-        <div style={{height:"450px",width:"370px",paddingLeft:"15px"}}>
+        <div style={{height:"450px",width:"370px"}}>
           <div className="video-subtitles-container">
               <div className="subtitles" ref={subtitlesRef}>
                   {
                     subtitles != null &&
                       subtitles.map((subtitle, index) => (
-                          <div key={index} className={subtitle.show ? 'subtitle-show' : 'subtitle-hide'}>
+                          <div key={index} className={subtitle.isFocus ? 'subtitle-show' : ''} ref={subtitle.isFocus ? activeSubtitleRef : null}>
                               <p className='pt'>{parseInt(subtitle.startTime/60)}:{String(parseInt(subtitle.startTime)%60).padStart(2, "0")}{/* .{String(subtitle.startTime).split('.', 1)}  */}</p>
                               <p className='pk'>{subtitle.korText}</p>
                               <p className='pe'>{subtitle.engText}</p>

@@ -17,12 +17,9 @@
 }
 
 .subtitle-show {
-    display: block;
+    font-weight: bold;
 }
 
-.subtitle-hide {
-    display: none;
-}
 
 .video-subtitles-container {
     display: flex;
