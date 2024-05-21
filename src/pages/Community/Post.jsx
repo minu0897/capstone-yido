@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './Post.css';
 
 const Post = () => {
     const { postId } = useParams();
+    const navigate = useNavigate();
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
@@ -92,7 +93,7 @@ const Post = () => {
                 throw new Error('Failed to delete post');
             }
             console.log('Post deleted');
-            // Redirect to another page or update the UI to remove the deleted post
+            navigate('/Community'); // Redirect to the Community page after deleting the post
         } catch (error) {
             console.error('Error deleting post:', error);
         }
