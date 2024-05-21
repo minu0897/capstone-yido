@@ -8,14 +8,14 @@ const Card = ({ postId, title, content, likes, tags }) => {
       <div className="card-content">
         <h3 className="card-title">{title}</h3>
         <p className="card-subtitle">{content}</p>
-        <div className="card-tags"  style={{textDecoration:'none'}}>
+        <div className="card-tags" style={{ textDecoration: 'none', color: 'gray' }}>
           {tags.map((tag, index) => (
             <span key={index} className="card-tag">#{tag} </span> // 각 태그를 span 태그로 래핑
           ))}
         </div>
-        <hr/>
+        <hr style={{ borderColor: 'gray' }} />
         <div className="card-stats">
-          <span className="card-likes">{likes} likes</span>
+          <span className="card-likes" style={{ color: 'gray' }}>{likes} likes</span>
         </div>
       </div>
     </div>
