@@ -37,7 +37,7 @@ const Post = () => {
     const submitComment = async () => {
         const commentData = {
             postId: postId,
-            parentCommentId: '', // 현재는 null로 설정, 필요에 따라 변경 가능
+            parentCommentId: '', // 필요에 따라 추가
             content: comment
         };
     
@@ -51,9 +51,12 @@ const Post = () => {
             });
             if (response.ok) {
                 const newComment = await response.json();
-                setComments(prevComments => [...prevComments, newComment]); // Update the comments state to include the new comment
-                setComment(''); // 댓글 입력란 초기화
-                console.log('Comment added');
+                // 새 댓글 객체 구조 확인
+                console.log('New Comment:', newComment);
+    
+                // 상태 업데이트 로직
+                setComments(prevComments => [...prevComments, newComment]); // 함수형 업데이트 사용
+                setComment(''); // 입력란 초기화
             } else {
                 const errorResponse = await response.json();
                 throw new Error(`Failed to add comment: ${errorResponse.message}`);
@@ -62,6 +65,7 @@ const Post = () => {
             console.error('Error posting comment:', error);
         }
     };
+    
 
     const editPost = async () => {
         try {
