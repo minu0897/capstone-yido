@@ -36,9 +36,9 @@ const Post = () => {
 
     const submitComment = async () => {
         const commentData = {
-            postId: postId, // URL에서 가져온 postId 사용
+            postId: postId,
             parentCommentId: '', // 현재는 null로 설정, 필요에 따라 변경 가능
-            content: comment // 사용자가 입력한 댓글 내용
+            content: comment
         };
     
         try {
@@ -47,11 +47,11 @@ const Post = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(commentData) // 전송할 데이터를 JSON 문자열로 변환
+                body: JSON.stringify(commentData)
             });
             if (response.ok) {
-                const newComment = await response.json(); // Retrieve the added comment
-                setComments([...comments, newComment]); // Update the comments state to include the new comment
+                const newComment = await response.json();
+                setComments(prevComments => [...prevComments, newComment]); // Update the comments state to include the new comment
                 setComment(''); // 댓글 입력란 초기화
                 console.log('Comment added');
             } else {
