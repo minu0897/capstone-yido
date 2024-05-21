@@ -10,7 +10,7 @@ const Card = ({ postId, title, content, likes, tags }) => {
         <p className="card-subtitle">{content}</p>
         <div className="card-tags">
           {tags.map((tag, index) => (
-            <span key={index} className="card-tag">#{tag} </span> // 각 태그를 span 태그로 래핑
+            <span key={index} className="card-tag" style={{textDecoration:'none'}}>#{tag} </span> // 각 태그를 span 태그로 래핑
           ))}
         </div>
         <hr/>
