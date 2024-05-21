@@ -14,8 +14,8 @@ const Card = ({ postId, title, content, likes, tags }) => {
       <div className="card">
         <img src="https://dummyimage.com/600x400/000/fff&text=photo" alt={title} className="card-image" />
         <div className="card-content">
-          <h3 className="card-title" style={{fontSize:'10px'}}>{truncateText(title, 20)}</h3>
-          <p className="card-subtitle" style={{fontSize:'8px'}}>{truncateText(content, 30)}</p>
+          <h3 className="card-title" style={{fontSize:'14px'}}>{truncateText(title, 15)}</h3>
+          <p className="card-subtitle" style={{fontSize:'10px'}}>{truncateText(content, 25)}</p>
           <div className="card-tags" style={{ textDecoration: 'none', color: 'gray' }}>
             {tags.map((tag, index) => (
               <span key={index} className="card-tag">#{tag} </span>
