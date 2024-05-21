@@ -6,6 +6,7 @@
     overflow: hidden;
     margin: 16px;
     width: 300px; /* 카드의 폭을 설정합니다 */
+    border: 1px solid gray;
   }
   
   .card-image {
