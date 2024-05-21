@@ -4,8 +4,9 @@ import { useAuth } from './AuthContext';
 import './Login.css';
 
 const Login = () => {
-  const [loginId, setloginId] = useState('');
+  const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // State for error message
   const navigate = useNavigate(); // Create navigate instance
   const { login } = useAuth();  // Context에서 login 함수 사용
 
@@ -32,11 +33,11 @@ const Login = () => {
         navigate('/'); // 로그인 성공 시 홈페이지로 리디렉션
       } else {
         console.error('로그인 실패, 상태 코드:', response.status);
+        setErrorMessage('Invalid username or password.'); // Set error message on failed login
         throw new Error('로그인 실패');
       }
     } catch (error) {
       console.error('로그인 에러:', error);
-      // 사용자에게 로그인 실패 메시지를 표시할 수 있는 부분을 추가할 수 있습니다.
     }
   };
   
@@ -54,7 +55,7 @@ const Login = () => {
             required
             className='Login-input'
             value={loginId}
-            onChange={e => setloginId(e.target.value)}
+            onChange={e => setLoginId(e.target.value)}
           />
         </div>
         <div className="Login-form-group">
@@ -68,6 +69,7 @@ const Login = () => {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
+          {errorMessage && <p className="Login-error">{errorMessage}</p>} {/* Error message display */}
         </div>
         <button type="submit" className="Login-login-button">Log In</button>
       </form>
