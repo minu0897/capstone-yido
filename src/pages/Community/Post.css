@@ -111,3 +111,56 @@
     color: #888;
     text-align: center;
 }
+
+.comments-list {
+    margin-top: 20px;
+    border-top: 2px solid #ddd; /* A subtle line to separate comments from the input area */
+    padding-top: 20px;
+}
+
+.comment {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f8f8f8; /* Light gray background for each comment */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+}
+
+.comment:hover {
+    background-color: #e8e8e8; /* Slightly darker on hover to highlight the comment */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover for more depth */
+}
+
+.comment-content {
+    font-size: 16px; /* Slightly larger font for better readability */
+    color: #333; /* Darker text for contrast */
+    line-height: 1.5; /* Improved line spacing for readability */
+    margin-bottom: 10px; /* Space between the comment text and the author line */
+}
+
+.comment-writer {
+    font-size: 14px; /* Smaller font size for meta information */
+    color: #666; /* Lighter color for less emphasis */
+    font-style: italic; /* Italicized to differentiate from the main content */
+}
+
+.comment-stats {
+    font-size: 14px; /* Consistent size with writer for uniformity */
+    color: #555; /* Slightly darker than the writer for visibility */
+    display: flex; /* Utilizes flex to layout likes and dislikes side by side */
+    justify-content: space-between; /* Distributes space evenly */
+    margin-top: 10px; /* Separates stats from the content above */
+}
+
+.likes, .dislikes {
+    background-color: #e0e0e0; /* Background color for likes/dislikes stats */
+    padding: 4px 8px; /* Padding for a better touch interface */
+    border-radius: 4px; /* Rounded edges for a friendly interface */
+    cursor: pointer; /* Indicates these elements are interactive */
+}
+
+.likes:hover, .dislikes:hover {
+    background-color: #d0d0d0; /* Darker background on hover for interaction feedback */
+}
+
