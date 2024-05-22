@@ -18,7 +18,8 @@ const Card = ({ postId, title, content, likes, tags }) => {
           <p className="card-subtitle" style={{fontSize:'10px'}}>{truncateText(content, 25)}</p>
           <div className="card-tags" style={{ textDecoration: 'none', color: 'gray' }}>
             {tags.map((tag, index) => (
-              <span key={index} className="card-tag">#{tag} </span>
+              // 각 태그에 대해 truncateText 함수 적용
+              <span key={index} className="card-tag">#{truncateText(tag, 10)} </span>
             ))}
           </div>
           <hr style={{ borderColor: 'gray' }} />
