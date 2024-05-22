@@ -9,6 +9,9 @@ const truncateText = (text, maxLength) => {
 };
 
 const Card = ({ postId, title, content, likes, tags }) => {
+  // 태그 배열을 하나의 문자열로 결합
+  const tagsString = tags.map(tag => `#${tag}`).join(' ');
+
   return (
     <div className="card-wrapper">
       <div className="card">
@@ -17,10 +20,8 @@ const Card = ({ postId, title, content, likes, tags }) => {
           <h3 className="card-title" style={{fontSize:'14px'}}>{truncateText(title, 15)}</h3>
           <p className="card-subtitle" style={{fontSize:'10px'}}>{truncateText(content, 25)}</p>
           <div className="card-tags" style={{ textDecoration: 'none', color: 'gray' }}>
-            {tags.map((tag, index) => (
-              // 각 태그에 대해 truncateText 함수 적용
-              <span key={index} className="card-tag">#{truncateText(tag, 10)} </span>
-            ))}
+            {/* 전체 태그 문자열에 truncateText 함수 적용 */}
+            <span className="card-tag">{truncateText(tagsString, 50)}</span>
           </div>
           <hr style={{ borderColor: 'gray' }} />
           <div className="card-stats">
