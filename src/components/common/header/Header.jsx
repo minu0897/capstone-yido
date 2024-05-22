@@ -29,18 +29,16 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      // 서버에 로그아웃 요청
-      const response = await axios.post('/logout');
-      if (response.status === 200) {
-        logout(); // 상태 업데이트
-        navigate('/'); // 홈으로 이동
-      } else {
-        throw new Error('Failed to logout');
-      }
+      await axios.post('http://101.235.73.77:8080/login?logout');
+      logout(); // 로컬 상태 로그아웃 처리
+      navigate('/'); // 홈으로 이동
     } catch (error) {
       console.error('Logout error:', error);
+      logout(); // 에러가 발생하더라도 로컬 상태 로그아웃 처리
+      navigate('/'); // 홈으로 이동
     }
   };
+  
 
   return (
     <div className='header-back'>
