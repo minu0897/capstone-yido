@@ -9,7 +9,15 @@
   overflow: hidden;
   width: 300px; /* 카드의 폭을 설정합니다 */
   border: 1px solid gray;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* 애니메이션 효과를 부드럽게 하기 위해 추가 */
 }
+
+.card:hover {
+  transform: scale(1.05); /* 마우스를 올렸을 때 카드를 약간 키웁니다 */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* 그림자를 더 도드라지게 만듭니다 */
+  cursor: pointer; /* 마우스 오버 시 커서 변경을 추가합니다 */
+}
+
 
 .card-image {
   width: 90%;
