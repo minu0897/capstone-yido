@@ -52,8 +52,8 @@ const Community = () => {
       <div className='centerDiv'>
         <div className='heading'>Community</div>
       </div>
-      <div className='write' style={{ marginLeft: '1000px' }}>
-        <Link to={'/WriteCommunity'} style={{ textDecoration: 'none', color: 'black' , marginBottom:'20px'}}>
+      <div className='write' style={{ marginLeft: '1000px' , marginBottom:'20px'}}>
+        <Link to={'/WriteCommunity'} style={{ textDecoration: 'none', color: 'black'}}>
           <img src="https://png.pngtree.com/png-clipart/20211020/ourlarge/pngtree-red-pencil-clipart-png-image_3995136.png" width={'20px'} height={'20px'}/>
           post
         </Link>
