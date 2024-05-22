@@ -129,8 +129,8 @@ const Post = () => {
                                 <button onClick={() => setEditMode(true)} className="btn edit">Edit</button>
                                 <button onClick={deletePost} className="btn delete">Delete</button>
                                 <button onClick={submitComment} className="btn like">Like</button>
-                                <p>{post.postWriter}</p>
                             </div>
+                            <p>{post.postWriter}</p>
                         </>
                     )}
                     <div className="comment-section">
