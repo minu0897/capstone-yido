@@ -8,12 +8,13 @@ import { useAuth } from '../../../pages/Login/AuthContext';
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  const { user, logout } = useAuth(); // useAuth 훅에서 로그아웃 함수 사용
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Make an HTTP POST request to the backend
-      const response = await axios.get('/api/search?query=', { query: searchTerm });
+      // Make an HTTP GET request to the backend
+      const response = await axios.get('/api/search?query=' + searchTerm);
       // Navigate to a new page with the response if needed, or handle response data here
       console.log('Search response:', response.data);
       navigate(`/search-results`); // You might want to navigate based on the response or handle differently
@@ -26,9 +27,19 @@ const Header = () => {
     setSearchTerm(event.target.value);
   };
 
-  const { user, logout } = useAuth();  // 로그인된 사용자 정보와 로그아웃 함수 사용
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    try {
+      // 서버에 로그아웃 요청
+      const response = await axios.post('/logout');
+      if (response.status === 200) {
+        logout(); // 상태 업데이트
+        navigate('/'); // 홈으로 이동
+      } else {
+        throw new Error('Failed to logout');
+      }
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
   return (
@@ -57,7 +68,7 @@ const Header = () => {
 
           {user ? (
           <div style={{display:"flex"}}>
-            <span style={{overflow:"hidden", color:'white', marginLeft: '250px',width:"AuthContext",marginTop:'5px',textAlign:"right", textDecoration:'none'}}>Hello{user.member_id}</span> {/* 로그인한 사용자의 이름 표시 */}
+            <span style={{overflow:"hidden", color:'white', marginLeft: '250px',width:"AuthContext",marginTop:'5px',textAlign:"right", textDecoration:'none'}}>Hello {user.member_id}</span> {/* 로그인한 사용자의 이름 표시 */}
             <button onClick={handleLogout} style={{color:'white', marginLeft: '10px',width:"70px",marginTop:'5px', textDecoration:'none'}}>Logout</button>
           </div>
         ) : (
