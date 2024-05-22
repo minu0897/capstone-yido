@@ -21,7 +21,7 @@ const Card = ({ postId, title, content, likes, tags }) => {
           <p className="card-subtitle" style={{fontSize:'10px'}}>{truncateText(content, 25)}</p>
           <div className="card-tags" style={{ textDecoration: 'none', color: 'gray' }}>
             {/* 전체 태그 문자열에 truncateText 함수 적용 */}
-            <span className="card-tag">{truncateText(tagsString, 50)}</span>
+            <span className="card-tag">{truncateText(tagsString, 10)}</span>
           </div>
           <hr style={{ borderColor: 'gray' }} />
           <div className="card-stats">
