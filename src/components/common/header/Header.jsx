@@ -29,7 +29,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://101.235.73.77:8080/login?logout');
+      await axios.post('/logout');
       logout(); // 로컬 상태 로그아웃 처리
       navigate('/'); // 홈으로 이동
     } catch (error) {
