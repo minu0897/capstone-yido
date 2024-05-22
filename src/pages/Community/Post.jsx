@@ -124,13 +124,13 @@ const Post = () => {
                     ) : (
                         <>
                             <h1 className="post-title">{post.postTitle}</h1>
+                            <p className='post-content'> by {post.postWriter}</p>
                             <p className="post-content">{post.postContent}</p>
                             <div className="post-actions">
                                 <button onClick={() => setEditMode(true)} className="btn edit">Edit</button>
                                 <button onClick={deletePost} className="btn delete">Delete</button>
                                 <button onClick={submitComment} className="btn like">Like</button>
                             </div>
-                            <p>{post.postWriter}</p>
                         </>
                     )}
                     <div className="comment-section">
