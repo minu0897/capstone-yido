@@ -139,7 +139,7 @@ const Signup = () => {
               type="radio"
               name="role"
               value="USER"
-              checked={role === 'USER'}
+              checked={memberRole === 'USER'}
               onChange={() => setRole('USER')}
             /> User
           </label>
@@ -148,7 +148,7 @@ const Signup = () => {
               type="radio"
               name="role"
               value="PRODUCER"
-              checked={role === 'PRODUCER'}
+              checked={memberRole === 'PRODUCER'}
               onChange={() => setRole('PRODUCER')}
             /> Producer
           </label>
