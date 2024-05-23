@@ -12,7 +12,7 @@
 .header {
   display: flex;
   width: 1200px;
-  height: 50px; /* Adjust the height as needed */
+  height: 60px; /* Adjust the height as needed */
   align-items: center;
   margin: auto;
 }
@@ -57,4 +57,57 @@
 
 .header-title{
   white-space: nowrap;
+  cursor: pointer;
+}
+
+.H-non-draggable {
+  user-select: none; /* 텍스트 드래그 방지 */
+}
+
+
+.H-logindiv{
+  min-width:400px;
+  height:60px;
+  display: flex; /* flexbox 레이아웃 사용 */
+
+}
+.H-logindiv > div {
+  height: 100%; /* 부모의 높이에 맞춰 자식 div 높이 설정 */
+}
+
+.H-logindiv > div:first-child {
+  flex-grow: 1; /* 남은 공간을 모두 차지하도록 설정 */
+}
+
+.H-logineddiv{
+  min-width:400px;
+  height:60px;
+  display: flex; /* flexbox 레이아웃 사용 */
+}
+.H-logineddiv > div {
+  height: 100%; /* 부모의 높이에 맞춰 자식 div 높이 설정 */
+}
+
+.H-logineddiv > div:first-child {
+  flex-grow: 1; /* 남은 공간을 모두 차지하도록 설정 */
+}
+
+.H-logineddiv > div:nth-child(2) {
+  width: 20px; /* 두 번째 div의 너비는 20px */
+}
+
+.H-logineddiv > div:last-child {
+  flex-grow: 1; /* 마지막 div가 남은 공간을 모두 차지 */
+}
+
+.H-logined-myname, .H-login-myname{
+  overflow:hidden; 
+  color:white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.H-logined-myname:hover, .H-login-myname:hover {
+  text-decoration: underline; /* 마우스 오버 시 텍스트에 밑줄을 추가 */
 }
