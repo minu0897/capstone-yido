@@ -8,7 +8,7 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
-  const [role, setRole] = useState('USER');
+  const [memberRole, setRole] = useState('USER');
   const [idAvailable, setIdAvailable] = useState(true);
   const [idCheckError, setIdCheckError] = useState('');
 
