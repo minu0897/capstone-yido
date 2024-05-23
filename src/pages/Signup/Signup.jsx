@@ -49,7 +49,7 @@ const Signup = () => {
       memberId,
       email,
       password,
-      role,
+      memberRole,
     };
 
     try {
