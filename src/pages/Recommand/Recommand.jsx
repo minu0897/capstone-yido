@@ -5,15 +5,8 @@ import VideoContainer from './VideoContainer.jsx';
 
 const Recommand = () => {
   const [videos, setVideos] = useState([]);
-
-  const recommandvideoarray = {
-    display: 'flex',
-    justifyContent: 'center', // Keeps items centered
-    flexWrap: 'wrap', // Allows multiple lines
-    gap: '20px', // Space between items
-    margin: '0 auto', // Centers the container
-    maxWidth: '1368px', // Adjust based on the sum of all items' widths in a row
-  };
+  const [tags, setTags] = useState([null]);
+  const [activeIndex, setActiveIndex] = useState(-1); // 초기에는 아무 버튼도 선택되지 않음
 
   const videolink = {
     textDecoration: 'none',
@@ -22,16 +15,16 @@ const Recommand = () => {
   };
 
   useEffect(() => {
-    const fetchVideos = async () => {
+    const fetchTags = async () => {
       try {
-        const response = await fetch('/api/video/recommend');
+        const response = await fetch('/api/video/mostTag');
         const data = await response.json();
-        console.log(data); // 데이터 구조 확인
-        if (Array.isArray(data)) { // data가 배열인지 확인
-          setVideos(data);
+        
+        if (Array.isArray(data.top5Tags)) { // data가 배열인지 확인
+          setTags(data.top5Tags);
         } else {
           console.error('Videos data is not an array:', data);
-          setVideos([]); // 안전하게 비어 있는 배열 설정
+          setTags([]); // 안전하게 비어 있는 배열 설정
         }
       } catch (error) {
         console.error('Failed to fetch videos:', error);
@@ -39,13 +32,50 @@ const Recommand = () => {
       }
     };
   
-    fetchVideos();
+    fetchTags();
   }, []);
+
+  useEffect(() => {
+    fetchVideos(null);
+  }, [tags]);
   
+  const fetchVideos = async (tag) => {
+    if (tag ==null) tag = 'all';
+    try {
+      const url = "/api/video/recommend?tag="+tag;
+      const response = await fetch(url);
+      const data = await response.json();
+      if (Array.isArray(data)) { // data가 배열인지 확인
+        setVideos(data);
+      } else {
+        console.error('Videos data is not an array:', data);
+        setVideos([]); // 안전하게 비어 있는 배열 설정
+      }
+    } catch (error) {
+      console.error('Failed to fetch videos:', error);
+      setVideos([]); // 오류 발생 시 비어 있는 배열 설정
+    }
+  };
   
+  const handleButtonClick = (index,tag) => {
+    setActiveIndex(index); // 선택된 버튼의 인덱스 저장
+    fetchVideos(tag);
+  };
+
   return (
     <div style={{marginTop: '20px'}}>
-      <div style={recommandvideoarray}>
+      {
+      tags!==null &&
+        <div className='R-tags-container'>
+          <button className={activeIndex === -1 ? 'R-tags-button-click' : 'R-tags-button'} onClick={() => handleButtonClick(-1,null)}>All</button>
+          {
+            tags.map((tag, index) => (
+              <button className={index  === activeIndex  ? 'R-tags-button-click' : 'R-tags-button'} onClick={() => handleButtonClick(index,tag)} key={index}>{tag}</button> // 리스트 아이템 동적으로 렌더링
+            ))
+          }
+        </div>
+      }
+      <div className='recommandvideoarray'>
         {videos.map(video => (
           <Link to={`/videoplayer?id=${video.videoId}`} key={video.videoId} style={videolink}>
             <VideoContainer video={video} />
