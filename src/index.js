@@ -17,6 +17,7 @@ import reportWebVitals from './reportWebVitals';
 import RegisterVideo from './pages/RegisterVideo/RegisterVideo';
 import WriteCommunity from './pages/WriteCommunity/WriteCommunity';
 import Post from './pages/Community/Post';
+import UserProfile from './pages/UserProfile/UserProfile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -27,6 +28,7 @@ root.render(
         <Header />
         <Navigation />
         <Routes>
+          <Route path='/UserProfile' element={<UserProfile/>}/>
           <Route path='/' element={<Home/>} />
           <Route path='/Community' element={<Community />} />
           <Route path='/Note' element={<Note />} />

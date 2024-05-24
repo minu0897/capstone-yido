@@ -1,0 +1,51 @@
+/* UserProfile.css */
+.user-profile {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+.user-profile h1 {
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+}
+
+.user-profile p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.user-profile form {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-profile label {
+    margin-bottom: 10px;
+}
+
+.user-profile input[type="password"] {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.user-profile button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-profile button:hover {
+    background-color: #0056b3;
+}
