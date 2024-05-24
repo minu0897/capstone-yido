@@ -53,3 +53,19 @@
     background-color: #004494;
   }
   
+  .Login-signup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px; /* Space from the login button */
+    transition: background-color 0.3s;
+}
+
+.Login-signup-button:hover {
+    background-color: #218838;
+}
+
