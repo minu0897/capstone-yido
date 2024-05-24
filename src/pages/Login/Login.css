@@ -32,7 +32,7 @@
   
   .Login-input[type="text"],
   .Login-input[type="password"] {
-    width: 300px;
+    width: 275px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
