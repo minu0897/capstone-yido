@@ -73,6 +73,8 @@ const Header = () => {
 
         {/* search form 추후 구현 */}
         <div style={{minWidth:"400px"}}>
+            <Link to={'/RegisterVideo'} style={{color:"white"}}>upload 나중에 옮겨야함
+            </Link>
         {/*
           <form onSubmit={handleSubmit} className="search-container" style={{marginLeft: '250px', marginTop: '10px'}}>
             <input type="text" className="inputdeco" value={searchTerm} onChange={handleInputChange} />
