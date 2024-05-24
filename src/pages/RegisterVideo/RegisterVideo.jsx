@@ -30,7 +30,6 @@ const RegisterVideo = () => {
             const fileName = tmp_file.name;
             const extension = fileName.split('.').pop();
             if(extension === 'mp4'){
-                console.log("1");
                 setFile(tmp_file);
                 setFileErr(1);
                 const videoUrl = URL.createObjectURL(tmp_file);
@@ -48,11 +47,10 @@ const RegisterVideo = () => {
 
     const getFileErr = () => {
         let ret;
-        console.log("123");
         if( fileerr === 0 ){
             ret="Please upload your video";
         }else if( fileerr === 1 ){
-            ret="";
+            ret="Uploaded";
         }else if( fileerr === 2 ){
             ret="Please check the extension and upload again.";
         }else if( fileerr === 3 ){
