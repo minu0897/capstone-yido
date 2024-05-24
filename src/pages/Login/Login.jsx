@@ -65,7 +65,7 @@ const Login = () => {
           {errorMessage && <p className="Login-error">{errorMessage}</p>} {/* Error message display */}
         </div>
         <button type="submit" className="Login-login-button">Log In</button>
-        <button type="button" className="Login-signup-button" onClick={() => navigate('/signup')}>
+        <button className="Login-signup-button" onClick={() => navigate('/signup')}>
           Sign Up
         </button>
       </form>
