@@ -86,35 +86,32 @@ const Header = () => {
         </div>
 
         {/* signin signout mypageicon */}
-          {
-            user ? 
-            (
-              <div className='H-logineddiv'>
-                <div></div>
-                <div></div>
-                <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end"}}>
-                  {/* 로그인한 사용자의 이름 표시 */}
-                  <span className='H-logined-myname' style={{width:"AuthContext",textAlign:"right",marginRight:"20px"}}  onClick={handleMyClick} >
-                    {"Harry Kane"}
-                  </span> 
-                  <span className='H-logined-myname' style={{width:"AuthContext",textAlign:"right"}}  onClick={handleLogout} >
-                    Logout
-                  </span> 
-                  {//<button onClick={handleLogout} style={{color:'white', width:"70px",marginTop:'5px', textDecoration:'none'}}>Logout</button>
-                  }
-                </div>
-              </div>
-            ) : 
-            (
-              <div className='H-logindiv'>
-                <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end"}}>
-                  <span className='H-login-myname' style={{width:"AuthContext",textAlign:"right"}}  onClick={handleLogin} >
-                    Login
-                  </span> 
-                </div>
-              </div>
-            )
-          }
+        {user ? 
+  (
+    <div className='H-logineddiv'>
+      <div></div>
+      <div></div>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end"}}>
+        {/* 로그인한 사용자의 이름 표시 */}
+        <span className='H-logined-myname' style={{width:"AuthContext",textAlign:"right",marginRight:"20px"}}  onClick={handleMyClick} >
+          {user.name} {/* 이 부분을 수정하여 user 객체에서 이름을 가져옴 */}
+        </span> 
+        <span className='H-logined-myname' style={{width:"AuthContext",textAlign:"right"}}  onClick={handleLogout} >
+          Logout
+        </span> 
+      </div>
+    </div>
+  ) : 
+  (
+    <div className='H-logindiv'>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end"}}>
+        <span className='H-login-myname' style={{width:"AuthContext",textAlign:"right"}}  onClick={handleLogin} >
+          Login
+        </span> 
+      </div>
+    </div>
+  )
+}
         
 
         {/*

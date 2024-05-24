@@ -6,41 +6,34 @@ import './Login.css';
 const Login = () => {
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // State for error message
-  const navigate = useNavigate(); // Create navigate instance
-  const { login } = useAuth();  // Context에서 login 함수 사용
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const loginData = {
-      loginId,
-      password,
-    };
-  
+    const loginData = { loginId, password };
+
     try {
       const response = await fetch('api/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginData),
       });
-  
-      if (response.status === 200) { // 상태 코드 200 확인
+
+      if (response.status === 200) {
         const userData = await response.json();
-        login(userData);  // 사용자 데이터를 AuthContext에 저장
-        console.log('로그인 성공');
-        navigate('/'); // 로그인 성공 시 홈페이지로 리디렉션
+        login(userData);
+        navigate('/'); // Redirect to homepage on success
       } else {
-        console.error('로그인 실패, 상태 코드:', response.status);
-        setErrorMessage('Invalid username or password.'); // Set error message on failed login
-        throw new Error('로그인 실패');
+        console.error('Login failed, status:', response.status);
+        setErrorMessage('Invalid username or password.');
+        throw new Error('Login failed');
       }
     } catch (error) {
-      console.error('로그인 에러:', error);
+      console.error('Login error:', error);
     }
   };
-  
 
   return (
     <div className='Login-login'>
@@ -72,6 +65,24 @@ const Login = () => {
           {errorMessage && <p className="Login-error">{errorMessage}</p>} {/* Error message display */}
         </div>
         <button type="submit" className="Login-login-button">Log In</button>
+        <button
+          type="button"
+          className="Login-signup-button"
+          onClick={() => navigate('/signup')}
+          style={{
+            width: '100%',
+            padding: '10px',
+            backgroundColor: '#28a745', // 밝은 녹색 배경
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            marginTop: '10px',
+            transition: 'background-color 0.3s'
+          }}
+        >
+        Sign Up
+        </button>
       </form>
     </div>
   );
