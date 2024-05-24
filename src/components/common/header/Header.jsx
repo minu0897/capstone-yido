@@ -114,7 +114,7 @@ const Header = () => {
                   <span className='H-login-myname' style={{width:"AuthContext",textAlign:"right"}}  onClick={handleLogin} >
                     Login
                   </span> 
-                  <span className='H-login-myname' style={{width:"AuthContext",textAlign:"right"}}  onClick={handleSignup} >
+                  <span className='H-login-myname' style={{width:"AuthContext",textAlign:"right", marginLeft:'20px'}}  onClick={handleSignup} >
                     Sign Up
                   </span>
                 </div>
