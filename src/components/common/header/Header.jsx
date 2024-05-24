@@ -50,9 +50,6 @@ const Header = () => {
     navigate('/Login'); // 클릭 시 / 경로로 이동합니다.
   };
   
-  const handleSignup = () => {
-    navigate('/Signup');
-  }
   return (
     <div className='header-back'>
       <div className='header'>
@@ -114,9 +111,6 @@ const Header = () => {
                   <span className='H-login-myname' style={{width:"AuthContext",textAlign:"right"}}  onClick={handleLogin} >
                     Login
                   </span> 
-                  <span className='H-login-myname' style={{width:"AuthContext",textAlign:"right", marginLeft:'20px'}}  onClick={handleSignup} >
-                    Sign Up
-                  </span>
                 </div>
               </div>
             )
