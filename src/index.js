@@ -28,7 +28,7 @@ root.render(
         <Header />
         <Navigation />
         <Routes>
-          <Route path='/UserProfile' element={<UserProfile/>}/>
+          <Route path='/mypage' element={<UserProfile/>}/>
           <Route path='/' element={<Home/>} />
           <Route path='/Community' element={<Community />} />
           <Route path='/Note' element={<Note />} />

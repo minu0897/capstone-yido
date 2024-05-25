@@ -43,7 +43,7 @@ const Header = () => {
   };
   
   const handleMyClick = () => {
-    navigate('/MyPage'); // 클릭 시 / 경로로 이동합니다.
+    navigate('/mypage'); // 클릭 시 / 경로로 이동합니다.
   };
 
   const handleLogin = () => {
@@ -94,7 +94,6 @@ const Header = () => {
       <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end"}}>
         <span className='H-logined-myname' style={{width:"AuthContext",textAlign:"right",marginRight:"20px"}}  onClick={handleMyClick} >
           {user.name} 
-          {console.log(user)}
         </span> 
         <span className='H-logined-myname' style={{width:"AuthContext",textAlign:"right"}}  onClick={handleLogout} >
           Logout
