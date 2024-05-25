@@ -10,7 +10,7 @@ function UserProfile() {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('/api/user');
+                const response = await axios.get('/api/mypage');
                 setUser(response.data);
                 setIsLoading(false);
             } catch (error) {
@@ -44,7 +44,7 @@ function UserProfile() {
         <div className="user-profile">
             <h1>사용자 프로필</h1>
             <p>ID: {user.id}</p>
-            <p>닉네임: {user.nickname}</p>
+            <p>닉네임: {user.name}</p>
             <form onSubmit={handleSubmit}>
                 <label>
                     새 비밀번호:
