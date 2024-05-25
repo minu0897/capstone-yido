@@ -1,39 +1,48 @@
+/* Community.css */
 .community {
   padding: 20px;
   display: flex;
-  flex-direction: column; /* 자식 요소들을 세로로 배열 */
-  align-items: center; /* 모든 자식을 수직으로 중앙에 위치시키지만 */
-  height: 100vh;
+  flex-direction: column; /* 세로 방향으로 요소 정렬 */
+  align-items: center;
+  height: auto; /* 높이를 자동으로 조절하여 모든 내용을 표시 */
+  background: linear-gradient(to bottom, #f0f9ff, #cbebff); /* 배경에 그라데이션 추가 */
 }
 
 .centerDiv {
+  width: 100%; /* 전체 폭 사용 */
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 20px 0;
 }
 
 .heading {
-  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #d1e1ff;
-  margin-top: 40px;
-  width: 200px;
-  height: 80px;
-  font-style: normal;
-  font-size: 30px;
-  border-radius: 20px;
+  background-color: #0077b6; /* 더 진한 파란색으로 변경 */
+  color: white; /* 글자 색상을 흰색으로 변경 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  margin-top: 20px; /* 상단 여백 조정 */
+  width: 240px; /* 너비 변경 */
+  height: 60px; /* 높이 변경 */
+  border-radius: 30px; /* 더 큰 라운드 효과 */
+  font-size: 24px; /* 글자 크기 증가 */
 }
 
 .write {
-  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #d1e1ff;
-  margin-top: 40px;
-  width: 150px;
-  min-height: 40px;
-  font-style: normal;
-  font-size: 20px;
-  border-radius: 20px;
+  background-color: #f1c40f; /* 밝은 황금색으로 변경 */
+  color: #fff; /* 글자 색상을 흰색으로 변경 */
+  margin-top: 20px; /* 상단 여백 조정 */
+  width: 200px; /* 너비 변경 */
+  height: 50px; /* 높이 변경 */
+  font-size: 18px; /* 글자 크기 변경 */
+  border-radius: 25px; /* 라운드 효과 조정 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  cursor: pointer; /* 포인터 커서 표시 */
+  transition: background-color 0.2s ease-in-out; /* 배경색 변경 애니메이션 효과 */
+}
+
+.write:hover {
+  background-color: #f39c12; /* 마우스 오버 시 배경색 변경 */
 }
