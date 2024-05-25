@@ -1,13 +1,18 @@
-.videoplayer{
+.videoplayer {
     width: 1200px;
     display: flex;
-    flex-direction: column; /* 자식 요소들을 세로로 배열 */
+    flex-direction: column;
+    /* 자식 요소들을 세로로 배열 */
     margin: auto;
 }
+
 .player {
-    width: 800px;  /* 또는 원하는 크기 */
-    height: 450px; /* 또는 원하는 크기 */
-    position: relative; /* 자식 요소를 위한 위치 컨텍스트 */
+    width: 800px;
+    /* 또는 원하는 크기 */
+    height: 450px;
+    /* 또는 원하는 크기 */
+    position: relative;
+    /* 자식 요소를 위한 위치 컨텍스트 */
 }
 
 .subtitles {
@@ -20,14 +25,17 @@
 }
 
 .vp-span-word {
-    color: black; /* 기본 색상 */
-    transition: color 0.3s ease; /* 색상 변경 애니메이션 */
+    color: black;
+    /* 기본 색상 */
+    transition: color 0.3s ease;
+    /* 색상 변경 애니메이션 */
     font-size: 16px;
     margin-right: 5px;
 }
 
 .vp-span-word:hover {
-    color: red; /* 마우스 오버 시 색상 */
+    color: red;
+    /* 마우스 오버 시 색상 */
 }
 
 .video-subtitles-container {
@@ -40,28 +48,52 @@
     overflow-x: hidden;
 }
 
-.pt{
+.pt {
     font-size: 16px;
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-right: 5px;
 }
 
-.pe{
+.pe {
     margin-bottom: 40px;
     margin-top: 5px;
 }
 
-.pk:hover,.pt:hover,.pe:hover{
+.pk:hover,
+.pt:hover,
+.pe:hover {
     font-weight: bold;
 }
 
-.vp-word-title{
+.vp-word-title {
     color: #637BC8;
     margin-top: 10px;
     margin-bottom: 5px;
 }
 
-.vp-word-meaning{
+.vp-word-meaning {
     color: white;
     margin-top: 0px;
+}
+
+.vp-word-icon {
+    cursor: pointer;
+    height: 25px;
+    margin: 2px;
+    padding: 1px;
+}
+
+.vp-word-menu {
+    position: relative;
+    height: 30px;
+    width: 110px;
+    background-color: #F4F4F4;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 25px;
+    left: -10px;
+    cursor: pointer;
 }

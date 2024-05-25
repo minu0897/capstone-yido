@@ -1,6 +1,6 @@
 
 import { useLocation } from 'react-router-dom';
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import axios from 'axios';
 import './VideoPlayer.css'
@@ -12,7 +12,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import {Scrollbars} from 'react-custom-scrollbars'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 import Slider from "@material-ui/core/Slider";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -25,9 +25,12 @@ import FullScreen from "@material-ui/icons/Fullscreen";
 import Popover from "@material-ui/core/Popover";
 //import screenful from "screenfull";
 import Controls from '../../components/videoplayer/control/Controls'
-import customscroll from '../../components/common/customscrolls/customscroll'
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faClipboard } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 //-------------------------------------------
 //함수 및 변수(player)
 //-------------------------------------------
@@ -126,7 +129,7 @@ const format = (seconds) => {
 let count = 0;
 
 const VideoPlayer = () => {
-  
+
   //-------------------------------------------
   //yido 변수
   //-------------------------------------------
@@ -141,8 +144,11 @@ const VideoPlayer = () => {
   const [wordApiData, setwordApiData] = useState(null);
   const [showWord, setshowWord] = useState(false);
   const refScrollbars = React.useRef(null);
+  const [isHovered, setIsHovered] = useState(-1);  // 호버 상태를 관리하는 로컬 상태
+  const [ismenuClicked, setismenuClicked] = useState(-1);  // 문장신고 메뉴 상태를 관리하는 로컬 상태
+  const [community, setcommunity] = useState(null);  // 커뮤니티 글 정보들
 
-  
+
   //-------------------------------------------
   //player 변수
   //-------------------------------------------
@@ -157,7 +163,7 @@ const VideoPlayer = () => {
     controls: false,
     light: false,
 
-    muted: false,
+    muted: true,
     played: 0,
     duration: 0,
     playbackRate: 1.0,
@@ -183,8 +189,8 @@ const VideoPlayer = () => {
     seeking,
     volume,
   } = state;
-  
-  
+
+
   //-------------------------------------------
   //player 함수
   //-------------------------------------------
@@ -265,6 +271,10 @@ const VideoPlayer = () => {
   const hanldeMute = () => {
     setState({ ...state, muted: !state.muted });
   };
+  const settingClose = () => {
+    setIsHovered(-1);
+    setismenuClicked(-1);
+  };
 
   const addBookmark = () => {
     const canvas = canvasRef.current;
@@ -305,39 +315,39 @@ const VideoPlayer = () => {
 
   const totalDuration = format(duration);
 
-//-------------------------------------------
-//yido 함수
-//-------------------------------------------// 단어 클릭 핸들러
+  //-------------------------------------------
+  //yido 함수
+  //-------------------------------------------// 단어 클릭 핸들러
   const handleWordClick = (word) => {
     setwordId(word.subtitleWordId);
-    
+
     // 여기에 클릭된 단어에 대한 처리 로직 추가
   };
 
   useEffect(() => {
-    if(wordId == null)  return;
-    if(window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")){
+    if (wordId == null) return;
+    if (window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")) {
       setshowWord(true);
       const jsonData = require('./a.json');
       setwordApiData(jsonData);
-    }else{
-      axios.get('/api/dictionary?subtitleWordId='+wordId)
+    } else {
+      axios.get('/api/dictionary?subtitleWordId=' + wordId)
         .then(response => {
           setwordApiData(response.data);
           setshowWord(true);
         })
         .catch(error => {
         });
-      
+
     }
 
-  },[wordId]);
+  }, [wordId]);
 
   useEffect(() => {
-  },[wordApiData]);
+  }, [wordApiData]);
 
   useEffect(() => {
-    const url = '/api/video/'+videoId;
+    const url = '/api/video/' + videoId;
 
     axios.get(url)
       .then(response => {
@@ -346,27 +356,26 @@ const VideoPlayer = () => {
       .catch(error => {
       });
 
-      const timer = setTimeout(() => {
-        //setPlaying(true); // 1초 후 재생 상태를 true로 설정
-      }, 1000);
-  
-      //return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 클리어
-  },[]);
-  
-  useEffect(() => {
-    if(data !=null){
-      setSubtitles(data.subtitleSentences);
-      //console.log(data.subtitleSentences);
-      //console.log(data);
+    const timer = setTimeout(() => {
       //setPlaying(true); // 1초 후 재생 상태를 true로 설정
+    }, 1000);
+
+    //return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 클리어
+  }, []);
+
+  useEffect(() => {
+    if (data != null) {
+      setSubtitles(data.subtitleSentences);
+      setcommunity(data.communityResponses);
     }
   }, [data]);
+
   useEffect(() => {
     if (subtitles !== null) {
       let hasFocusChanged = false;
       const updatedSubtitles = subtitles.map((subtitle, index) => {
 
-        const newIsFocus = currentTime >= subtitle.startTime && 
+        const newIsFocus = currentTime >= subtitle.startTime &&
           (subtitles[index + 1] ? currentTime < subtitles[index + 1].startTime : true);
 
         if (subtitle.isFocus !== newIsFocus) hasFocusChanged = true;
@@ -383,9 +392,11 @@ const VideoPlayer = () => {
     }
   }, [currentTime]);
 
+
   useEffect(() => {
-      scrollToActiveSubtitle();
+    scrollToActiveSubtitle();
   }, [subtitles]);
+
   // 스크롤 조정 함수
   const scrollToActiveSubtitle = () => {
     const focusedSubtitle = subtitles?.find(subtitle => subtitle.isFocus);
@@ -395,34 +406,48 @@ const VideoPlayer = () => {
       refScrollbars.current.scrollTop(subtitleTop);
     }
   };
-  
 
-//-------------------------------------------
-//render
-//-------------------------------------------
-  return(
+  const reportSentence = (data) => {
+    console.log(data.subtitleId);
+  }
+
+  const reportWord = (data) => {
+    console.log(data);
+  }
+
+  const addNote = (data) => {
+    console.log(data);
+  }
+
+  const closeDictionary = () => {
+  }
+
+  //-------------------------------------------
+  //render
+  //-------------------------------------------
+  return (
     <div className='videoplayer'>
-      <h1>{ data!=null && data.title}</h1>
-      <div style={{height:"700px",display:"flex",flexDirection:"row"}}>
-        <div style={{height:"700px",width:"800px",paddingRight:"15px"}}>
-          <div className="player" style={{height:"450px"}}>
+      <h1>{data != null && data.title}</h1>
+      <div style={{ height: "700px", display: "flex", flexDirection: "row" }}>
+        <div style={{width: "800px", paddingRight: "15px" ,minHeight:"700px" }}>
+          <div className="player" style={{ height: "450px" }}>
             <Container maxWidth="md" style={{ padding: '0px' }}>
               <div
                 onMouseMove={handleMouseMove}
                 onMouseLeave={hanldeMouseLeave}
                 ref={playerContainerRef}
                 className={classes.playerWrapper}
-                style={{padding:"0px"}}
+                style={{ padding: "0px" }}
               >
-              
+
                 <ReactPlayer
                   url=
-                  { 
+                  {
                     (
                       window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")
-                    )?
-                    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
-                    :"http://101.235.73.77:8088/video/video/"+videoId+".mp4"
+                    ) ?
+                      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                      : "http://101.235.73.77:8088/video/video/" + videoId + ".mp4"
 
                   }
                   ref={playerRef}
@@ -446,100 +471,147 @@ const VideoPlayer = () => {
                     },
                   }}
                 />
-                  {
-                    <Controls
-                      ref={controlsRef}
-                      onSeek={handleSeekChange}
-                      onSeekMouseDown={handleSeekMouseDown}
-                      onSeekMouseUp={handleSeekMouseUp}
-                      onDuration={handleDuration}
-                      onRewind={handleRewind}
-                      onPlayPause={handlePlayPause}
-                      onFastForward={handleFastForward}
-                      playing={playing}
-                      played={played}
-                      elapsedTime={elapsedTime}
-                      totalDuration={totalDuration}
-                      onMute={hanldeMute}
-                      muted={muted}
-                      onVolumeChange={handleVolumeChange}
-                      onVolumeSeekDown={handleVolumeSeekDown}
-                      onChangeDispayFormat={handleDisplayFormat}
-                      playbackRate={playbackRate}
-                      onPlaybackRateChange={handlePlaybackRate}
-                      onToggleFullScreen={toggleFullScreen}
-                      volume={volume}
-                      onBookmark={addBookmark}/>
-                  }
-                </div>
-              </Container>
+                {
+                  <Controls
+                    ref={controlsRef}
+                    onSeek={handleSeekChange}
+                    onSeekMouseDown={handleSeekMouseDown}
+                    onSeekMouseUp={handleSeekMouseUp}
+                    onDuration={handleDuration}
+                    onRewind={handleRewind}
+                    onPlayPause={handlePlayPause}
+                    onFastForward={handleFastForward}
+                    playing={playing}
+                    played={played}
+                    elapsedTime={elapsedTime}
+                    totalDuration={totalDuration}
+                    onMute={hanldeMute}
+                    muted={muted}
+                    onVolumeChange={handleVolumeChange}
+                    onVolumeSeekDown={handleVolumeSeekDown}
+                    onChangeDispayFormat={handleDisplayFormat}
+                    playbackRate={playbackRate}
+                    onPlaybackRateChange={handlePlaybackRate}
+                    onToggleFullScreen={toggleFullScreen}
+                    volume={volume}
+                    onBookmark={addBookmark} />
+                }
+              </div>
+            </Container>
           </div>
           {
-          data!=null && <div style={{backgroundColor:"#EFEFEF", borderRadius:"5px",padding:"5px",marginTop:"20px"}}>
-            <h4>
-              {' '}{parseInt(data.views).toLocaleString()}{' views\u00A0\u00A0\u00A0\u00A0\u00A0'}
-              {data.uploadDate.slice(0, 4)}{'.'}
-              {data.uploadDate.slice(5, 7)}{'.'}
-              {data.uploadDate.slice(8, 10)}{'.'}
-            </h4>
-            <h3>{data.content}</h3>
-          </div>
+            //영상 밑에 div 내용조회수등
+            data != null &&
+            <div style={{ backgroundColor: "#EFEFEF", borderRadius: "5px", padding: "5px", marginTop: "20px" }}>
+              <h4>
+                {' '}{parseInt(data.views).toLocaleString()}{' views\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                {data.uploadDate.slice(0, 4)}{'.'}
+                {data.uploadDate.slice(5, 7)}{'.'}
+                {data.uploadDate.slice(8, 10)}{'.'}
+              </h4>
+              <h3 style={{ whiteSpace: "pre-wrap" }}>{data.content}</h3>
+            </div>
+          }
+          {
+            //영상 밑에 div 내용조회수등
+            community != null &&
+            <div style={{ position:"", height: "100px",backgroundColor:"black",marginTop:"20px" }}>
+              {
+                community.map((data, index) => (
+                  <div key={index}>
+                    {console.log(data)}
+                  </div>
+                ))
+              }
+            </div>
           }
         </div>
-        <div style={{height:"450px",width:"370px"}}>
-          <div className="video-subtitles-container" style={{height:'450px'}} >
-              <Scrollbars
-                autoHide
-                autoHideTimeout={1000}
-                hideTracksWhenNotNeeded={true}  // 수평 스크롤바 숨기기 위한 설정
-                ref={refScrollbars} style={{ width: "490px", height: "450px" ,overflow:"hidden",marginLeft:"5px"}}
-                renderThumbVertical={({ style, ...props }) =>
-                  <div {...props} style={{ ...style, backgroundColor: '#383933', borderRadius: 3 }} />
-                }
-              >
-                    {//ref={subtitlesRef}
-                      subtitles != null &&
-                        subtitles.map((subtitle, index) => (
-                            <div key={index} className={subtitle.isFocus ? 'subtitle-show' : ''} ref={subtitle.isFocus ? activeSubtitleRef : null}>
-                                <p className='pt'>{parseInt(subtitle.startTime/60)}:{String(parseInt(subtitle.startTime)%60).padStart(2, "0")}{/* .{String(subtitle.startTime).split('.', 1)}  */}</p>
-                                {
-                                  //<p className='pk'>{subtitle.korText}</p>
-                                }
-                                {
-                                subtitle.korWords.map((word, index) => (
-                                  <span key={index} className='vp-span-word' onClick={() => handleWordClick(word)} style={{ cursor: 'pointer' }}>
-                                    {word.subtitleWordName}
-                                  </span>
-                                ))
-                                }
-                                <p className='pe'>{subtitle.engText}</p>
-                            </div>
-                        ))
+        <div style={{ height: "450px", width: "370px" }}>
+          <div className="video-subtitles-container" style={{ height: '450px' }} >
+            <Scrollbars
+              autoHide
+              autoHideTimeout={1000}
+              hideTracksWhenNotNeeded={true}  // 수평 스크롤바 숨기기 위한 설정
+              ref={refScrollbars} style={{ width: "490px", height: "450px", overflow: "hidden", marginLeft: "5px" }}
+              renderThumbVertical={({ style, ...props }) =>
+                <div {...props} style={{ ...style, backgroundColor: '#383933', borderRadius: 3 }} />
+              }
+            >
+              {//자막div
+                subtitles != null &&
+                subtitles.map((subtitle, index) => (
+                  <div key={index} className={subtitle.isFocus ? 'subtitle-show' : ''} ref={subtitle.isFocus ? activeSubtitleRef : null}
+                    onMouseEnter={() => setIsHovered(index)} // 마우스 진입 시
+                    onMouseLeave={() => settingClose()} // 마우스 벗어날 시
+                  >
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center', // 세로 중앙 정렬
+                      height: '25px' // div의 높이 설정
+                    }}>
+                      {/* 자막시간 */}
+                      <p className='pt'>{parseInt(subtitle.startTime / 60)}:{String(parseInt(subtitle.startTime) % 60).padStart(2, "0")}</p>
+
+                      <FontAwesomeIcon
+                        icon={faEllipsisV}
+                        style={{ color: "#383933", height: "18px", marginRight: "3px", visibility: (isHovered == index ? 'visible' : 'hidden') }}
+                        className='vp-word-icon'
+                        onClick={() => setismenuClicked(index)}
+                      />
+                      <div className='vp-word-menu' style={{ visibility: (ismenuClicked == index ? 'visible' : 'hidden') }} onClick={() => reportSentence(subtitle)} >
+                        <FontAwesomeIcon icon={faCircleExclamation} style={{ height: "12px", color: "#4C4C4C", }} className='vp-word-icon' />
+                        <h6 style={{ margin: 0 }}>Report sentence</h6>
+                      </div>
+                    </div>
+                    {
+                      subtitle.korWords.map((word, index) => (
+                        <span key={index} className='vp-span-word' onClick={() => handleWordClick(word)} style={{ cursor: 'pointer' }}>
+                          {word.subtitleWordName}
+                        </span>
+                      ))
                     }
-              </Scrollbars>
+                    <p className='pe'>{subtitle.engText}</p>
+                  </div>
+                ))
+              }
+            </Scrollbars>
           </div>
-          {
+          {//사전div
             showWord &&
             <Scrollbars
               autoHide
               autoHideTimeout={1000}
               hideTracksWhenNotNeeded={true}  // 수평 스크롤바 숨기기 위한 설정
-              ref={refScrollbars} style={{ width: "370px", height: "220px" ,overflow:"hidden",marginTop:"10px",borderRadius: "6px"}}
-              
+              style={{ width: "370px", height: "220px", overflow: "hidden", marginTop: "10px", borderRadius: "6px" }}
+
               renderThumbVertical={({ style, ...props }) =>
                 <div {...props} style={{ ...style, backgroundColor: '#fff', borderRadius: 3 }} />
               }
             >
-              <div style={{border:"1px solid black",backgroundColor:"#383933"}}>
-              {
-                wordApiData.dictionaryDetailResponses.map((word, index) => (
-                  <div style={{paddingLeft:"5px"}}>
-                    <p className='vp-word-title'>{word.wordName} <sup>{index+1}</sup></p>
-                    <p className='vp-word-meaning'>{word.wordMeaning}</p>
+              <div style={{ border: "1px solid black", backgroundColor: "#383933" }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', height: '25px', padding: '5px', paddingBottom: '0px' }}>
+                  <div>
+                    <FontAwesomeIcon icon={faClipboard} title='add note' style={{ color: "637BC8", }} className='vp-word-icon'
+                      onClick={() => addNote(wordId)}
+                    />
                   </div>
-                ))
+                  <div>
+                    <FontAwesomeIcon icon={faCircleExclamation} title='Report an error' style={{ color: "#FF6C6C" }} className='vp-word-icon'
+                      onClick={() => reportWord(wordId)}
+                    />
+                    <FontAwesomeIcon icon={faXmark} title='Close dictionary' style={{ color: "#fff" }} className='vp-word-icon'
+                      onClick={() => closeDictionary()}
+                    />
+                  </div>
+                </div>
+                {
+                  wordApiData.dictionaryDetailResponses.map((word, index) => (
+                    <div style={{ paddingLeft: "5px" }}>
+                      <p className='vp-word-title'>{word.wordName} <sup>{index + 1}</sup></p>
+                      <p className='vp-word-meaning'>{word.wordMeaning}</p>
+                    </div>
+                  ))
                 }
-                
               </div>
             </Scrollbars>
           }
