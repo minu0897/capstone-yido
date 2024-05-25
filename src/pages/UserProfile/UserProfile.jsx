@@ -30,10 +30,10 @@ function UserProfile() {
         e.preventDefault();
         try {
             await axios.put('/api/user/change-password', { newPassword: password });
-            alert('비밀번호가 성공적으로 변경되었습니다!');
+            alert('Password changed successfully!');
             setPassword('');
         } catch (error) {
-            alert('비밀번호 변경에 실패했습니다.');
+            alert('Failed to change password');
             console.error('Failed to change password:', error);
         }
     };
@@ -42,17 +42,17 @@ function UserProfile() {
 
     return (
         <div className="user-profile">
-            <h1>사용자 프로필</h1>
+            <h1>User Profile</h1>
             <p>ID: {user.memberId}</p>
             <p>nickname: {user.name}</p>
             <p>email: {user.email}</p>
             <p>role: {user.role}</p>
             <form onSubmit={handleSubmit}>
                 <label>
-                    새 비밀번호:
+                    New password:
                     <input type="password" value={password} onChange={handlePasswordChange} />
                 </label>
-                <button type="submit">비밀번호 변경</button>
+                <button type="submit">change password</button>
             </form>
         </div>
     );

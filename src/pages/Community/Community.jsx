@@ -52,12 +52,13 @@ const Community = () => {
       <div className='centerDiv'>
         <div className='heading'>Community</div>
       </div>
-      <div className='write' style={{ marginLeft: '1000px' , marginBottom:'20px'}}>
-        <Link to={'/WriteCommunity'} style={{ textDecoration: 'none', color: 'black'}}>
-          <img src="https://png.pngtree.com/png-clipart/20211020/ourlarge/pngtree-red-pencil-clipart-png-image_3995136.png" width={'20px'} height={'20px'}/>
-          post
+      <div className='write' style={{ marginLeft: '1000px', marginBottom: '20px'}}>
+        <Link to={'/WriteCommunity'} style={{ textDecoration: 'none', color: 'black', display: 'flex', alignItems: 'center', gap: '5px' }}>
+          <img src="https://png.pngtree.com/png-clipart/20211020/ourlarge/pngtree-red-pencil-clipart-png-image_3995136.png" alt="Write Post" width={'20px'} height={'20px'}/>
+          <span>post</span>
         </Link>
       </div>
+
       <div style={communityBoxStyle}>
         {loading ? (
           <p>Loading Posts...</p>
