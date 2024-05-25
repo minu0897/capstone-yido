@@ -82,7 +82,7 @@ const WriteCommunity = ({ videoId, videoName }) => {
                 <div style={{placeItems:"center", display:"grid"}}>
             <div className="wr-input-css1" style={{marginLeft:'0px'}}>
                 <div style={{ display: 'flex', width: '800px', height:'50px', backgroundColor:'white'}}>
-                <button type="submit" style={{ fontSize: '16px', borderRadius: '15px', border:'1px solid gray', width:'100px', marginLeft:'400px'}}  className="wr-button-css">
+                <button type="submit" className="wr-button-css">
                 POST
                 </button>
                 </div>
