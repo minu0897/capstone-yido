@@ -40,9 +40,9 @@ const Recommand = () => {
   }, [tags]);
   
   const fetchVideos = async (tag) => {
-    if (tag ==null) tag = 'all';
+    if (tag == null) tag = 'all';
     try {
-      const url = "/api/video/recommend?tag="+tag;
+      const url = "/api/video/recommend?tag="+tag.replace(/#/g, '');
       const response = await fetch(url);
       const data = await response.json();
       if (Array.isArray(data)) { // data가 배열인지 확인

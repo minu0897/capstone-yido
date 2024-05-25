@@ -361,8 +361,6 @@ const VideoPlayer = () => {
   },[wordId]);
 
   useEffect(() => {
-    console.log("asdss");
-    console.log(wordApiData);
   },[wordApiData]);
 
   useEffect(() => {
@@ -430,7 +428,7 @@ const VideoPlayer = () => {
       <div style={{height:"500px",display:"flex",flexDirection:"row"}}>
         <div style={{height:"500px",width:"800px",paddingRight:"15px"}}>
           <div className="player" style={{height:"500px"}}>
-            <Container maxWidth="md" style={{ height: '100vh', padding: '0px' }}>
+            <Container maxWidth="md" style={{ height: '500px', padding: '0px' }}>
               <div
                 onMouseMove={handleMouseMove}
                 onMouseLeave={hanldeMouseLeave}
@@ -499,7 +497,7 @@ const VideoPlayer = () => {
           </div>
         </div>
         <div style={{height:"450px",width:"370px"}}>
-          <div className="video-subtitles-container" style={{height:showWord ? "300px":'450px'}} >
+          <div className="video-subtitles-container" style={{height:showWord ? "220px":'450px'}} >
               <div className="subtitles" ref={subtitlesRef}>
                   {
                     subtitles != null &&
@@ -524,7 +522,7 @@ const VideoPlayer = () => {
           </div>
           {
             showWord &&
-            <div style={{height:"140px",width:"370px",border:"1px solid black",marginTop:"10px",borderRadius: "6px",overflowY:"auto",backgroundColor:"#383933"}}>
+            <div style={{height:"220px",width:"370px",border:"1px solid black",marginTop:"10px",borderRadius: "6px",overflowY:"auto",backgroundColor:"#383933"}}>
             {
               wordApiData.dictionaryDetailResponses.map((word, index) => (
                 <div style={{paddingLeft:"5px"}}>
