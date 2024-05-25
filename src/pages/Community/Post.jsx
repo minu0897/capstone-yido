@@ -8,9 +8,6 @@ const Post = () => {
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
-    const [editMode, setEditMode] = useState(false);
-    const [editedTitle, setEditedTitle] = useState('');
-    const [editedContent, setEditedContent] = useState('');
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -20,8 +17,6 @@ const Post = () => {
                 const data = await response.json();
                 setPost(data);
                 setComments(data.comments);
-                setEditedTitle(data.postTitle);
-                setEditedContent(data.postContent);
             } catch (error) {
                 console.error('Error fetching post:', error);
             }
@@ -37,7 +32,6 @@ const Post = () => {
     const submitComment = async () => {
         const commentData = {
             postId: postId,
-            parentCommentId: '', // 필요에 따라 추가
             content: comment
         };
     
@@ -66,28 +60,6 @@ const Post = () => {
             console.error('Error posting comment:', error);
         }
     };
-    
-
-    const editPost = async () => {
-        try {
-            const response = await fetch(`/api/post/${postId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ postTitle: editedTitle, postContent: editedContent })
-            });
-            if (!response.ok) {
-                throw new Error('Failed to edit post');
-            }
-            const updatedPost = await response.json();
-            setPost(updatedPost);
-            setEditMode(false);
-            console.log('Post updated');
-        } catch (error) {
-            console.error('Error updating post:', error);
-        }
-    };
 
     const deletePost = async () => {
         try {
@@ -108,31 +80,12 @@ const Post = () => {
         <div className="post-container">
             {post ? (
                 <article>
-                    {editMode ? (
-                        <>
-                            <input
-                                type="text"
-                                value={editedTitle}
-                                onChange={(e) => setEditedTitle(e.target.value)}
-                            />
-                            <textarea
-                                value={editedContent}
-                                onChange={(e) => setEditedContent(e.target.value)}
-                            />
-                            <button onClick={editPost} className="btn save">Save</button>
-                        </>
-                    ) : (
-                        <>
-                            <h1 className="post-title">{post.postTitle}</h1>
-                            <p className='post-content'> by {post.postWriter}</p>
-                            <p className="post-content">{post.postContent}</p>
-                            <div className="post-actions">
-                                <button onClick={() => setEditMode(true)} className="btn edit">Edit</button>
-                                <button onClick={deletePost} className="btn delete">Delete</button>
-                                <button onClick={submitComment} className="btn like">Like</button>
-                            </div>
-                        </>
-                    )}
+                    <h1 className="post-title">{post.postTitle}</h1>
+                    <p className='post-content'> by {post.postWriter}</p>
+                    <p className="post-content">{post.postContent}</p>
+                    <div className="post-actions">
+                        <button onClick={deletePost} className="btn delete">Delete</button>
+                    </div>
                     <div className="comment-section">
                         <textarea
                             value={comment}
