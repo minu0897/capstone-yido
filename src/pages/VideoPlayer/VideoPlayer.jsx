@@ -12,6 +12,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
+import {Scrollbars} from 'react-custom-scrollbars'
 
 import Slider from "@material-ui/core/Slider";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -24,6 +25,7 @@ import FullScreen from "@material-ui/icons/Fullscreen";
 import Popover from "@material-ui/core/Popover";
 //import screenful from "screenfull";
 import Controls from '../../components/videoplayer/control/Controls'
+import customscroll from '../../components/common/customscrolls/customscroll'
 
 
 //-------------------------------------------
@@ -106,44 +108,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PrettoSlider = withStyles({
-  root: {
-    height: 8,
-  },
-  thumb: {
-    height: 24,
-    width: 24,
-    backgroundColor: "#fff",
-    border: "2px solid currentColor",
-    marginTop: -8,
-    marginLeft: -12,
-    "&:focus, &:hover, &$active": {
-      boxShadow: "inherit",
-    },
-  },
-  active: {},
-  valueLabel: {
-    left: "calc(-50% + 4px)",
-  },
-  track: {
-    height: 8,
-    borderRadius: 4,
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4,
-  },
-})(Slider);
-
-function ValueLabelComponent(props) {
-  const { children, open, value } = props;
-
-  return (
-    <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
-      {children}
-    </Tooltip>
-  );
-}
 
 const format = (seconds) => {
   if (isNaN(seconds)) {
@@ -171,11 +135,13 @@ const VideoPlayer = () => {
   const searchParams = new URLSearchParams(location.search);
   const videoId = searchParams.get('id');
   const [subtitles, setSubtitles] = useState(null);
-  const subtitlesRef = useRef(null); // 스크롤을 위한 ref 생성
+  //const subtitlesRef = useRef(null); // 스크롤을 위한 ref 생성
   const activeSubtitleRef = useRef(null);
   const [wordId, setwordId] = useState(null);
   const [wordApiData, setwordApiData] = useState(null);
   const [showWord, setshowWord] = useState(false);
+  const refScrollbars = React.useRef(null);
+
   
   //-------------------------------------------
   //player 변수
@@ -191,7 +157,7 @@ const VideoPlayer = () => {
     controls: false,
     light: false,
 
-    muted: true,
+    muted: false,
     played: 0,
     duration: 0,
     playbackRate: 1.0,
@@ -343,21 +309,28 @@ const VideoPlayer = () => {
 //yido 함수
 //-------------------------------------------// 단어 클릭 핸들러
   const handleWordClick = (word) => {
-    console.log(word);
     setwordId(word.subtitleWordId);
+    
     // 여기에 클릭된 단어에 대한 처리 로직 추가
   };
 
   useEffect(() => {
-    axios.get('/api/dictionary?subtitleWordId='+wordId)
-      .then(response => {
-        setwordApiData(response.data);
-        console.log('----------------------');
-        console.log(wordApiData);
-        setshowWord(true);
-      })
-      .catch(error => {
-      });
+    if(wordId == null)  return;
+    if(window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")){
+      setshowWord(true);
+      const jsonData = require('./a.json');
+      setwordApiData(jsonData);
+    }else{
+      axios.get('/api/dictionary?subtitleWordId='+wordId)
+        .then(response => {
+          setwordApiData(response.data);
+          setshowWord(true);
+        })
+        .catch(error => {
+        });
+      
+    }
+
   },[wordId]);
 
   useEffect(() => {
@@ -388,36 +361,41 @@ const VideoPlayer = () => {
       //setPlaying(true); // 1초 후 재생 상태를 true로 설정
     }
   }, [data]);
-
   useEffect(() => {
-    if(subtitles!= null){
+    if (subtitles !== null) {
+      let hasFocusChanged = false;
       const updatedSubtitles = subtitles.map((subtitle, index) => {
-          return {
-              ...subtitle,
-              show: true,
-              isFocus : currentTime >= subtitle.startTime && 
-              (subtitles[index + 1] ? currentTime < subtitles[index + 1].startTime : true),
-          };
+
+        const newIsFocus = currentTime >= subtitle.startTime && 
+          (subtitles[index + 1] ? currentTime < subtitles[index + 1].startTime : true);
+
+        if (subtitle.isFocus !== newIsFocus) hasFocusChanged = true;
+
+        return {
+          ...subtitle,
+          show: true,
+          isFocus: newIsFocus,
+        };
       });
-      setSubtitles(updatedSubtitles);
-      scrollToActiveSubtitle();
-      //if (subtitlesRef.current) {
-        //const element = subtitlesRef.current;
-        // 자막 컨테이너의 스크롤 높이만큼 스크롤 위치 설정
-        //element.scrollTop = element.scrollHeight;
-      //}
+      if (hasFocusChanged) {
+        setSubtitles(updatedSubtitles);
+      }
     }
   }, [currentTime]);
 
+  useEffect(() => {
+      scrollToActiveSubtitle();
+  }, [subtitles]);
   // 스크롤 조정 함수
   const scrollToActiveSubtitle = () => {
-    if (activeSubtitleRef.current) {
-      activeSubtitleRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
+    const focusedSubtitle = subtitles?.find(subtitle => subtitle.isFocus);
+    if (focusedSubtitle && activeSubtitleRef.current && refScrollbars.current) {
+      const subtitleTop = activeSubtitleRef.current.offsetTop;
+
+      refScrollbars.current.scrollTop(subtitleTop);
     }
   };
+  
 
 //-------------------------------------------
 //render
@@ -425,10 +403,10 @@ const VideoPlayer = () => {
   return(
     <div className='videoplayer'>
       <h1>{ data!=null && data.title}</h1>
-      <div style={{height:"500px",display:"flex",flexDirection:"row"}}>
-        <div style={{height:"500px",width:"800px",paddingRight:"15px"}}>
-          <div className="player" style={{height:"500px"}}>
-            <Container maxWidth="md" style={{ height: '500px', padding: '0px' }}>
+      <div style={{height:"700px",display:"flex",flexDirection:"row"}}>
+        <div style={{height:"700px",width:"800px",paddingRight:"15px"}}>
+          <div className="player" style={{height:"450px"}}>
+            <Container maxWidth="md" style={{ padding: '0px' }}>
               <div
                 onMouseMove={handleMouseMove}
                 onMouseLeave={hanldeMouseLeave}
@@ -459,6 +437,7 @@ const VideoPlayer = () => {
                   volume={volume}
                   muted={muted}
                   onProgress={handleProgress}
+                  progressInterval={100} // 0.1초마다 진행 상태 업데이트
                   config={{
                     file: {
                       attributes: {
@@ -495,58 +474,77 @@ const VideoPlayer = () => {
                 </div>
               </Container>
           </div>
+          {
+          data!=null && <div style={{backgroundColor:"#EFEFEF", borderRadius:"5px",padding:"5px",marginTop:"20px"}}>
+            <h4>
+              {' '}{parseInt(data.views).toLocaleString()}{' views\u00A0\u00A0\u00A0\u00A0\u00A0'}
+              {data.uploadDate.slice(0, 4)}{'.'}
+              {data.uploadDate.slice(5, 7)}{'.'}
+              {data.uploadDate.slice(8, 10)}{'.'}
+            </h4>
+            <h3>{data.content}</h3>
+          </div>
+          }
         </div>
         <div style={{height:"450px",width:"370px"}}>
-          <div className="video-subtitles-container" style={{height:showWord ? "220px":'450px'}} >
-              <div className="subtitles" ref={subtitlesRef}>
-                  {
-                    subtitles != null &&
-                      subtitles.map((subtitle, index) => (
-                          <div key={index} className={subtitle.isFocus ? 'subtitle-show' : ''} ref={subtitle.isFocus ? activeSubtitleRef : null}>
-                              <p className='pt'>{parseInt(subtitle.startTime/60)}:{String(parseInt(subtitle.startTime)%60).padStart(2, "0")}{/* .{String(subtitle.startTime).split('.', 1)}  */}</p>
-                              {
-                                //<p className='pk'>{subtitle.korText}</p>
-                              }
-                              {
-                              subtitle.korWords.map((word, index) => (
-                                <span key={index} className='vp-span-word' onClick={() => handleWordClick(word)} style={{ cursor: 'pointer' }}>
-                                  {word.subtitleWordName}
-                                </span>
-                              ))
-                              }
-                              <p className='pe'>{subtitle.engText}</p>
-                          </div>
-                      ))
-                  }
-              </div>
+          <div className="video-subtitles-container" style={{height:'450px'}} >
+              <Scrollbars
+                autoHide
+                autoHideTimeout={1000}
+                hideTracksWhenNotNeeded={true}  // 수평 스크롤바 숨기기 위한 설정
+                ref={refScrollbars} style={{ width: "490px", height: "450px" ,overflow:"hidden",marginLeft:"5px"}}
+                renderThumbVertical={({ style, ...props }) =>
+                  <div {...props} style={{ ...style, backgroundColor: '#383933', borderRadius: 3 }} />
+                }
+              >
+                    {//ref={subtitlesRef}
+                      subtitles != null &&
+                        subtitles.map((subtitle, index) => (
+                            <div key={index} className={subtitle.isFocus ? 'subtitle-show' : ''} ref={subtitle.isFocus ? activeSubtitleRef : null}>
+                                <p className='pt'>{parseInt(subtitle.startTime/60)}:{String(parseInt(subtitle.startTime)%60).padStart(2, "0")}{/* .{String(subtitle.startTime).split('.', 1)}  */}</p>
+                                {
+                                  //<p className='pk'>{subtitle.korText}</p>
+                                }
+                                {
+                                subtitle.korWords.map((word, index) => (
+                                  <span key={index} className='vp-span-word' onClick={() => handleWordClick(word)} style={{ cursor: 'pointer' }}>
+                                    {word.subtitleWordName}
+                                  </span>
+                                ))
+                                }
+                                <p className='pe'>{subtitle.engText}</p>
+                            </div>
+                        ))
+                    }
+              </Scrollbars>
           </div>
           {
             showWord &&
-            <div style={{height:"220px",width:"370px",border:"1px solid black",marginTop:"10px",borderRadius: "6px",overflowY:"auto",backgroundColor:"#383933"}}>
-            {
-              wordApiData.dictionaryDetailResponses.map((word, index) => (
-                <div style={{paddingLeft:"5px"}}>
-                  <p className='vp-word-title'>{word.wordName} <sup>{index+1}</sup></p>
-                  <p className='vp-word-meaning'>{word.wordMeaning}</p>
-                </div>
-              ))
-              }
+            <Scrollbars
+              autoHide
+              autoHideTimeout={1000}
+              hideTracksWhenNotNeeded={true}  // 수평 스크롤바 숨기기 위한 설정
+              ref={refScrollbars} style={{ width: "370px", height: "220px" ,overflow:"hidden",marginTop:"10px",borderRadius: "6px"}}
               
-            </div>
+              renderThumbVertical={({ style, ...props }) =>
+                <div {...props} style={{ ...style, backgroundColor: '#fff', borderRadius: 3 }} />
+              }
+            >
+              <div style={{border:"1px solid black",backgroundColor:"#383933"}}>
+              {
+                wordApiData.dictionaryDetailResponses.map((word, index) => (
+                  <div style={{paddingLeft:"5px"}}>
+                    <p className='vp-word-title'>{word.wordName} <sup>{index+1}</sup></p>
+                    <p className='vp-word-meaning'>{word.wordMeaning}</p>
+                  </div>
+                ))
+                }
+                
+              </div>
+            </Scrollbars>
           }
         </div>
       </div>
-      {
-      data!=null && <div style={{backgroundColor:"#EFEFEF", borderRadius:"5px",paddingLeft:"20px"}}>
-        <h4>
-          {' '}{parseInt(data.views).toLocaleString()}{' views\u00A0\u00A0\u00A0\u00A0\u00A0'}
-          {data.uploadDate.slice(0, 4)}{'.'}
-          {data.uploadDate.slice(5, 7)}{'.'}
-          {data.uploadDate.slice(8, 10)}{'.'}
-        </h4>
-        <h3>{data.content}</h3>
-      </div>
-      }
     </div>
   );
 }

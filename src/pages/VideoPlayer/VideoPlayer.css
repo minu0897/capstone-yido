@@ -11,9 +11,8 @@
 }
 
 .subtitles {
-    margin-left: 20px;
     max-height: 500px;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .subtitle-show {
@@ -37,6 +36,8 @@
     border: 1px solid black;
     border-radius: 6px;
     padding: 3px;
+    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .pt{

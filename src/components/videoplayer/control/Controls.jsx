@@ -158,7 +158,6 @@ const Controls = forwardRef(
           >
             <Grid item>
               <Typography variant="h5" style={{ color: "#fff" }}>
-                Video Title
               </Typography>
             </Grid>
             <Grid item>
