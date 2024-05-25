@@ -77,9 +77,7 @@ const Recommand = () => {
       }
       <div className='recommandvideoarray'>
         {videos.map(video => (
-          <Link to={`/videoplayer?id=${video.videoId}`} key={video.videoId} style={videolink}>
             <VideoContainer video={video} />
-          </Link>
         ))}
       </div>
     </div>

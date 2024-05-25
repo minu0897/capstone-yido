@@ -1,8 +1,10 @@
 import React from "react";
 import './VideoContainer.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 const VideoContainer = ({ video }) => {
     const imageUrl = `http://101.235.73.77:8088/video/thumbnail/${video.videoId}.jpg`;
+    const navigate = useNavigate();
 
     // Helper function to truncate the title
     const truncateTitle = (title, maxLength = 20) => {
@@ -21,17 +23,21 @@ const VideoContainer = ({ video }) => {
         }
         return text;
     };
+    const handleClick = ()=>{
+        navigate('/videoplayer?id='+video.videoId);
+    }
     
 
     return (
-        <div className="video-container">
+        <div className="video-container" onClick={handleClick} style={{cursor:"pointer"}}>
             <img src={imageUrl} alt="thumbnail" height="200px"/>
-            <h3>{''+truncateTitle(video.title)}</h3>
+            <span style={{fontSize:"16px",fontWeight:"bold"}}>{''+truncateTitle(video.title)}</span>
             {
                 //<span>Contents : {truncateText(video.content, 15)}</span>
             }
             {/*<span>Likes: {video.likes}</span>*/}
-            <span>{video.views} Views</span>
+            <span style={{fontSize:"12px"}}>Team Yido</span>
+            <span style={{fontSize:"12px"}}>{video.views} views</span>
         </div>
     );
 };

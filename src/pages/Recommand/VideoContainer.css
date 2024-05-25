@@ -1,11 +1,11 @@
 .video-container {
   display: grid;
   grid-template-columns: 1fr; 
-  gap: 1px; /* 간격을 조금 늘렸습니다 */
   width: 300px;
   border: 1px solid #ccc;
   padding: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding-left: 9px;
+  padding-right: 10px;
   background-color: #fff; 
   border-radius: 8px;
   transition: transform 0.2s;
@@ -25,7 +25,6 @@
 
 .video-container h3, .video-container span {
   font-size: 15px;
-  margin: 1px 0; /* 위, 아래 간격 동일하게 조정 */
 }
 
 
