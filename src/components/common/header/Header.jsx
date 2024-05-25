@@ -92,9 +92,8 @@ const Header = () => {
       <div></div>
       <div></div>
       <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end"}}>
-        {/* 로그인한 사용자의 이름 표시 */}
         <span className='H-logined-myname' style={{width:"AuthContext",textAlign:"right",marginRight:"20px"}}  onClick={handleMyClick} >
-          {user.name} {/* 이 부분을 수정하여 user 객체에서 이름을 가져옴 */}
+          {user.name} 
         </span> 
         <span className='H-logined-myname' style={{width:"AuthContext",textAlign:"right"}}  onClick={handleLogout} >
           Logout
