@@ -43,8 +43,10 @@ function UserProfile() {
     return (
         <div className="user-profile">
             <h1>사용자 프로필</h1>
-            <p>ID: {user.id}</p>
-            <p>닉네임: {user.name}</p>
+            <p>ID: {user.memberId}</p>
+            <p>nickname: {user.name}</p>
+            <p>email: {user.email}</p>
+            <p>role: {user.role}</p>
             <form onSubmit={handleSubmit}>
                 <label>
                     새 비밀번호:
