@@ -79,14 +79,10 @@ const WriteCommunity = ({ videoId, videoName }) => {
                         onChange={handleTagsChange}
                     />
                 </div>
-                <div style={{placeItems:"center", display:"grid"}}>
-            <div className="wr-input-css1" style={{marginLeft:'0px'}}>
-                <div style={{ display: 'flex', width: '800px', height:'50px', backgroundColor:'white', alignContent:'center'}}>
-                <button type="submit" className="wr-button-css">
+                <div className="center-button">
+            <button type="submit" className="wr-button-css">
                 POST
-                </button>
-                </div>
-                </div>
+            </button>
             </div>
             </form>
         </div>
