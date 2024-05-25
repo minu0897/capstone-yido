@@ -94,6 +94,7 @@ const Header = () => {
       <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end"}}>
         <span className='H-logined-myname' style={{width:"AuthContext",textAlign:"right",marginRight:"20px"}}  onClick={handleMyClick} >
           {user.name} 
+          {console.log(user)}
         </span> 
         <span className='H-logined-myname' style={{width:"AuthContext",textAlign:"right"}}  onClick={handleLogout} >
           Logout
