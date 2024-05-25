@@ -63,6 +63,7 @@ const WriteCommunity = ({ videoId, videoName }) => {
                         placeholder="Please enter a title"
                         value={title}
                         onChange={handleTitleChange}
+                        required
                     />
                     <textarea
                         className='wr-input-css'
@@ -70,6 +71,7 @@ const WriteCommunity = ({ videoId, videoName }) => {
                         style={{minHeight:"300px", paddingTop:"10px"}}
                         value={content}
                         onChange={handleContentChange}
+                        required
                     />
                     <input
                         type='text'
@@ -77,6 +79,7 @@ const WriteCommunity = ({ videoId, videoName }) => {
                         placeholder="Enter tags (each tag is separated by #) Example: #Tag1 #Tag2"
                         value={tags}
                         onChange={handleTagsChange}
+                        required
                     />
                 </div>
                 <div className="center-button">
