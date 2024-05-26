@@ -30,7 +30,7 @@ const Card = ({ videoId, title, content, likes, tags, writer }) => {
           <hr className="card-divider" />
           <div style={{display:'flex'}}>
             <span className="card-likes" style={{ color: 'gray' }}>{likes} likes </span>
-            <span style={{marginRight:'20px'}}>{writer}</span>
+            <span style={{marginRight:'20px', fontSize:'0.8em', color:'#999'}}>{writer}</span>
           </div>
         </div>
       </div>
