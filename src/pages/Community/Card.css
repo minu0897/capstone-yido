@@ -53,7 +53,7 @@
 }
 
 .card-divider {
-  border-color: gray;
+  border: 1px solid gray;
   margin-top: auto; /* 이 클래스를 가진 수평선을 바닥으로 밀어내기 */
   width: 100%; /* 수평선의 폭을 카드 폭과 동일하게 설정 */
 }
