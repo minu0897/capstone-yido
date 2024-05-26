@@ -26,7 +26,7 @@ const Card = ({ videoId, title, content, likes, tags, writer }) => {
           <h3 className="card-title" style={{fontSize:'19px'}}>{truncateText(title, 15)}</h3>
           <p className="card-subtitle" style={{fontSize:'13px'}}>{truncateText(content, contentMaxLength)}</p>
           <div className="card-tags" style={{ textDecoration: 'none', color: 'gray' }}>
-            <span className="card-tag">{truncateText(tagsString, 15)}</span>
+            <span className="card-tag">{truncateText(tagsString, 20)}</span>
           </div>
           <hr className="card-divider" />
           <div style={{display:'flex', justifyContent: 'space-between'}}>
