@@ -64,6 +64,7 @@ const Community = () => {
             posts.map(post => (
               <Link to={`/api/post/${post.postId}`} key={post.postId} style={{ textDecoration: 'none' }}>
                 <Card
+                  videoId={post.videoId}
                   key={post.postId}
                   postId={post.postId}
                   title={post.title}
