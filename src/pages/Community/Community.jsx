@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Community.css';
 import Card from './Card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 const Community = () => {
   const [posts, setPosts] = useState([]); // 게시글 데이터를 저장할 상태
@@ -49,11 +51,11 @@ const Community = () => {
 
   return (
     <div className='community'>
-      <div className='write' style={{ marginLeft: '1000px', marginBottom: '20px'}}>
-        <Link to={'/WriteCommunity'} style={{ textDecoration: 'none', color: 'black', display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <img src="https://png.pngtree.com/png-clipart/20211020/ourlarge/pngtree-red-pencil-clipart-png-image_3995136.png" alt="Write Post" width={'20px'} height={'20px'}/>
-          <span>post</span>
-        </Link>
+      <div className='write' style={{  marginBottom: '20px'}}>
+        <div style={{height:"40px",backgroundColor:"#F4F4F4",width:"100px",marginLeft:"auto",borderRadius:"10px",color:"black",display:"flex",alignItems:"center"}}>
+          <FontAwesomeIcon icon={faPen} style={{ height: "20px", color: "#4C4C4C", marginRight:"5px",marginLeft:"15px" }} />
+          Write
+        </div>
       </div>
 
       <div style={communityBoxStyle}>

@@ -20,6 +20,7 @@ const Post = () => {
                 const data = await response.json();
                 setPost(data);
                 setComments(data.comments);
+                console.log(data);
             } catch (error) {
                 console.error('Error fetching post:', error);
             }
@@ -84,13 +85,17 @@ const Post = () => {
             {post ? (
                 <article>
                     <h1 className="post-title">{post.postTitle}</h1>
-                    <p className='post-content'> by {post.postWriter}</p>
-                    <p className="post-content">{post.postContent}</p>
+                    <p className='post-writer'> by {post.postWriter}</p>
+                    <div style={{borderTop:"1px solid black"}}>
+
+                    </div>
+
                     <div className="post-tags">
                         {post.postTags && post.postTags.map((tag, index) => (
                             <span key={index} className="post-tag">#{tag}</span>
                         ))}
                     </div>
+                    <p className="post-content">{post.postContent}</p>
                     <div className="post-actions">
                         {/* Only show the delete button if the current user is the post's writer */}
                         {user && user.memberId === post.postWriter && (
