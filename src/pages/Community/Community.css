@@ -5,7 +5,6 @@
   flex-direction: column; /* 세로 방향으로 요소 정렬 */
   align-items: center;
   min-height: 100vh; /* 전체 화면 높이를 채우도록 설정 */
-  background: linear-gradient(to bottom, #f0f9ff, #cbebff); /* 배경에 그라데이션 추가 */
 }
 
 .centerDiv {
@@ -18,7 +17,6 @@
 }
 
 .heading {
-  background-color: #0077b6; /* 더 진한 파란색으로 변경 */
   color: white; /* 글자 색상을 흰색으로 변경 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
   padding: 15px 30px; /* 패딩 조정 */
