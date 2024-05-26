@@ -22,6 +22,7 @@ const WriteCommunity = () => {
 
         const tagsArray = tags.split('#').map(tag => tag.trim()).filter(tag => tag !== '');
         const formData = {
+            videoId: videoId ? videoId : null, // videoId가 없는 경우 null로 설정
             title,
             content,
             tags: tagsArray
