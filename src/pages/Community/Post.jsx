@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './Post.css';
-import { AuthContext } from './pages/Login/AuthContext';
+import {AuthContext} from '../Login/AuthContext';
 
 const Post = () => {
     const { postId } = useParams();
