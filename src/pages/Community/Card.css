@@ -10,6 +10,7 @@
     background-color: #fff; 
     border-radius: 8px;
     transition: transform 0.2s;
+    min-height: 327px;
 }
 
 .card:hover {
