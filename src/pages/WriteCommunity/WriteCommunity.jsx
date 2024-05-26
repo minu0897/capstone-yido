@@ -49,6 +49,7 @@ const WriteCommunity = ({ videoId, videoName }) => {
         } catch (error) {
             console.error('게시글 제출에 실패했습니다:', error);
             alert('Please try again after logging in');
+            navigate('/Login');
         }
     };
 
