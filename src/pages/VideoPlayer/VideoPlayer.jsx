@@ -437,9 +437,12 @@ const VideoPlayer = () => {
 
 
   const setLike = () => {
-    alert("setLike");
-    if(liked){
-    }
+    axios.get('/api/video/like?videoId=' + videoId)
+      .then(response => {
+        setliked(true);
+      })
+      .catch(error => {
+      });
   }
   const updateLike = async (id, updatedData) => {
     try {
@@ -576,7 +579,7 @@ const VideoPlayer = () => {
           }
           {
             //영상 밑에 커뮤니티
-            community != null &&
+            community != null  &&
             <div className="vp-community-div" style={{marginTop:"10px"}}>
               <div style={{ borderTop:"1px solid #c4c4c4", height:"30px", marginTop: "5px" }}>
                 <p style={{fontSize:"18px",marginTop:"10px",fontWeight:"bold"}}>A post about this video</p>
