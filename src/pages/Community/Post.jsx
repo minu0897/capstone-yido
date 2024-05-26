@@ -90,7 +90,10 @@ const Post = () => {
                         ))}
                     </div>
                     <div className="post-actions">
-                        <button onClick={deletePost} className="btn delete">Delete</button>
+                        {/* Only show the delete button if the current user is the post's writer */}
+                        {currentUser && currentUser.memberId === post.postWriter && (
+                            <button onClick={deletePost} className="btn delete">Delete</button>
+                        )}
                     </div>
                     <div className="comment-section">
                         <textarea
