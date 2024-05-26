@@ -12,10 +12,14 @@ const Card = ({ videoId, title, content, likes, tags }) => {
   // 태그 배열을 하나의 문자열로 결합
   const tagsString = tags.map(tag => `#${tag}`).join(' ');
   const imageUrl = `http://101.235.73.77:8088/video/thumbnail/${videoId}.jpg`;
+
   return (
     <div className="card-wrapper">
       <div className="card">
-        <img img src={imageUrl} alt="thumbnail" className="card-image" />
+        {/* videoId가 null이 아닐 때만 이미지 태그를 렌더링합니다 */}
+        {videoId && (
+          <img src={imageUrl} alt="thumbnail" className="card-image" />
+        )}
         <div className="card-content">
           <h3 className="card-title" style={{fontSize:'14px'}}>{truncateText(title, 15)}</h3>
           <p className="card-subtitle" style={{fontSize:'10px'}}>{truncateText(content, 25)}</p>

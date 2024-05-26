@@ -81,8 +81,6 @@ const Post = () => {
 
     return (
         <div className="post-container">
-            {console.log(post)};
-            {console.log(user)};
             {post ? (
                 <article>
                     <h1 className="post-title">{post.postTitle}</h1>
