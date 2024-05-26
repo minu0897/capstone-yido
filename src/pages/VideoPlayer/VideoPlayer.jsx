@@ -1,5 +1,5 @@
 
-import { useLocation } from 'react-router-dom';
+import { useLocation,Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import axios from 'axios';
@@ -152,7 +152,7 @@ const VideoPlayer = () => {
   const [ismenuClicked, setismenuClicked] = useState(-1);  // 문장신고 메뉴 상태를 관리하는 로컬 상태
   const [community, setcommunity] = useState(null);  // 커뮤니티 글 정보들
   const [liked, setliked] = useState(null);  // 좋아요
-
+  const navigate = useNavigate();
 
   //-------------------------------------------
   //player 변수
@@ -218,7 +218,6 @@ const VideoPlayer = () => {
   };
 
   const handleSeekChange = (e, newValue) => {
-    //console.log({ newValue });
     setState({ ...state, played: parseFloat(newValue / 100) });
   };
 
@@ -227,9 +226,7 @@ const VideoPlayer = () => {
   };
 
   const handleSeekMouseUp = (e, newValue) => {
-    //console.log({ value: e.target });
     setState({ ...state, seeking: false });
-    // console.log(sliderRef.current.value)
     playerRef.current.seekTo(newValue / 100, "fraction");
   };
 
@@ -241,7 +238,6 @@ const VideoPlayer = () => {
     setState({ ...state, seeking: false, volume: parseFloat(newValue / 100) });
   };
   const handleVolumeChange = (e, newValue) => {
-    // console.log(newValue);
     setState({
       ...state,
       volume: parseFloat(newValue / 100),
@@ -435,6 +431,10 @@ const VideoPlayer = () => {
   const writeCommunityPost = () => {
     alert("writeCommunityPost");
   }
+  const CommunityPost = (id) => {
+    navigate('/api/post/'+id);
+  }
+
 
   const setLike = () => {
     alert("setLike");
@@ -562,27 +562,56 @@ const VideoPlayer = () => {
           {
             //영상 밑에 div 내용조회수등
             data != null &&
-            <div style={{ backgroundColor: "#EFEFEF", borderRadius: "5px", padding: "5px", marginTop: "0px" }}>
-              <h4>
-                {' '}{parseInt(data.views).toLocaleString()}{' views\u00A0\u00A0\u00A0\u00A0\u00A0'}
-                {data.uploadDate.slice(0, 4)}{'.'}
-                {data.uploadDate.slice(5, 7)}{'.'}
-                {data.uploadDate.slice(8, 10)}{'.'}
-              </h4>
-              <h3 style={{ whiteSpace: "pre-wrap" }}>{data.content}</h3>
-            </div>
+            <>
+              <div style={{ backgroundColor: "#EFEFEF", borderRadius: "5px", padding: "5px", marginTop: "0px" }}>
+                <h4>
+                  {' '}{parseInt(data.views).toLocaleString()}{' views\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                  {data.uploadDate.slice(0, 4)}{'.'}
+                  {data.uploadDate.slice(5, 7)}{'.'}
+                  {data.uploadDate.slice(8, 10)}{'.'}
+                </h4>
+                <h3 style={{ whiteSpace: "pre-wrap" }}>{data.content}</h3>
+              </div>
+            </>
           }
           {
-            //영상 밑에 div 내용조회수등
+            //영상 밑에 커뮤니티
             community != null &&
-            <div style={{ position: "", height: "100px", backgroundColor: "black", marginTop: "20px" }}>
+            <div className="vp-community-div" style={{marginTop:"10px"}}>
+              <div style={{ borderTop:"1px solid #c4c4c4", height:"30px", marginTop: "5px" }}>
+                <p style={{fontSize:"18px",marginTop:"10px",fontWeight:"bold"}}>A post about this video</p>
+              </div>
               {
                 community.map((data, index) => (
-                  <div key={index}>
-                    {console.log(data)}
+                  <div key={index} className='vp-community-item'>
+                    <p style={{fontSize:"1.5rem",marginTop:"10px",fontWeight:"bold",marginTop:"3px",marginBottom:"6px"}}>
+                      {data.title}
+                    </p>
+                    <p style={{ whiteSpace: "pre-wrap" ,maxHeight:"70px" ,minHeight:"70px",overflow:"hidden",fontSize:"1rem"}}>{data.content}</p>
+                    <div style={{ height:"30px", marginTop: "5px",display:"flex" }}>
+                      <FontAwesomeIcon icon={faHeart} style={{ height: "16px", color: "darkgray", paddingTop: "1px" }} className='vp-word-icon' />
+                      <span style={{color:"darkgray"}}>
+                      {"\u00A0"}{data.like}{"\u00A0"}like{"\u00A0\u00A0\u00A0.\u00A0\u00A0\u00A0"}
+                      </span>
+                      <span style={{color:"darkgray"}}>
+                      { String(data.uploadDate).substring(8,10) }{" - "}
+                      { String(data.uploadDate).substring(5,7) }{" - "}
+                      { String(data.uploadDate).substring(0,4) }{"\u00A0\u00A0\u00A0.\u00A0\u00A0\u00A0"}
+                      </span>
+                      <span style={{color:"darkgray"}}>
+                      {"\u00A0"}{data.commentCnt}{"\u00A0"}comment
+                      </span>
+                      <span style={{color:"darkgray",marginLeft:"auto",fontWeight:"bold",textDecoration:"underline",cursor:"pointer"}}
+                        onClick={() => CommunityPost(data.postId)}
+                      >
+                        Take a look at this post
+                      </span>
+                    </div>
                   </div>
                 ))
               }
+              <div style={{ height:"30px", marginTop: "5px" }}>
+              </div>
             </div>
           }
         </div>
