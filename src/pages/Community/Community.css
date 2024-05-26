@@ -45,7 +45,7 @@
   display: flex;
   flex-wrap: wrap; /* 다중 행 허용 */
   justify-content: center; /* 가운데 정렬 */
-  gap: 20px; /* 각 항목 사이 간격 */
+  gap: 10px; /* 각 항목 사이 간격 */
   margin: 0 auto;
   max-width: 1368px; /* 최대 너비 설정 */
   padding: 20px; /* 상하좌우 여백 추가 */
