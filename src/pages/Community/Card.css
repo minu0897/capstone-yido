@@ -3,13 +3,16 @@
 }
 
 .card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 300px; /* 카드의 폭을 설정합니다 */
-  border: 1px solid gray;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* 애니메이션 효과를 부드럽게 하기 위해 추가 */
+    display: grid;
+    grid-template-columns: 1fr; 
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    padding-left: 9px;
+    padding-right: 10px;
+    background-color: #fff; 
+    border-radius: 8px;
+    transition: transform 0.2s;
 }
 
 .card:hover {
