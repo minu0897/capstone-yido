@@ -31,6 +31,10 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeartBroken } from '@fortawesome/free-solid-svg-icons';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 //-------------------------------------------
 //함수 및 변수(player)
 //-------------------------------------------
@@ -147,6 +151,7 @@ const VideoPlayer = () => {
   const [isHovered, setIsHovered] = useState(-1);  // 호버 상태를 관리하는 로컬 상태
   const [ismenuClicked, setismenuClicked] = useState(-1);  // 문장신고 메뉴 상태를 관리하는 로컬 상태
   const [community, setcommunity] = useState(null);  // 커뮤니티 글 정보들
+  const [liked, setliked] = useState(null);  // 좋아요
 
 
   //-------------------------------------------
@@ -367,6 +372,7 @@ const VideoPlayer = () => {
     if (data != null) {
       setSubtitles(data.subtitleSentences);
       setcommunity(data.communityResponses);
+      setliked(data.liked);
     }
   }, [data]);
 
@@ -408,19 +414,48 @@ const VideoPlayer = () => {
   };
 
   const reportSentence = (data) => {
+    alert("reportSentence");
     console.log(data.subtitleId);
   }
 
   const reportWord = (data) => {
+    alert("reportWord");
     console.log(data);
   }
 
   const addNote = (data) => {
+    alert("addNote");
     console.log(data);
   }
 
   const closeDictionary = () => {
+    alert("closemenu");
   }
+
+  const writeCommunityPost = () => {
+    alert("writeCommunityPost");
+  }
+
+  const setLike = () => {
+    alert("setLike");
+    if(liked){
+    }
+  }
+  const updateLike = async (id, updatedData) => {
+    try {
+      // 엔드포인트 URL 구성
+      const url = '/api/video/like?videoId='+videoId;
+  
+      // axios.put 메서드를 사용하여 PUT 요청 보내기
+      const response = await axios.put(url, updatedData);
+  
+      // 서버 응답 출력
+      console.log('Data updated successfully:', response.data);
+    } catch (error) {
+      // 오류 발생 시 콘솔에 출력
+      console.error('Error updating data:', error);
+    }
+  };
 
   //-------------------------------------------
   //render
@@ -429,7 +464,7 @@ const VideoPlayer = () => {
     <div className='videoplayer'>
       <h1>{data != null && data.title}</h1>
       <div style={{ height: "700px", display: "flex", flexDirection: "row" }}>
-        <div style={{width: "800px", paddingRight: "15px" ,minHeight:"700px" }}>
+        <div style={{ width: "800px", paddingRight: "15px", minHeight: "700px" }}>
           <div className="player" style={{ height: "450px" }}>
             <Container maxWidth="md" style={{ padding: '0px' }}>
               <div
@@ -500,9 +535,34 @@ const VideoPlayer = () => {
             </Container>
           </div>
           {
+            // 좋아요버튼 , 글쓰기
+          }
+          <div style={{ height: "60px", backgroundColor: "", marginTop: "5px", marginBottom: "0px" }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', height: '25px', padding: '5px', paddingBottom: '0px' }}>
+              <div>
+                <p style={{ margin: "0px", fontSize: "14px" }}>MadeBy </p>
+                <p style={{ margin: "0px", fontSize: "18px" }}>Team Yido</p>
+              </div>
+              <div style={{ display: "flex" }}>
+                <div className='vp-video-button'>
+                  <button style={{width: "100%", height: "100%", position: "absolute", opacity: 0 }} onClick={setLike}>
+                  </button>
+                  <FontAwesomeIcon icon={liked ? faHeart : faHeartBroken} style={{ height: "25px", color: "#4C4C4C", paddingRight: "4px" }} className='vp-word-icon' />
+                  <span>like</span>
+                </div>
+                <div className='vp-video-button'>
+                  <button style={{ width: "100%", height: "100%", position: "absolute", opacity: 0 }} onClick={writeCommunityPost}>
+                  </button>
+                  <FontAwesomeIcon icon={faPen} style={{ height: "20px", color: "#4C4C4C", paddingRight: "4px" }} className='vp-word-icon' />
+                  <span style={{ fontSize: "14px" }}>Write about video</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {
             //영상 밑에 div 내용조회수등
             data != null &&
-            <div style={{ backgroundColor: "#EFEFEF", borderRadius: "5px", padding: "5px", marginTop: "20px" }}>
+            <div style={{ backgroundColor: "#EFEFEF", borderRadius: "5px", padding: "5px", marginTop: "0px" }}>
               <h4>
                 {' '}{parseInt(data.views).toLocaleString()}{' views\u00A0\u00A0\u00A0\u00A0\u00A0'}
                 {data.uploadDate.slice(0, 4)}{'.'}
@@ -515,7 +575,7 @@ const VideoPlayer = () => {
           {
             //영상 밑에 div 내용조회수등
             community != null &&
-            <div style={{ position:"", height: "100px",backgroundColor:"black",marginTop:"20px" }}>
+            <div style={{ position: "", height: "100px", backgroundColor: "black", marginTop: "20px" }}>
               {
                 community.map((data, index) => (
                   <div key={index}>

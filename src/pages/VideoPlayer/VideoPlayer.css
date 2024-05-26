@@ -97,3 +97,15 @@
     left: -10px;
     cursor: pointer;
 }
+
+.vp-video-button{
+    background-color: #F4F4F4;
+    height: 36px;
+    margin-right: 10px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+    padding: 0 10px; /* 패딩 추가하여 내부 간격 조절 */
+}

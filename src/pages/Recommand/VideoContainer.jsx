@@ -1,9 +1,11 @@
 import React from "react";
 import './VideoContainer.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../Login/AuthContext';
 
 const VideoContainer = ({ video }) => {
     const imageUrl = `http://101.235.73.77:8088/video/thumbnail/${video.videoId}.jpg`;
+    const { user } = useAuth();
     const navigate = useNavigate();
 
     // Helper function to truncate the title
@@ -24,7 +26,11 @@ const VideoContainer = ({ video }) => {
         return text;
     };
     const handleClick = ()=>{
-        navigate('/videoplayer?id='+video.videoId);
+        if(user ===null){
+            navigate('/Login');
+            alert("Log in first");
+        }
+        else navigate('/videoplayer?id='+video.videoId);
     }
     
 
