@@ -8,9 +8,10 @@ const WriteCommunity = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [tags, setTags] = useState('');
-    //const searchParams = new URLSearchParams(location.search);
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
     const videoId = searchParams.get('id');
-    //const location = useLocation();
+
 
     const handleTitleChange = (e) => setTitle(e.target.value);
     const handleContentChange = (e) => setContent(e.target.value);
