@@ -20,10 +20,10 @@ const Card = ({ videoId, title, content, likes, tags, writer }) => {
     <div className="card-wrapper">
       <div className="card">
         {videoId && (
-          <img src={imageUrl} alt="thumbnail" className="card-image" style={{width:'300px', height:'200px'}}/>
+          <img src={imageUrl} alt="thumbnail" className="card-image" style={{width:'300px', height:'200px', marginBottom:'20px'}}/>
         )}
         <div className="card-content">
-          <h3 className="card-title" style={{fontSize:'19px', marginTop:'20px'}}>{truncateText(title, 15)}</h3>
+          <h3 className="card-title" style={{fontSize:'19px'}}>{truncateText(title, 15)}</h3>
           <p className="card-subtitle" style={{fontSize:'13px'}}>{truncateText(content, contentMaxLength)}</p>
           <div className="card-tags" style={{ textDecoration: 'none', color: 'gray' }}>
             <span className="card-tag">{truncateText(tagsString, 15)}</span>
