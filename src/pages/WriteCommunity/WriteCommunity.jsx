@@ -60,7 +60,7 @@ const WriteCommunity = () => {
 
     return (
         <div>
-        {console.log(videoId)}
+        {console.log(videoId+'asdf')}
             <form onSubmit={handleSubmit}>
                 <div style={{minHeight:"40px", display:"grid", placeItems:"center", marginTop:"0px"}}>
                     <h3>Write Post</h3>
