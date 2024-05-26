@@ -10,7 +10,7 @@ const WriteCommunity = () => {
     const [tags, setTags] = useState('');
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const videoId = searchParams.get('id');
+    const videoId = searchParams.get('videoid');
 
 
     const handleTitleChange = (e) => setTitle(e.target.value);
