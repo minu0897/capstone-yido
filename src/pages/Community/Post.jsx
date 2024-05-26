@@ -8,6 +8,7 @@ const Post = () => {
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
+    const { currentUser } = useContext(AuthContext); // Assuming 'currentUser' contains the 'memberId'
 
     useEffect(() => {
         const fetchPost = async () => {
