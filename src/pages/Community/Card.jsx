@@ -27,7 +27,7 @@ const Card = ({ videoId, title, content, likes, tags }) => {
             {/* 전체 태그 문자열에 truncateText 함수 적용 */}
             <span className="card-tag">{truncateText(tagsString, 10)}</span>
           </div>
-          <hr style={{ borderColor: 'gray' }} />
+          <hr className="card-divider" />
           <div className="card-stats">
             <span className="card-likes" style={{ color: 'gray' }}>{likes} likes</span>
           </div>

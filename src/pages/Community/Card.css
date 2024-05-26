@@ -7,6 +7,7 @@
   background-color: #fff;
   transition: transform 0.2s;
   min-height: 327px; /* 적절한 최소 높이 설정 */
+  min-width: 334px;
 }
 
 
