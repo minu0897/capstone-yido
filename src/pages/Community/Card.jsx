@@ -18,7 +18,7 @@ const Card = ({ videoId, title, content, likes, tags }) => {
       <div className="card">
         {/* videoId가 null이 아닐 때만 이미지 태그를 렌더링합니다 */}
         {videoId && (
-          <img src={imageUrl} alt="thumbnail" className="card-image" style={{width:'270px', height:'200px'}}/>
+          <img src={imageUrl} alt="thumbnail" className="card-image" style={{width:'300px', height:'200px'}}/>
         )}
         <div className="card-content">
           <h3 className="card-title" style={{fontSize:'14px'}}>{truncateText(title, 15)}</h3>
