@@ -13,24 +13,25 @@ const Card = ({ videoId, title, content, likes, tags, writer }) => {
   const tagsString = tags.map(tag => `#${tag}`).join(' ');
   const imageUrl = `http://101.235.73.77:8088/video/thumbnail/${videoId}.jpg`;
 
+  // content의 최대 길이 결정
+  const contentMaxLength = videoId ? 25 : 100; // videoId가 null이면 100자, 아니면 25자
+
   return (
     <div className="card-wrapper">
       <div className="card">
-        {/* videoId가 null이 아닐 때만 이미지 태그를 렌더링합니다 */}
         {videoId && (
           <img src={imageUrl} alt="thumbnail" className="card-image" style={{width:'300px', height:'200px'}}/>
         )}
         <div className="card-content">
           <h3 className="card-title" style={{fontSize:'19px'}}>{truncateText(title, 15)}</h3>
-          <p className="card-subtitle" style={{fontSize:'13px'}}>{truncateText(content, 25)}</p>
+          <p className="card-subtitle" style={{fontSize:'13px'}}>{truncateText(content, contentMaxLength)}</p>
           <div className="card-tags" style={{ textDecoration: 'none', color: 'gray' }}>
-            {/* 전체 태그 문자열에 truncateText 함수 적용 */}
             <span className="card-tag">{truncateText(tagsString, 10)}</span>
           </div>
           <hr className="card-divider" />
-          <div style={{display:'flex'}}>
-            <span className="card-likes" style={{ color: 'gray' }}>{likes} likes </span>
-            <span style={{marginRight:'20px', fontSize:'0.8em', color:'#999'}}>{writer}</span>
+          <div style={{display:'flex', justifyContent: 'space-between'}}>
+            <span className="card-likes" style={{ color: 'gray' }}>{likes} likes</span>
+            <span style={{ fontSize:'0.8em', color:'#999'}}>{writer}</span>
           </div>
         </div>
       </div>
