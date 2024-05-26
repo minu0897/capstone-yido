@@ -64,9 +64,7 @@ const Community = () => {
             posts.map(post => (
               <Link to={`/api/post/${post.postId}`} key={post.postId} style={{ textDecoration: 'none' }}>
                 <Card
-                  videoId={post.videoId}
-                  key={post.postId}
-                  postId={post.postId}
+                  {...(post.videoId ? { videoId: post.videoId } : {})}
                   title={post.title}
                   content={post.content}
                   likes={post.like}
@@ -74,6 +72,7 @@ const Community = () => {
                 />
               </Link>
             ))
+            
           ) : (
             <p>No posts to display.</p>
           )
