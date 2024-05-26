@@ -43,10 +43,6 @@
   margin: 4px 0;
 }
 
-.card-stats {
-  margin-top: auto; /* 모든 추가 공간을 위로 밀어 올림 */
-}
-
 .card-likes,
 .card-comments {
   font-size: 0.8em;
