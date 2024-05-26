@@ -42,7 +42,7 @@ const Community = () => {
     display: 'flex',
     justifyContent: 'center', // Keeps items centered
     flexWrap: 'wrap', // Allows multiple lines
-    gap: '20px', // Space between items
+    gap: '10px', // Space between items
     margin: '0 auto', // Centers the container
     maxWidth: '1368px', // Adjust based on the sum of all items' widths in a row
   };
