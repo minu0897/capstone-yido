@@ -8,7 +8,7 @@ const truncateText = (text, maxLength) => {
   return text;
 };
 
-const Card = ({ videoId, title, content, likes, tags }) => {
+const Card = ({ videoId, title, content, likes, tags, writer }) => {
   // 태그 배열을 하나의 문자열로 결합
   const tagsString = tags.map(tag => `#${tag}`).join(' ');
   const imageUrl = `http://101.235.73.77:8088/video/thumbnail/${videoId}.jpg`;
@@ -29,7 +29,7 @@ const Card = ({ videoId, title, content, likes, tags }) => {
           </div>
           <hr className="card-divider" />
           <div>
-            <span className="card-likes" style={{ color: 'gray' }}>{likes} likes</span>
+            <span className="card-likes" style={{ color: 'gray' }}>{likes} likes {writer}</span>
           </div>
         </div>
       </div>

@@ -69,6 +69,7 @@ const Community = () => {
                   content={post.content}
                   likes={post.like}
                   tags={post.postTags}
+                  writer={post.postWriter}
                 />
               </Link>
             ))
