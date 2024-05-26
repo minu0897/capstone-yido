@@ -10,11 +10,6 @@
   min-width: 300px;
 }
 
-.card-wrapper {
-  max-width: 300px; /* 카드 전체의 최대 너비 설정 */
-  margin: 0 auto; /* 중앙 정렬 */
-  overflow: hidden; /* 넘치는 내용 숨기기 */
-}
 
 .card:hover {
   transform: scale(1.05); /* 마우스를 올렸을 때 카드를 약간 키웁니다 */
