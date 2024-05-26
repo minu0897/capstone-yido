@@ -429,7 +429,7 @@ const VideoPlayer = () => {
   }
 
   const writeCommunityPost = () => {
-    alert("writeCommunityPost");
+    navigate('/WriteCommunity?videoid='+videoId);
   }
   const CommunityPost = (id) => {
     navigate('/api/post/'+id);
