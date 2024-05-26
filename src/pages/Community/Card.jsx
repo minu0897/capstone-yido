@@ -28,7 +28,7 @@ const Card = ({ videoId, title, content, likes, tags, writer }) => {
             <span className="card-tag">{truncateText(tagsString, 10)}</span>
           </div>
           <hr className="card-divider" />
-          <div>
+          <div style={{display:'flex'}}>
             <span className="card-likes" style={{ color: 'gray' }}>{likes} likes </span>
             <span style={{marginRight:'20px'}}>{writer}</span>
           </div>
