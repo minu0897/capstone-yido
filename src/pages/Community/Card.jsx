@@ -22,7 +22,7 @@ const Card = ({ videoId, title, content, likes, tags }) => {
         )}
         <div className="card-content">
           <h3 className="card-title" style={{fontSize:'19px'}}>{truncateText(title, 15)}</h3>
-          <p className="card-subtitle" style={{fontSize:'15px'}}>{truncateText(content, 25)}</p>
+          <p className="card-subtitle" style={{fontSize:'13px'}}>{truncateText(content, 25)}</p>
           <div className="card-tags" style={{ textDecoration: 'none', color: 'gray' }}>
             {/* 전체 태그 문자열에 truncateText 함수 적용 */}
             <span className="card-tag">{truncateText(tagsString, 10)}</span>
