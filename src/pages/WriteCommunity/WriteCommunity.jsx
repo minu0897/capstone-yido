@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate import
+import { useLocation,Link} from 'react-router-dom';
 import './WriteCommunity.css';
 
-const WriteCommunity = ({ videoId, videoName }) => {
+const WriteCommunity = () => {
     const navigate = useNavigate(); // navigate 함수 사용을 위한 훅 호출
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [tags, setTags] = useState('');
+    const searchParams = new URLSearchParams(location.search);
+    const videoId = searchParams.get('id');
+    const location = useLocation();
 
     const handleTitleChange = (e) => setTitle(e.target.value);
     const handleContentChange = (e) => setContent(e.target.value);
