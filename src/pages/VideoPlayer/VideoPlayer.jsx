@@ -544,14 +544,14 @@ const VideoPlayer = () => {
                 <p style={{ margin: "0px", fontSize: "18px" }}>Team Yido</p>
               </div>
               <div style={{ display: "flex" }}>
-                <div className='vp-video-button'>
-                  <button style={{width: "100%", height: "100%", position: "absolute", opacity: 0 }} onClick={setLike}>
+                <div className='vp-video-button' style={{marginRight:"10px"}}>
+                  <button style={{width: "100%", height: "100%", position: "absolute", opacity: 0 ,cursor:"pointer"}} onClick={setLike}>
                   </button>
                   <FontAwesomeIcon icon={liked ? faHeart : faHeartBroken} style={{ height: "25px", color: "#4C4C4C", paddingRight: "4px" }} className='vp-word-icon' />
                   <span>like</span>
                 </div>
                 <div className='vp-video-button'>
-                  <button style={{ width: "100%", height: "100%", position: "absolute", opacity: 0 }} onClick={writeCommunityPost}>
+                  <button style={{ width: "100%", height: "100%", position: "absolute", opacity: 0 ,cursor:"pointer"}} onClick={writeCommunityPost}>
                   </button>
                   <FontAwesomeIcon icon={faPen} style={{ height: "20px", color: "#4C4C4C", paddingRight: "4px" }} className='vp-word-icon' />
                   <span style={{ fontSize: "14px" }}>Write about video</span>

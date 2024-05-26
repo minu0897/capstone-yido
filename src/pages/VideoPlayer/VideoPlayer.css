@@ -101,7 +101,7 @@
 .vp-video-button{
     background-color: #F4F4F4;
     height: 36px;
-    margin-right: 10px;
+    margin-right: auto;
     border-radius: 14px;
     display: flex;
     align-items: center;
