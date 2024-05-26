@@ -1,6 +1,3 @@
-.card-wrapper {
-  margin: 8px; /* 카드 간의 간격을 설정합니다 */
-}
 
 .card {
     display: grid;
