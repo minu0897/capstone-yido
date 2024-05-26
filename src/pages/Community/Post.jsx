@@ -9,7 +9,8 @@ const Post = () => {
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
-    const { currentUser } = useContext(AuthContext); // Assuming 'currentUser' contains the 'memberId'
+    const { user } = useContext(AuthContext); // 'currentUser' 대신 'user'를 사용
+
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -81,7 +82,7 @@ const Post = () => {
     return (
         <div className="post-container">
             {console.log(post)};
-            {console.log(currentUser)};
+            {console.log(user)};
             {post ? (
                 <article>
                     <h1 className="post-title">{post.postTitle}</h1>
@@ -94,7 +95,7 @@ const Post = () => {
                     </div>
                     <div className="post-actions">
                         {/* Only show the delete button if the current user is the post's writer */}
-                        {currentUser && currentUser.memberId === post.postWriter && (
+                        {user && user.memberId === post.postWriter && (
                             <button onClick={deletePost} className="btn delete">Delete</button>
                         )}
                     </div>
