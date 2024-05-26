@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation,Link, useNavigate } from 'react-router-dom';
 import './Community.css';
 import Card from './Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,6 +8,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 const Community = () => {
   const [posts, setPosts] = useState([]); // 게시글 데이터를 저장할 상태
   const [loading, setLoading] = useState(true); // 로딩 상태 관리
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,11 +49,14 @@ const Community = () => {
     margin: '0 auto', // Centers the container
     maxWidth: '1368px', // Adjust based on the sum of all items' widths in a row
   };
+  const writePost = () => {
+    navigate('/WriteCommunity');
+  }
 
   return (
     <div className='community'>
       <div className='write' style={{  marginBottom: '20px'}}>
-        <div style={{height:"40px",backgroundColor:"#F4F4F4",width:"100px",marginLeft:"auto",borderRadius:"10px",color:"black",display:"flex",alignItems:"center"}}>
+        <div onClick={writePost} style={{height:"40px",backgroundColor:"#F4F4F4",width:"100px",marginLeft:"auto",borderRadius:"10px",color:"black",display:"flex",alignItems:"center"}}>
           <FontAwesomeIcon icon={faPen} style={{ height: "20px", color: "#4C4C4C", marginRight:"5px",marginLeft:"15px" }} />
           Write
         </div>
