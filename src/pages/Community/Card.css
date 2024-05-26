@@ -1,17 +1,14 @@
-
 .card {
-    display: grid;
-    grid-template-columns: 1fr; 
-    width: 300px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    padding-left: 9px;
-    padding-right: 10px;
-    background-color: #fff; 
-    border-radius: 8px;
-    transition: transform 0.2s;
-    min-height: 327px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: transform 0.2s;
+  min-height: 327px; /* 적절한 최소 높이 설정 */
 }
+
 
 .card:hover {
   transform: scale(1.05); /* 마우스를 올렸을 때 카드를 약간 키웁니다 */
@@ -28,7 +25,9 @@
 }
 
 .card-content {
-  padding: 0px 4px 8px;
+  flex: 1; /* 모든 사용 가능한 공간을 차지하도록 설정 */
+  display: flex;
+  flex-direction: column;
 }
 
 .card-title {
@@ -44,14 +43,17 @@
 }
 
 .card-stats {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 8px;
+  margin-top: auto; /* 모든 추가 공간을 위로 밀어 올림 */
 }
 
 .card-likes,
 .card-comments {
   font-size: 0.8em;
   color: #999;
+}
+
+.card-divider {
+  border-color: gray;
+  margin-top: auto; /* 이 클래스를 가진 수평선을 바닥으로 밀어내기 */
+  width: 100%; /* 수평선의 폭을 카드 폭과 동일하게 설정 */
 }
