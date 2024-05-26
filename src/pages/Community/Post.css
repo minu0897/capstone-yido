@@ -1,3 +1,50 @@
+.post-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+}
+
+.post-title {
+    margin-bottom: 30px;
+    color: #2a2a2a;
+    font-size: 32px;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.post-content {
+    color: #444;
+    font-size: 18px;
+    line-height: 1.8;
+    padding-top: 20px;
+    white-space: pre-wrap; /* 개행 문자 처리를 위한 속성 */
+}
+
+.post-tags {
+    margin: 20px 0;
+}
+
+.post-tag {
+    display: inline-block;
+    background-color: #eef;
+    color: #007BFF;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.loading {
+    font-size: 18px;
+    color: #888;
+    text-align: center;
+}
+
 .comment-section {
     margin-top: 20px;
     display: flex;
@@ -80,39 +127,6 @@
 }
 
 /* Enhancements for other elements for consistency and better readability */
-.post-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    border-radius: 8px;
-    font-family: 'Arial', sans-serif;
-}
-
-.post-title {
-    margin-bottom: 30px;
-    color: #2a2a2a;
-    font-size: 32px;
-    font-weight: bold;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-}
-
-.post-content {
-    color: #444;
-    font-size: 18px;
-    line-height: 1.8;
-    padding-top: 20px;
-    white-space: pre-wrap; /* 개행 문자 처리를 위한 속성 */
-}
-
-.loading {
-    font-size: 18px;
-    color: #888;
-    text-align: center;
-}
-
 .comments-list {
     margin-top: 20px;
     border-top: 2px solid #ddd; /* A subtle line to separate comments from the input area */
@@ -165,4 +179,3 @@
 .likes:hover, .dislikes:hover {
     background-color: #d0d0d0; /* Darker background on hover for interaction feedback */
 }
-

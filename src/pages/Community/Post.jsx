@@ -34,7 +34,7 @@ const Post = () => {
             postId: postId,
             content: comment
         };
-    
+
         try {
             const response = await fetch(`/api/comments`, {
                 method: 'POST',
@@ -47,7 +47,7 @@ const Post = () => {
                 const newComment = await response.json();
                 setComments(prevComments => [...prevComments, newComment]); // 새 댓글 추가
                 setComment(''); // 입력란 초기화
-    
+
                 // 댓글 추가 후 0.2초 지연 시키고 강제 재렌더링
                 setTimeout(() => {
                     window.location.reload();
@@ -83,7 +83,11 @@ const Post = () => {
                     <h1 className="post-title">{post.postTitle}</h1>
                     <p className='post-content'> by {post.postWriter}</p>
                     <p className="post-content">{post.postContent}</p>
-                    {console.log(post)}
+                    <div className="post-tags">
+                        {post.postTags && post.postTags.map((tag, index) => (
+                            <span key={index} className="post-tag">#{tag}</span>
+                        ))}
+                    </div>
                     <div className="post-actions">
                         <button onClick={deletePost} className="btn delete">Delete</button>
                     </div>
