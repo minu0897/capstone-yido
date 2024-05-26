@@ -47,6 +47,7 @@
 .card-comments {
   font-size: 0.8em;
   color: #999;
+  display: flex;
 }
 
 .card-divider {

@@ -29,7 +29,8 @@ const Card = ({ videoId, title, content, likes, tags, writer }) => {
           </div>
           <hr className="card-divider" />
           <div>
-            <span className="card-likes" style={{ color: 'gray' }}>{likes} likes                {writer}</span>
+            <span className="card-likes" style={{ color: 'gray' }}>{likes} likes </span>
+            <span style={{marginRight:'20px'}}>{writer}</span>
           </div>
         </div>
       </div>
