@@ -83,7 +83,7 @@ const Post = () => {
                     <h1 className="post-title">{post.postTitle}</h1>
                     <p className='post-content'> by {post.postWriter}</p>
                     <p className="post-content">{post.postContent}</p>
-                    {console.log(post)};
+                    {console.log(post)}
                     <div className="post-actions">
                         <button onClick={deletePost} className="btn delete">Delete</button>
                     </div>

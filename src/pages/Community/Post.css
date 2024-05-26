@@ -104,6 +104,7 @@
     font-size: 18px;
     line-height: 1.8;
     padding-top: 20px;
+    white-space: pre-wrap; /* 개행 문자 처리를 위한 속성 */
 }
 
 .loading {
@@ -137,6 +138,7 @@
     color: #333; /* Darker text for contrast */
     line-height: 1.5; /* Improved line spacing for readability */
     margin-bottom: 10px; /* Space between the comment text and the author line */
+    white-space: pre-wrap; /* 개행 문자 처리를 위한 속성 */
 }
 
 .comment-writer {
