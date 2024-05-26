@@ -109,3 +109,16 @@
     position:relative;
     padding: 0 10px; /* 패딩 추가하여 내부 간격 조절 */
 }
+
+.vp-community-div{
+  display: flex;  /* flexbox 레이아웃 사용 */
+  flex-direction: column;  /* 아이템을 수직으로 쌓기 */
+  gap: 10px;  /* 각 아이템 사이의 간격 설정 */
+}
+
+.vp-community-item {
+  padding: 8px;  /* 패딩으로 아이템 내부 여백 생성 */
+  margin-top: 5px;
+  height: 180px;
+  border-bottom: 1px solid darkgray;
+}
