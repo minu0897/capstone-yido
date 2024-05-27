@@ -100,7 +100,7 @@ const RegisterVideo = () => {
         //공백제거
         const noSpaces = tagInput.replace(/\s+/g, '');
         // '#'으로 쪼개기
-        const splitHash = noSpaces.split('#');
+        const splitHash = noSpaces.split('#').filter(Boolean); // 빈 요소 제거
         // 각 문자열 앞에 '#' 추가
         const hashedItems = splitHash.map(item => '#' + item);
 
