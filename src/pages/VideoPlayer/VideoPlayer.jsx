@@ -419,9 +419,11 @@ const VideoPlayer = () => {
     console.log(data);
   }
 
-  const addNote = (data) => {
-    alert("addNote");
-    console.log(data);
+  const addNote = async (data) => {
+    try {
+      const response = await axios.post('/api/note/'+data);
+    } catch (error) {
+    }
   }
 
   const closeDictionary = () => {

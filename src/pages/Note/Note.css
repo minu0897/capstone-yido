@@ -1,5 +1,16 @@
 .note {
-  background-color: green;
-  padding: 10px;
-  flex-grow: 1; /* 나머지 공간 차지 */
+  max-width: 800px;
+  margin:auto;
+}
+
+.n-icon {
+    cursor: pointer;
+    height: 25px;
+    margin: 2px;
+    padding: 1px;
+}
+.n-word-div {
+  padding: 8px;  /* 패딩으로 아이템 내부 여백 생성 */
+  margin-top: 5px;
+  border-bottom: 1px solid darkgray;
 }
