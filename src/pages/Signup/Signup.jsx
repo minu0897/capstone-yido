@@ -149,10 +149,10 @@ const Signup = () => {
             <input
               type="radio"
               name="role"
-              value="PRODUCER"
-              checked={memberRole === 'PRODUCER'}
-              onChange={() => setRole('PRODUCER')}
-            /> Producer
+              value="PROVIDER"
+              checked={memberRole === 'PROVIDER'}
+              onChange={() => setRole('PROVIDER')}
+            /> Provider
           </label>
         </div>
         
