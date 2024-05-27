@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './UserProfile.css';
+import { useLocation,Link, useNavigate } from 'react-router-dom';
 
 function UserProfile() {
     const [user, setUser] = useState({ id: '', nickname: '' });
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -38,6 +40,10 @@ function UserProfile() {
         }
     };
 
+    const handleMyChannel =  () => {
+        navigate('/mychannel');
+    };
+
     if (isLoading) return <div>Loading...</div>;
 
     return (
@@ -54,6 +60,7 @@ function UserProfile() {
                 </label>
                 <button type="submit">change password</button>
             </form>
+            {user.role == "PROVIDER" && <button onClick={handleMyChannel} className='user-mychannel'>My Channel</button>}
         </div>
     );
 }

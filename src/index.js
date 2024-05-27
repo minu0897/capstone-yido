@@ -18,6 +18,7 @@ import RegisterVideo from './pages/RegisterVideo/RegisterVideo';
 import WriteCommunity from './pages/WriteCommunity/WriteCommunity';
 import Post from './pages/Community/Post';
 import UserProfile from './pages/UserProfile/UserProfile';
+import MyChannel from './pages/MyChannel/MyChannel';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -39,6 +40,7 @@ root.render(
           <Route path='/RegisterVideo' element={<RegisterVideo/>}/>
           <Route path='/WriteCommunity' element={<WriteCommunity/>}/>
           <Route path='/api/post/:postId' element={<Post />} />
+          <Route path='/mychannel' element={<MyChannel />} />
         </Routes>
         <Footer />
       </BrowserRouter>

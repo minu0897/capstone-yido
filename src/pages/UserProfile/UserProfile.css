@@ -61,3 +61,20 @@
     background-color: #0056b3;
     transform: translateY(-2px); /* 호버 시 약간 위로 움직임 */
 }
+
+.user-mychannel  {
+    background-color: #1c3b5d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px; /* 폰트 크기 조정 */
+    margin-top: 20px; /* 버튼 상단 여백 추가 */
+    transition: background-color 0.3s ease-in-out, transform 0.2s; /* 애니메이션 추가 */
+    min-width: 400px;
+}
+
+.user-mychannel :hover {
+    background-color: #007BFF;
+    transform: translateY(-2px); /* 호버 시 약간 위로 움직임 */
+}
