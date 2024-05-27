@@ -119,6 +119,5 @@
 .vp-community-item {
   padding: 8px;  /* 패딩으로 아이템 내부 여백 생성 */
   margin-top: 5px;
-  height: 180px;
   border-bottom: 1px solid darkgray;
 }
