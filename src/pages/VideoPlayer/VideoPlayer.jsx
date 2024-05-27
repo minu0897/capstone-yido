@@ -168,7 +168,7 @@ const VideoPlayer = () => {
     controls: false,
     light: false,
 
-    muted: true,
+    muted: false,
     played: 0,
     duration: 0,
     playbackRate: 1.0,

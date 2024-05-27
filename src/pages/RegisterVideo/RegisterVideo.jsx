@@ -64,6 +64,12 @@ const RegisterVideo = () => {
         if(page!==1) setPage(page - 1);
     };
     const handleNextClick = event => {
+        if(page==1){
+            if(fileerr !==1){
+                alert("Upload your video first\n("+getFileErr()+")");
+                return;
+            }
+        }
         if(page!==4) setPage(page + 1);
     };
     const handleUploadClick = () => {
@@ -81,7 +87,10 @@ const RegisterVideo = () => {
 
         setTags();
     };
-
+    const handleDateChange = event => {
+        setDateTime(event.target.value);
+    };
+    
 
     const handleSubmit = async event => {
         setLoding(true);
@@ -128,8 +137,8 @@ const RegisterVideo = () => {
             {
                 page <= 4 &&<>
                 <div style={{minHeight:"30px",display:"grid",placeItems:"center",marginTop:"30px",marginBottom:"0px"}}>
-                    <div style={{border:"1px solid black",width:"310px"}}></div>
-                    <div style={{position:"absolute",display:"flex",height:"50px",width:"400px"}}>
+                    <div style={{border:"1px solid black",width:"310px", position:""}}></div>
+                    <div style={{position:"absolute",display:"flex",height:"50px",width:"400px",paddingTop:"6px"}}>
                         <div className='status_d'>
                             <div className={page===1?'status_o':'status_x'}></div>
                         </div>
@@ -177,20 +186,20 @@ const RegisterVideo = () => {
                             </button>
                         </div>
                     </div>
-                    <h4 style={{color:"red",alignSelf:"flex-end"}}>{getFileErr()}</h4>
+                    <h4 style={{color:(fileerr == 1 ?'blue':'red'),alignSelf:"flex-end"}}>{getFileErr()}</h4>
                 </>
             }
             {
                 page === 2 && <>
-                    <input type='text' className='input-css' placeholder="Please enter a Title" onChange={handleTitleChange} ></input>
-                    <textarea className='input-css' placeholder="Please enter a Content" style={{minHeight:"300px",paddingTop:"10px"}} onChange={handleContentChange} ></textarea>
-                    <input type='text' className='input-css' onChange={handleTagsChange} placeholder="Please enter a Tags ( Each tag is separated by # ) Ex #Tag #Yido"></input>
+                    <input value={title} type='text' className='input-css' placeholder="Please enter a Title" onChange={handleTitleChange} ></input>
+                    <textarea value={content} className='input-css' placeholder="Please enter a Content" style={{minHeight:"300px",paddingTop:"10px"}} onChange={handleContentChange} ></textarea>
+                    <input value={tagInput} type='text' className='input-css' onChange={handleTagsChange} placeholder="Please enter a Tags ( Each tag is separated by # ) Ex #Tag #Yido"></input>
                 </>
             }
             {
                 page === 3 && <>
                     <h4>It will be uploaded at the time below</h4>
-                    <input type='datetime-local' value={dateTime} className='input-css' placeholder="Please enter a Title"></input>
+                    <input type='datetime-local' value={dateTime} onChange={handleDateChange}  className='input-css' placeholder="Please enter a Title"></input>
                 </>
             }
             {
