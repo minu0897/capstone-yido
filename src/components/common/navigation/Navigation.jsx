@@ -41,7 +41,7 @@ console.log(window.location.href);
   return (
     <div className='navigation'>
       <Link to={'/'} style={{fontWeight:  (isMenu == 1 ?"bold":"") }}>Home</Link>
-      <Link to={'/Recommand'} style={{fontWeight:  (isMenu == 2 ?"bold":"") }}>Recommand</Link>
+      <Link to={'/Recommand'} style={{fontWeight:  (isMenu == 2 ?"bold":"") }}>Recommend</Link>
       <Link to={'/Note'} style={{fontWeight:  (isMenu == 3 ?"bold":"") }}>Note</Link>
       <Link to={'/Community'} style={{fontWeight:  (isMenu == 4 ?"bold":"") }}>Community</Link>
     </div>

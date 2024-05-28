@@ -1,3 +1,17 @@
 .home {
   flex-grow: 1; /* 나머지 공간 차지 */
 }
+
+.h-carddiv{
+  min-width: 100px;
+  height: 300px;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.h-card-note{
+  border: 1px solid #BDBDBD;
+  border-radius: 10px;
+  min-width: 300px;
+  min-height: 108px;
+}
