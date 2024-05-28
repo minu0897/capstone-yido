@@ -339,7 +339,6 @@ const VideoPlayer = () => {
         })
         .catch(error => {
         });
-
     }
 
   }, [wordId]);
@@ -411,7 +410,6 @@ const VideoPlayer = () => {
 
   const reportSentence = (data) => {
     alert("reportSentence");
-    console.log(data.subtitleId);
   }
 
   const reportWord = (data) => {
@@ -420,6 +418,7 @@ const VideoPlayer = () => {
   }
 
   const addNote = async (data) => {
+    return;
     try {
       const response = await axios.post('/api/note/'+data);
     } catch (error) {
@@ -676,7 +675,7 @@ const VideoPlayer = () => {
               autoHide
               autoHideTimeout={1000}
               hideTracksWhenNotNeeded={true}  // 수평 스크롤바 숨기기 위한 설정
-              style={{ width: "370px", height: "220px", overflow: "hidden", marginTop: "10px", borderRadius: "6px" }}
+              style={{ width: "370px", height: "330px", overflow: "hidden", marginTop: "10px", borderRadius: "6px" }}
 
               renderThumbVertical={({ style, ...props }) =>
                 <div {...props} style={{ ...style, backgroundColor: '#fff', borderRadius: 3 }} />
@@ -685,9 +684,6 @@ const VideoPlayer = () => {
               <div style={{ border: "1px solid black", backgroundColor: "#383933" }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', height: '25px', padding: '5px', paddingBottom: '0px' }}>
                   <div>
-                    <FontAwesomeIcon icon={faClipboard} title='add note' style={{ color: "637BC8", }} className='vp-word-icon'
-                      onClick={() => addNote(wordId)}
-                    />
                   </div>
                   <div>
                     <FontAwesomeIcon icon={faCircleExclamation} title='Report an error' style={{ color: "#FF6C6C" }} className='vp-word-icon'
@@ -701,7 +697,12 @@ const VideoPlayer = () => {
                 {
                   wordApiData.dictionaryDetailResponses.map((word, index) => (
                     <div style={{ paddingLeft: "5px" }}>
-                      <p className='vp-word-title'>{word.wordName} <sup>{index + 1}</sup></p>
+                      <div style={{display:"flex",height:"40px",alignItems:"center"}}>
+                        <FontAwesomeIcon icon={faClipboard} title='add note' style={{ color: "637BC8"}} className='vp-word-icon'
+                          onClick={() => addNote(word)}
+                        />
+                        <p className='vp-word-title'>{word.wordName} <sup>{index + 1}</sup></p>
+                      </div>
                       <p className='vp-word-meaning'>{word.wordMeaning}</p>
                     </div>
                   ))

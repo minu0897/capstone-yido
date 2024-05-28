@@ -12,6 +12,7 @@
 .h-card-note{
   border: 1px solid #BDBDBD;
   border-radius: 10px;
-  min-width: 300px;
+  min-width: 330px;
+  max-width: 330px;
   min-height: 108px;
 }
