@@ -1,5 +1,5 @@
 
-import { useLocation,Link, useNavigate } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import axios from 'axios';
@@ -420,20 +420,21 @@ const VideoPlayer = () => {
   const addNote = async (data) => {
     return;
     try {
-      const response = await axios.post('/api/note/'+data);
+      const response = await axios.post('/api/note/' + data);
     } catch (error) {
     }
   }
 
   const closeDictionary = () => {
+    setshowWord(false);
     alert("closemenu");
   }
 
   const writeCommunityPost = () => {
-    navigate('/WriteCommunity?videoid='+videoId);
+    navigate('/WriteCommunity?videoid=' + videoId);
   }
   const CommunityPost = (id) => {
-    navigate('/api/post/'+id);
+    navigate('/api/post/' + id);
   }
 
 
@@ -448,11 +449,11 @@ const VideoPlayer = () => {
   const updateLike = async (id, updatedData) => {
     try {
       // 엔드포인트 URL 구성
-      const url = '/api/video/like?videoId='+videoId;
-  
+      const url = '/api/video/like?videoId=' + videoId;
+
       // axios.put 메서드를 사용하여 PUT 요청 보내기
       const response = await axios.put(url, updatedData);
-  
+
       // 서버 응답 출력
       console.log('Data updated successfully:', response.data);
     } catch (error) {
@@ -548,14 +549,14 @@ const VideoPlayer = () => {
                 <p style={{ margin: "0px", fontSize: "18px" }}>Team Yido</p>
               </div>
               <div style={{ display: "flex" }}>
-                <div className='vp-video-button' style={{marginRight:"10px"}}>
-                  <button style={{width: "100%", height: "100%", position: "absolute", opacity: 0 ,cursor:"pointer"}} onClick={setLike}>
+                <div className='vp-video-button' style={{ marginRight: "10px" }}>
+                  <button style={{ width: "100%", height: "100%", position: "absolute", opacity: 0, cursor: "pointer" }} onClick={setLike}>
                   </button>
                   <FontAwesomeIcon icon={liked ? faHeart : faHeartBroken} style={{ height: "25px", color: "#4C4C4C", paddingRight: "4px" }} className='vp-word-icon' />
                   <span>like</span>
                 </div>
                 <div className='vp-video-button'>
-                  <button style={{ width: "100%", height: "100%", position: "absolute", opacity: 0 ,cursor:"pointer"}} onClick={writeCommunityPost}>
+                  <button style={{ width: "100%", height: "100%", position: "absolute", opacity: 0, cursor: "pointer" }} onClick={writeCommunityPost}>
                   </button>
                   <FontAwesomeIcon icon={faPen} style={{ height: "20px", color: "#4C4C4C", paddingRight: "4px" }} className='vp-word-icon' />
                   <span style={{ fontSize: "14px" }}>Write about video</span>
@@ -580,32 +581,32 @@ const VideoPlayer = () => {
           }
           {
             //영상 밑에 커뮤니티
-            community != null  &&
-            <div className="vp-community-div" style={{marginTop:"10px"}}>
-              <div style={{ borderTop:"1px solid #c4c4c4", height:"30px", marginTop: "5px" }}>
-                <p style={{fontSize:"18px",marginTop:"10px",fontWeight:"bold"}}>A post about this video</p>
+            community != null &&
+            <div className="vp-community-div" style={{ marginTop: "10px" }}>
+              <div style={{ borderTop: "1px solid #c4c4c4", height: "30px", marginTop: "5px" }}>
+                <p style={{ fontSize: "18px", marginTop: "10px", fontWeight: "bold" }}>A post about this video</p>
               </div>
               {
                 community.map((data, index) => (
                   <div key={index} className='vp-community-item'>
-                    <p style={{fontSize:"1.5rem",marginTop:"10px",fontWeight:"bold",marginTop:"3px",marginBottom:"6px"}}>
+                    <p style={{ fontSize: "1.5rem", marginTop: "10px", fontWeight: "bold", marginTop: "3px", marginBottom: "6px" }}>
                       {data.title}
                     </p>
-                    <p style={{ whiteSpace: "pre-wrap" ,maxHeight:"70px" ,minHeight:"70px",overflow:"hidden",fontSize:"1rem"}}>{data.content}</p>
-                    <div style={{ height:"30px", marginTop: "5px",display:"flex" }}>
+                    <p style={{ whiteSpace: "pre-wrap", maxHeight: "70px", minHeight: "70px", overflow: "hidden", fontSize: "1rem" }}>{data.content}</p>
+                    <div style={{ height: "30px", marginTop: "5px", display: "flex" }}>
                       <FontAwesomeIcon icon={faHeart} style={{ height: "16px", color: "darkgray", paddingTop: "1px" }} className='vp-word-icon' />
-                      <span style={{color:"darkgray"}}>
-                      {"\u00A0"}{data.like}{"\u00A0"}like{"\u00A0\u00A0\u00A0.\u00A0\u00A0\u00A0"}
+                      <span style={{ color: "darkgray" }}>
+                        {"\u00A0"}{data.like}{"\u00A0"}like{"\u00A0\u00A0\u00A0.\u00A0\u00A0\u00A0"}
                       </span>
-                      <span style={{color:"darkgray"}}>
-                      { String(data.uploadDate).substring(8,10) }{" - "}
-                      { String(data.uploadDate).substring(5,7) }{" - "}
-                      { String(data.uploadDate).substring(0,4) }{"\u00A0\u00A0\u00A0.\u00A0\u00A0\u00A0"}
+                      <span style={{ color: "darkgray" }}>
+                        {String(data.uploadDate).substring(8, 10)}{" - "}
+                        {String(data.uploadDate).substring(5, 7)}{" - "}
+                        {String(data.uploadDate).substring(0, 4)}{"\u00A0\u00A0\u00A0.\u00A0\u00A0\u00A0"}
                       </span>
-                      <span style={{color:"darkgray"}}>
-                      {"\u00A0"}{data.commentCnt}{"\u00A0"}comment
+                      <span style={{ color: "darkgray" }}>
+                        {"\u00A0"}{data.commentCnt}{"\u00A0"}comment
                       </span>
-                      <span style={{color:"darkgray",marginLeft:"auto",fontWeight:"bold",textDecoration:"underline",cursor:"pointer"}}
+                      <span style={{ color: "darkgray", marginLeft: "auto", fontWeight: "bold", textDecoration: "underline", cursor: "pointer" }}
                         onClick={() => CommunityPost(data.postId)}
                       >
                         Take a look at this post
@@ -614,7 +615,7 @@ const VideoPlayer = () => {
                   </div>
                 ))
               }
-              <div style={{ height:"30px", marginTop: "5px" }}>
+              <div style={{ height: "30px", marginTop: "5px" }}>
               </div>
             </div>
           }
@@ -636,6 +637,7 @@ const VideoPlayer = () => {
                   <div key={index} className={subtitle.isFocus ? 'subtitle-show' : ''} ref={subtitle.isFocus ? activeSubtitleRef : null}
                     onMouseEnter={() => setIsHovered(index)} // 마우스 진입 시
                     onMouseLeave={() => settingClose()} // 마우스 벗어날 시
+                    style={{maxWidth:"330px"}}
                   >
                     <div style={{
                       display: 'flex',
@@ -681,10 +683,12 @@ const VideoPlayer = () => {
                 <div {...props} style={{ ...style, backgroundColor: '#fff', borderRadius: 3 }} />
               }
             >
-              <div style={{ border: "1px solid black", backgroundColor: "#383933" }}>
+              <div style={{ border: "1px solid black", backgroundColor: "#383933", minHeight: "310px" }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', height: '25px', padding: '5px', paddingBottom: '0px' }}>
-                  <div>
-                  </div>
+                  {
+                    //지움면 안돰
+                    <div></div>
+                  }
                   <div>
                     <FontAwesomeIcon icon={faCircleExclamation} title='Report an error' style={{ color: "#FF6C6C" }} className='vp-word-icon'
                       onClick={() => reportWord(wordId)}
@@ -697,8 +701,8 @@ const VideoPlayer = () => {
                 {
                   wordApiData.dictionaryDetailResponses.map((word, index) => (
                     <div style={{ paddingLeft: "5px" }}>
-                      <div style={{display:"flex",height:"40px",alignItems:"center"}}>
-                        <FontAwesomeIcon icon={faClipboard} title='add note' style={{ color: "637BC8"}} className='vp-word-icon'
+                      <div style={{ display: "flex", height: "40px", alignItems: "center" }}>
+                        <FontAwesomeIcon icon={faClipboard} title='add note' style={{ color: "637BC8" }} className='vp-word-icon'
                           onClick={() => addNote(word)}
                         />
                         <p className='vp-word-title'>{word.wordName} <sup>{index + 1}</sup></p>
