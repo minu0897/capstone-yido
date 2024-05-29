@@ -36,7 +36,7 @@ const VideoContainer = ({ video }) => {
 
     return (
         <div className="video-container" onClick={handleClick} style={{cursor:"pointer"}}>
-            <img src={imageUrl} alt="thumbnail" height="200px"/>
+            <img src={imageUrl} alt="thumbnail" height="200px" style={{objectFit: 'cover',maxWidth:"170px"}}/>
             <span style={{fontSize:"16px",fontWeight:"bold"}}>{''+truncateTitle(video.title)}</span>
             {
                 //<span>Contents : {truncateText(video.content, 15)}</span>
