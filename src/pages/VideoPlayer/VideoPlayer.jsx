@@ -417,17 +417,32 @@ const VideoPlayer = () => {
   };
 
   const reportSentence = (data) => {
-    alert("reportSentence");
+    ///api/report/sentence/{subtitleSentenceId}
+    axios.get('api/report/sentence/' + data.subtitleId)
+      .then(response => {
+        alert("We reported the error regarding the sentence to the channel manager.");
+      })
+      .catch(error => {
+      });
   }
 
   const reportWord = (data) => {
-    alert("reportWord");
-    console.log(data);
+    axios.get('api/report/word/' + data)
+      .then(response => {
+        alert("We reported the error regarding the word to the channel manager.");
+      })
+      .catch(error => {
+      });
   }
 
   const addNote = async (data) => {
     try {
       const response = await axios.post('/api/note/' + data.id+"?isCorrected="+data.corrected);
+      // 응답 처리
+      if (response.status === 200) {  // HTTP 상태 코드가 200(성공)인 경우
+        alert("Added to Note");
+      } else {
+      }
     } catch (error) {
     }
   }
