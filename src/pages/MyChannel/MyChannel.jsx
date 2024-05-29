@@ -13,6 +13,8 @@ let intervalId = null;
 const MyChannel = () => {
   const [data, setData] = useState(null);
   const [videos, setvideos] = useState(null);
+  const navigate = useNavigate();
+  
   useEffect(() => {
     selectdata();
     
@@ -45,31 +47,37 @@ const MyChannel = () => {
     console.log("현재 시간은 " + formattedTime + "입니다.");
 }
 
-  useEffect(() => {
-    let created = true;
-    if (videos == null) return;
-    for (let i = 0; i < videos.length; i++) {
-      if (!videos[i].subtitleCreated) {
-        created = false;
-        break;
-      }
-    }
-    //자막작업안된 비디오가 있는데 5초함수가 이미 실행중
-    if(!created && intervalId != null){
-      return;
-    }
-    //자막작업안된 비디오가 있음
-    if (!created){
-      intervalId = setInterval(selectdata, 5000);
-    }else{
-        //자막작업안된 비디오가 없음
-      if(intervalId != null){
-        clearInterval(intervalId);
-        intervalId = null;
-      }
-    }
-  }, [videos]);
-
+  // useEffect(() => {
+  //   let created = true;
+  //   if (videos == null) return;
+  //   for (let i = 0; i < videos.length; i++) {
+  //     if (!videos[i].subtitleCreated) {
+  //       created = false;
+  //       break;
+  //     }
+  //   }
+  //   //자막작업안된 비디오가 있는데 5초함수가 이미 실행중
+  //   if(!created && intervalId != null){
+  //     return;
+  //   }
+  //   //자막작업안된 비디오가 있음
+  //   if (!created){
+  //     intervalId = setInterval(selectdata, 5000);
+  //   }else{
+  //       //자막작업안된 비디오가 없음
+  //     if(intervalId != null){
+  //       clearInterval(intervalId);
+  //       intervalId = null;
+  //     }
+  //   }
+  // }, [videos]);
+  const clickChannelModify = () => {
+  }
+  const clickupload = () => {
+    navigate('/RegisterVideo'); // 클릭 시 / 경로로 이동합니다.
+  }
+  
+  
   return (
     <div className='Mychannel-div'>
       {
@@ -78,10 +86,10 @@ const MyChannel = () => {
           <div className="mc-div" style={{ margin: "auto", justifyContent: "center" }}>
             <h1>{data.channelName}</h1>
             <div className="mc-div" style={{ justifyContent: "end" }}>
-              <button className='mc-button'>
+              <button className='mc-button' onClick={clickupload}>
                 영상 업로드
               </button>
-              <button className='mc-button'>
+              <button className='mc-button' onClick={clickChannelModify}>
                 채널 정보 변경
               </button>
             </div>

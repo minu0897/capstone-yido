@@ -9,6 +9,7 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const { user, logout } = useAuth(); // useAuth 훅에서 로그아웃 함수 사용
+  console.log(user)
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -43,7 +44,10 @@ const Header = () => {
   };
   
   const handleMyClick = () => {
-    navigate('/mypage'); // 클릭 시 / 경로로 이동합니다.
+    if(user.role == "PROVIDER")
+      navigate('/mychannel'); // 클릭 시 / 경로로 이동합니다.
+    else if(user.role == "USER")
+      navigate('/mypage'); // 클릭 시 / 경로로 이동합니다.
   };
 
   const handleLogin = () => {
@@ -73,8 +77,6 @@ const Header = () => {
 
         {/* search form 추후 구현 */}
         <div style={{minWidth:"400px"}}>
-            <Link to={'/RegisterVideo'} style={{color:"white"}}>upload 나중에 옮겨야함
-            </Link>
         {/*
           <form onSubmit={handleSubmit} className="search-container" style={{marginLeft: '250px', marginTop: '10px'}}>
             <input type="text" className="inputdeco" value={searchTerm} onChange={handleInputChange} />
