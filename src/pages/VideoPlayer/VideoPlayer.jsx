@@ -326,6 +326,14 @@ const VideoPlayer = () => {
   };
 
   useEffect(() => {
+    axios.get('/api/dictionary?subtitleWordId=' + wordId)
+      .then(response => {
+        setwordApiData(response.data);
+        setshowWord(true);
+      })
+      .catch(error => {
+      });
+      return ;
     if (wordId == null) return;
     if (window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")) {
       setshowWord(true);
@@ -418,9 +426,8 @@ const VideoPlayer = () => {
   }
 
   const addNote = async (data) => {
-    return;
     try {
-      const response = await axios.post('/api/note/' + data);
+      const response = await axios.post('/api/note/' + data.id+"?isCorrected="+data.corrected);
     } catch (error) {
     }
   }
