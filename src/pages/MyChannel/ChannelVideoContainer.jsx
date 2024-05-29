@@ -42,7 +42,7 @@ const ChannelVideoContainer = ({ video }) => {
             {
                 video.subtitleCreated ? (
                     <>
-                        <img src={imageUrl} alt="thumbnail" height="200px"/>
+                        <img src={imageUrl} alt="thumbnail" height="200px" style={{objectFit: 'cover',maxWidth:"170px"}}/>
                         <span style={{fontSize:"16px",fontWeight:"bold"}}>{''+truncateTitle(video.videoTitle)}</span>
                         <span style={{fontSize:"12px"}}>오역신고 단어:0 문장:0</span>
                         <span style={{fontSize:"12px"}}>{video.views} views</span>
