@@ -1,0 +1,29 @@
+.video-container {
+  display: grid;
+  grid-template-columns: 1fr; 
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  padding-left: 9px;
+  padding-right: 10px;
+  background-color: #fff; 
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.video-container:hover {
+  scale: 1.01;
+}
+
+.video-container img {
+  min-width: 300px;
+  max-height: 170px; 
+  border-radius: 8px;
+  object-fit: contain; /* 이미지의 원본 비율을 유지하면서 최적의 크기로 조정 */
+  object-position: center; /* 이미지를 컨테이너 중앙에 위치 */
+}
+
+.video-container h3, .video-container span {
+  font-size: 15px;
+}
+
