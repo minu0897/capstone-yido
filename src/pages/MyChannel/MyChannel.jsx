@@ -7,12 +7,13 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import './MyChannel.css'
 import ChannelVideoContainer from './ChannelVideoContainer';
 import { BeatLoader } from 'react-spinners';
-
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 let intervalId = null;
 const MyChannel = () => {
   const [data, setData] = useState(null);
   const [videos, setvideos] = useState(null);
+  const [Videostatus, setVideostatus] = useState(false);
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -25,10 +26,9 @@ const MyChannel = () => {
     axios.get('/api/channel')
       .then(response => {
         setData(response.data);
-        
         if(response.data.channelVideos != videos)
           setvideos(response.data.channelVideos);
-        printCurrentTime();
+        //printCurrentTime();
       })
       .catch(error => {
       }
@@ -47,36 +47,18 @@ const MyChannel = () => {
     console.log("현재 시간은 " + formattedTime + "입니다.");
 }
 
-  // useEffect(() => {
-  //   let created = true;
-  //   if (videos == null) return;
-  //   for (let i = 0; i < videos.length; i++) {
-  //     if (!videos[i].subtitleCreated) {
-  //       created = false;
-  //       break;
-  //     }
-  //   }
-  //   //자막작업안된 비디오가 있는데 5초함수가 이미 실행중
-  //   if(!created && intervalId != null){
-  //     return;
-  //   }
-  //   //자막작업안된 비디오가 있음
-  //   if (!created){
-  //     intervalId = setInterval(selectdata, 5000);
-  //   }else{
-  //       //자막작업안된 비디오가 없음
-  //     if(intervalId != null){
-  //       clearInterval(intervalId);
-  //       intervalId = null;
-  //     }
-  //   }
-  // }, [videos]);
   const clickChannelModify = () => {
   }
   const clickupload = () => {
     navigate('/RegisterVideo'); // 클릭 시 / 경로로 이동합니다.
   }
-  
+
+  const clickvideostatus = () => {
+    setVideostatus(!Videostatus);
+  }
+  useEffect(() => {
+    //data = data.filter(d => d.err1>0 || d.err2>0);
+  }, [Videostatus]);
   
   return (
     <div className='Mychannel-div'>
@@ -95,6 +77,10 @@ const MyChannel = () => {
             </div>
             <div className="mc-div" style={{ borderBottom: "1px solid #C4C4C4" }}>
               <h3>내 채널 영상</h3>
+              <button className='mc-button-e' onClick={clickvideostatus}>
+                <FontAwesomeIcon icon={faTriangleExclamation} style={{ height: "20px", color: "#4C4C4C", paddingRight: "4px", color: "red" }} className='n-icon' />
+                번역 및 오류신고 영상 보기
+              </button>
             </div>
 
             <div className='mc-recommendvideoarray'>
