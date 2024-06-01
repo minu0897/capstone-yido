@@ -9,7 +9,8 @@ const ImageSlider = (props) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    setData(props.videos.slice(0, 6));
+    if(props.videos != null)
+      setData(props.videos.slice(0, 6));
   }, [props]);
   
   useEffect(() => {
@@ -42,7 +43,7 @@ const ImageSlider = (props) => {
             <div className='slider-div' style={{ backgroundColor: images[index%4] }} >
               <div className='slider-title'>
                 <span className='span-title'>
-                  <p className='p-title'>Today’s  recommand  content</p>
+                  <p className='p-title'>Today’s  Recommend  content</p>
                   <p>{arr.title}</p>
                   <br/><br/><br/><br/><br/><br/>
                 </span>

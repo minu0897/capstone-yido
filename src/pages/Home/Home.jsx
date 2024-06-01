@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css'
 import ImageSlider from '../../components/home/slider/ImageSlider'
-import VideoContainer from '../Recommand/VideoContainer';
+import VideoContainer from '../Recommend/VideoContainer';
 import Card from '../Community/Card';
 
 const Home = () => {
@@ -59,13 +59,15 @@ const Home = () => {
           <div className='h-carddiv'>
             <h3 style={{marginTop:"3px",marginLeft:"5px",marginBottom:"0px",textDecoration:"underline"}}>word of the day</h3>
             <div className='h-card-note'>
-              <p style={{fontSize:"1.3rem",fontWeight:"bold",marginTop:"3px",marginBottom:"6px"}}>사방에서</p>
-              <p style={{fontSize:"1.2rem",marginLeft:"15px",fontWeight:"bold",marginTop:"10px",marginBottom:"6px"}}>from all directions</p>
+              <p style={{marginLeft:"5px",fontSize:"1.3rem",fontWeight:"bold",marginTop:"3px",marginBottom:"6px"}}>사방에서</p>
+              <p style={{fontSize:"1.2rem",marginLeft:"15px",fontWeight:"bold",marginTop:"10px",marginBottom:"6px",color: "white"}}>from all directions</p>
+              <p style={{fontSize:"0.7rem",marginLeft:"auto",marginRight:"10px",color:"white",textDecoration:"underline",cursor:"pointer"}}>Watch the video where this word is used</p>
             </div>
             <h3 style={{marginTop:"3px",marginLeft:"5px",marginBottom:"0px",textDecoration:"underline"}}>sentence of the day</h3>
             <div className='h-card-note'>
-              <p style={{fontSize:"1.3rem",fontWeight:"bold",marginTop:"3px",marginBottom:"6px"}}>내 길었던 하루</p>
-              <p style={{fontSize:"1.2rem",marginLeft:"15px",fontWeight:"bold",marginTop:"10px",marginBottom:"6px"}}>My long day</p>
+              <p style={{marginLeft:"5px",fontSize:"1.3rem",fontWeight:"bold",marginTop:"3px",marginBottom:"6px"}}>내 길었던 하루</p>
+              <p style={{fontSize:"1.2rem",marginLeft:"15px",fontWeight:"bold",marginTop:"10px",marginBottom:"6px",color: "white"}}>My long day</p>
+              <p style={{fontSize:"0.7rem",marginLeft:"auto",marginRight:"10px",color:"white",textDecoration:"underline",cursor:"pointer"}}>Watch the video where this sentence is used</p>
             </div>
             <div className='h-carddiv'>
             </div>

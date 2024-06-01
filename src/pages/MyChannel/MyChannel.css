@@ -3,7 +3,7 @@
   margin: auto;
 }
 
-.mc-recommandvideoarray{
+.mc-recommendvideoarray{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

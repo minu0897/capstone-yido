@@ -9,7 +9,7 @@ import Navigation from './components/common/navigation/Navigation';
 import Home from './pages/Home/Home';
 import Note from './pages/Note/Note';
 import Community from './pages/Community/Community';
-import Recommand from './pages/Recommand/Recommand';
+import Recommend from './pages/Recommend/Recommend';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import VideoPlayer from './pages/VideoPlayer/VideoPlayer';
@@ -33,7 +33,7 @@ root.render(
           <Route path='/' element={<Home/>} />
           <Route path='/Community' element={<Community />} />
           <Route path='/Note' element={<Note />} />
-          <Route path='/Recommand' element={<Recommand />} />
+          <Route path='/Recommend' element={<Recommend />} />
           <Route path='/Signup' element={<Signup />} />
           <Route path='/Login' element={<Login />} />
           <Route path='/videoplayer' element={<VideoPlayer />} />

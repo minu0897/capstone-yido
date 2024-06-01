@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Recommand.css';
+import './Recommend.css';
 import VideoContainer from './VideoContainer.jsx';
 
-const Recommand = () => {
+const Recommend = () => {
   const [videos, setVideos] = useState([]);
   const [tags, setTags] = useState([null]);
   const [activeIndex, setActiveIndex] = useState(-1); // 초기에는 아무 버튼도 선택되지 않음
@@ -75,7 +75,7 @@ const Recommand = () => {
           }
         </div>
       }
-      <div className='recommandvideoarray'>
+      <div className='recommendvideoarray'>
         {videos.map(video => (
             <VideoContainer video={video} />
         ))}
@@ -84,4 +84,4 @@ const Recommand = () => {
   );
 };
 
-export default Recommand;
+export default Recommend;

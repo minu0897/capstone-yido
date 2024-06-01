@@ -1,4 +1,4 @@
-.recommand {
+.recommend {
   padding: 20px;
   display: flex;
   align-items: center; /* 모든 자식을 수직으로 중앙에 위치시키지만 */
@@ -11,7 +11,7 @@
   width: 500px;
 }
 
-.recommandvideoarray{
+.recommendvideoarray{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

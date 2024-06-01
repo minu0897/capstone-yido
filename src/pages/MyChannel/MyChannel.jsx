@@ -97,7 +97,7 @@ const MyChannel = () => {
               <h3>내 채널 영상</h3>
             </div>
 
-            <div className='mc-recommandvideoarray'>
+            <div className='mc-recommendvideoarray'>
               {
                 videos != null && videos.map(video => (
                   <ChannelVideoContainer video={video} />
