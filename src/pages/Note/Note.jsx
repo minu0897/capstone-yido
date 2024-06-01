@@ -8,6 +8,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faRectangleList } from '@fortawesome/free-solid-svg-icons';
 import { faGrip } from '@fortawesome/free-solid-svg-icons';
 import { faList } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -29,17 +30,32 @@ const Note = () => {
     setFlippedStates(newFlippedStates);
   };
 
+  
+const deleteNote = async  (data) => {
+  try {
+    const response = await axios.delete(`/api/note/${data}`);
+    console.log('Note deleted successfully:', response.data);
+    dataselect();
+    return response.data; // 성공적인 응답 처리
+  } catch (error) {
+    console.error('Error deleting the note:', error);
+    throw error; // 에러를 던져 상위 콜 스택에서 처리할 수 있도록 함
+  }
+};
 
+const dataselect = () => { 
+  axios.get('/api/note')
+    .then(response => {
+      setData(response.data.noteList);
+      console.log(response.data.noteList);
+    })
+    .catch(error => {
+    }
+    );
+};
 
   useEffect(() => {
-    axios.get('/api/note')
-      .then(response => {
-        setData(response.data.noteList);
-        console.log(response.data.noteList);
-      })
-      .catch(error => {
-      }
-      );
+    dataselect();
   }, []);
 
   const clickcard = () => {
@@ -62,10 +78,13 @@ const Note = () => {
         data != null && listui &&
         data.map((data, index) => (
           <div key={index} className={(index % 2 == 0) ? 'n-word-div' : 'n-word-div-odd'}>
-            <p style={{ fontSize: "1.5rem", fontWeight: "bold", marginTop: "3px", marginBottom: "6px", color: "#637BC8" }}>
-              <FontAwesomeIcon icon={faStar} style={{ height: "20px", color: "#4C4C4C", paddingRight: "4px", color: "#FAED7D" }} className='n-icon' />
-              {data.wordName}
-            </p>
+            <div style={{display:"flex",alignItems:"center"}}>
+              <p style={{ fontSize: "1.5rem", fontWeight: "bold", marginTop: "3px", marginBottom: "6px", color: "#637BC8" }}>
+                <FontAwesomeIcon icon={faStar} style={{ height: "20px", color: "#4C4C4C", paddingRight: "4px", color: "#FAED7D" }} className='n-icon' />
+                {data.wordName}
+              </p>
+              <FontAwesomeIcon   onClick={() => deleteNote(data.noteId)}title="delete word" icon={faXmark} style={{ height: "20px", color: "#4C4C4C", paddingRight: "4px", color: "white" ,marginLeft:"auto"}} className='n-icon'/>
+            </div>
             <p style={{ fontSize: "1.2rem", marginLeft: "15px", fontWeight: "bold", marginTop: "10px", marginBottom: "6px" }}>
               {data.wordMeaning}
             </p>
