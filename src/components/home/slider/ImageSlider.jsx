@@ -1,21 +1,26 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Slider from 'react-slick';
 import './ImageSlider.css'
-import img1 from '../../../sample/1.webp'
-import img2 from '../../../sample/2.webp'
-import img3 from '../../../sample/3.webp'
-import img4 from '../../../sample/4.webp'
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-const ImageSlider = () => {
+const ImageSlider = (props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    setData(props.videos.slice(0, 6));
+  }, [props]);
+  
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   const images = [
-    [img1,'#FFDFF6'],
-    [img2,'#FFD9EC'],
-    [img3,'#ECFFFF'],
-    [img4,'#DEC9FF']
+    ['#FFDFF6'],
+    ['#FFD9EC'],
+    ['#ECFFFF'],
+    ['#DEC9FF']
   ];
 
   const settings = {
@@ -32,18 +37,18 @@ const ImageSlider = () => {
   return (
     <div style={{ padding: "0px 10px 30px 10px", alignItems: "center", overflowX: "hidden", overflowY: "hidden" }}>
       <Slider {...settings}  dotsClass="dots-css">
-        {images.map((arr, index) => (
+        { data != null  && data.map((arr, index) => (
           <div key={index}>
-            <div className='slider-div' style={{ backgroundColor: arr[1] }} >
+            <div className='slider-div' style={{ backgroundColor: images[index%4] }} >
               <div className='slider-title'>
                 <span className='span-title'>
                   <p className='p-title'>Today’s  recommand  content</p>
-                  <p>chaewon vlog #6 Fearnot!<br/> Co..Come to see my vlog!</p>
+                  <p>{arr.title}</p>
                   <br/><br/><br/><br/><br/><br/>
                 </span>
               </div>
               <div className='slider-img'>
-                <img className='slider-img' src={arr[0]} alt={`Slide ${index}`} style={{ width: '580px', height: '280px', objectFit: 'cover' }} />
+                <img className='slider-img' src={`http://101.235.73.77:8088/video/thumbnail/${arr.videoId}.jpg`} alt={`Slide ${index}`} style={{ width: '580px', height: '280px', objectFit: 'fill' }} />
               </div>
             </div>
           </div>

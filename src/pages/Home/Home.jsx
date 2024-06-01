@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <div className='home'>
       <div className='h-box' style={{ height: '440px' }}>
-        <ImageSlider />
+        <ImageSlider videos={videos}/>
       </div>
       <div className='h-box' style={{ height: '50px', alignItems: "center", placeItems: "center", display: "grid"}}>
         <div style={{ height: "50px", width: '1000px', minWidth: '1000px',display:"flex",flexWrap:"wrap",borderBottom:"1px solid black"}}>
