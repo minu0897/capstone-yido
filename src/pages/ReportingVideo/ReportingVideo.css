@@ -1,0 +1,15 @@
+.rv-con-div{
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    max-width: 1200px;
+    margin: auto;
+}
+.rv-player {
+    width: 500px;
+    /* 또는 원하는 크기 */
+    height: 350px;
+    /* 또는 원하는 크기 */
+    position: relative;
+    /* 자식 요소를 위한 위치 컨텍스트 */
+}

@@ -33,7 +33,7 @@ const ChannelVideoContainer = ({ video }) => {
             navigate('/Login');
             alert("Log in first");
         }
-        else navigate('/videoplayer?id='+video.videoId);
+        else navigate('/ReportingVideo?id='+video.videoId);
     }
     
 
