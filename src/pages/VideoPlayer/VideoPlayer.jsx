@@ -568,7 +568,7 @@ const VideoPlayer = () => {
             <div style={{ display: 'flex', justifyContent: 'space-between', height: '25px', padding: '5px', paddingBottom: '0px' }}>
               <div>
                 <p style={{ margin: "0px", fontSize: "14px" }}>MadeBy </p>
-                <p style={{ margin: "0px", fontSize: "18px" }}>Team Yido</p>
+                <p style={{ margin: "0px", fontSize: "18px" }}>{ data != null ? data.channelName:""}</p>
               </div>
               <div style={{ display: "flex" }}>
                 <div className='vp-video-button' style={{ marginRight: "10px" }}>

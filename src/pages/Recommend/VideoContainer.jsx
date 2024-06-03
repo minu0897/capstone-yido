@@ -42,7 +42,7 @@ const VideoContainer = ({ video }) => {
                 //<span>Contents : {truncateText(video.content, 15)}</span>
             }
             {/*<span>Likes: {video.likes}</span>*/}
-            <span style={{fontSize:"12px"}}>Team Yido</span>
+            <span style={{fontSize:"12px"}}>{video.channelName}</span>
             <span style={{fontSize:"12px"}}>{video.views} views</span>
         </div>
     );
