@@ -71,9 +71,13 @@ const MyChannel = () => {
               <button className='mc-button' onClick={clickupload}>
                 영상 업로드
               </button>
-              <button className='mc-button' onClick={clickChannelModify}>
-                채널 정보 변경
-              </button>
+              {
+                /*
+                <button className='mc-button' onClick={clickChannelModify}>
+                  채널 정보 변경
+                </button>
+                 */
+              }
             </div>
             <div className="mc-div" style={{ borderBottom: "1px solid #C4C4C4" }}>
               <h3>내 채널 영상</h3>

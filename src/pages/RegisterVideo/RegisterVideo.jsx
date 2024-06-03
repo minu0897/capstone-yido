@@ -204,15 +204,15 @@ const RegisterVideo = () => {
             }
             {
                 page === 4 && <>
-                    <button onClick={handleSubmit} className="submit_btn" >Complete</button>
                     { videoSrc !== null && <video height="400px" width="100%" controls src={videoSrc} />}
+                    <button onClick={handleSubmit} className="submit_btn" >Complete</button>
                 </>
             }
             {
                 page === 5 && <>
                     <h2></h2>
                     <h3>uploaded successfully</h3>
-                    <Link to={'/'}  style={{textDecoration:'none'}}>
+                    <Link to={'/mychannel'}  style={{textDecoration:'none'}}>
                         <a className="">Would you like to go check the uploaded video?<br/>(Click me)</a>
                     </Link>
                 </>

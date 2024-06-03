@@ -79,11 +79,13 @@
 
 .submit_btn{
     width: 80px;
-    background-color: #A09E9E;
-    border: none;
+    min-height: 35px;
+    
+    border: 1px solid #A09E9E;
     height: 22px;
     cursor: pointer;
     border-radius: 15px;
+    margin-top: 20px;
 }
 
 .overlayout{

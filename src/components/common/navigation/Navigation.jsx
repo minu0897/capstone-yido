@@ -23,7 +23,7 @@ const Navigation = () => {
       case '/':
         setisMenu(1);
       break
-      case '/Recommend':
+      case '/Videos':
         setisMenu(2);
       break
       case '/Note':
@@ -41,7 +41,7 @@ console.log(window.location.href);
   return (
     <div className='navigation'>
       <Link to={'/'} style={{fontWeight:  (isMenu == 1 ?"bold":"") }}>Home</Link>
-      <Link to={'/Recommend'} style={{fontWeight:  (isMenu == 2 ?"bold":"") }}>Recommend</Link>
+      <Link to={'/Videos'} style={{fontWeight:  (isMenu == 2 ?"bold":"") }}>Videos</Link>
       <Link to={'/Note'} style={{fontWeight:  (isMenu == 3 ?"bold":"") }}>Note</Link>
       <Link to={'/Community'} style={{fontWeight:  (isMenu == 4 ?"bold":"") }}>Community</Link>
     </div>

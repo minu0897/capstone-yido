@@ -34,7 +34,7 @@ root.render(
           <Route path='/' element={<Home/>} />
           <Route path='/Community' element={<Community />} />
           <Route path='/Note' element={<Note />} />
-          <Route path='/Recommend' element={<Recommend />} />
+          <Route path='/Videos' element={<Recommend />} />
           <Route path='/Signup' element={<Signup />} />
           <Route path='/Login' element={<Login />} />
           <Route path='/videoplayer' element={<VideoPlayer />} />
