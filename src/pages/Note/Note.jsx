@@ -71,8 +71,8 @@ const dataselect = () => {
       <div style={{ marginTop: "10px", marginBottom: "10px", display: "flex", borderBottom: "2px solid darkgray" }}>
         <span style={{ fontSize: "20px", fontWeight: "bold" }}>{ ( data == null ? "0" : data.length )+"\u00A0\u00A0"}</span>
         <span style={{ fontSize: "20px" }}>{"words are stored"}</span>
-        <FontAwesomeIcon title='View by card' icon={faGrip} style={{ marginLeft: "auto", color: cardui ? "black" : "#D5D5D5" }} className='n-icon' onClick={clickcard} />
-        <FontAwesomeIcon title='View as list' icon={faList} style={{ color: listui ? "black" : "#D5D5D5" }} className='n-icon' onClick={clicklist} />
+        <FontAwesomeIcon title='View as list' icon={faList} style={{ marginLeft: "auto",color: listui ? "black" : "#D5D5D5" }} className='n-icon' onClick={clicklist} />
+        <FontAwesomeIcon title='View by card' icon={faGrip} style={{  color: cardui ? "black" : "#D5D5D5" }} className='n-icon' onClick={clickcard} />
       </div>
       {
         data != null && listui &&
