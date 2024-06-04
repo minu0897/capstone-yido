@@ -8,6 +8,9 @@ import './ReportingVideo.css'
 import Controls from '../../components/videoplayer/control/Controls'
 import Container from "@material-ui/core/Container";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 const useStyles = makeStyles((theme) => ({
     playerWrapper: {
@@ -104,16 +107,15 @@ let count = 0;
 const ReportingVideo = () => {
     const [data, setData] = useState(null);
     const [wordui, setwordui] = useState(true);//false 이면 보고된 문장으로
+    const [words, setwords] = useState([]);//
+    const [sentences, setsentences] = useState([]);//
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const videoId = searchParams.get('id');
     const [isHovered, setIsHovered] = useState(-1);  // 호버 상태를 관리하는 로컬 상태
     const [ismenuClicked, setismenuClicked] = useState(-1);  // 문장신고 메뉴 상태를 관리하는 로컬 상태
-    const [community, setcommunity] = useState(null);  // 커뮤니티 글 정보들
-    const [liked, setliked] = useState(null);  // 좋아요
     const navigate = useNavigate();
     const classes = useStyles();
-
     const [state, setState] = useState({
         pip: false,
         playing: true,
@@ -151,8 +153,29 @@ const ReportingVideo = () => {
     } = state;
 
     useEffect(() => {
-        setData();
+        dataselect();
     }, []);
+
+    const dataselect = () => {
+        axios.get('/api/report/words/' + videoId)
+            .then(response => {
+                setwords(response.data.resultList);
+                console.log(response.data.resultList);
+            })
+            .catch(error => {
+                setwords([]);
+            }
+            );
+
+        axios.get('/api/report/sentences/' + videoId)
+            .then(response2 => {
+                setsentences(response2.data.resultList);
+            })
+            .catch(error => {
+                setsentences([]);
+            }
+            );
+    }
 
     //-------------------------------------------
     //player 함수
@@ -278,6 +301,76 @@ const ReportingVideo = () => {
         setwordui(!wordui);
     };
 
+    const settingplayertime = (time) => {
+        if (playerRef.current) {
+          playerRef.current.seekTo(time, 'seconds');
+        }
+    };
+
+    const sentenceAdd = (event,sen) => {
+        sen.val = event.target.value;
+    };
+    
+    const sentenceSubmit = async (v1,v2) => {
+        const formData = {
+            subtitleSentenceId: v1, // videoId가 없는 경우 null로 설정
+            correctedKorSentence:v2,
+        };
+        console.log(formData);
+
+        try {
+            const response = await fetch('/api/report/sentence', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Something went wrong!');
+            }
+
+            const result = await response.json();
+
+            alert('수정된 한국어 문장을 AI에게 번역을 요청하였습니다!');
+        } catch (error) {
+            console.error('실패했습니다:', error);
+        }
+    };
+
+    const wordAdd = (event,wor) => {
+        wor.val = event.target.value;
+    };
+    
+    const wordSubmit = async (v1,v2) => {
+        const formData = {
+            subtitleWordId: v1, // videoId가 없는 경우 null로 설정
+            correctedMeaning:v2,
+        };
+        console.log(formData);
+
+        try {
+            const response = await fetch('/api/report/word', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Something went wrong!');
+            }
+
+            const result = await response.json();
+
+            alert('수정된 단어 의미를 단어장에 추가하였습니다.');
+        } catch (error) {
+            console.error('실패했습니다:', error);
+        }
+    };
+
     return (
         <div className='rv-con-div'>
             <div className="rv-player" style={{ height: "450px" }}>
@@ -351,22 +444,80 @@ const ReportingVideo = () => {
             </div>
             <div className="rv-reporting" style={{ height: "450px" }}>
                 <div style={{ marginTop: "10px", marginBottom: "10px", display: "flex", borderBottom: "2px solid darkgray" }}>
-                    <span style={{ fontSize: "20px", fontWeight: "bold" }}>{ ( data == null ? "0" : data.length )+"\u00A0\u00A0"}</span>
-                    <span style={{ fontSize: "20px" }}>{ " 개의 "+ (wordui ? "단어가 " : "문장이 ") +"보고되었습니다."}</span>
+                    <span style={{ fontSize: "20px", fontWeight: "bold" }}>
+                        { wordui ? words.length : sentences.length + "\u00A0\u00A0" }
+                    </span>
+                    <span style={{ fontSize: "20px" }}>{" 개의 " + (wordui ? "단어가 " : "문장이 ") + "보고되었습니다."}
+                    </span>
                     <button onClick={uichange}
-                    style={{ fontSize: "20px",marginLeft:"auto",border:"none",backgroundColor:"transparent",cursor:"pointer",textDecoration:"underline"}}>
-                        { (wordui ? "문장" : "단어") +"보기"}
+                        style={{ fontSize: "20px", marginLeft: "auto", border: "none", backgroundColor: "transparent", cursor: "pointer", textDecoration: "underline" }}>
+                        {(wordui ? "문장" : "단어") + "보기"}
                     </button>
                 </div>
                 {
-                    wordui?
-                    <div>
-                        word
-                    </div>
-                    :
-                    <div>
-                        sentence
-                    </div>
+                    wordui ?
+                        <div>
+                            {
+                                words != null && wordui &&
+                                words.map((word, index) => (
+                                    <div key={index} className='rv-word-div'>
+                                        <div style={{ display: "flex", alignItems: "center" }}>
+                                            <FontAwesomeIcon 
+                                            onClick={() =>wordSubmit(word.subtitleWordId,word.val)} 
+                                            title="수정된 의미 저장" icon={faPenToSquare} style={{ height: "20px",  paddingRight: "4px"}} className='n-icon'/>
+                                            <p style={{ fontSize: "1.5rem", fontWeight: "bold", marginTop: "3px", marginBottom: "6px", color: "red" }}>
+                                                {
+                                                    word.word
+                                                }
+                                            </p>
+                                        </div>
+                                        <textarea className='rv-inwordmean' placeholder="추가할 단어 뜻을 적어주세요." inputMode='text'
+                                        onChange={(event) =>wordAdd(event,word)}
+                                        >
+                                        </textarea>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                        :
+                        <div style={{overflowY:"scroll",maxHeight:"500px"}}>
+                        {
+                            sentences != null && !wordui &&
+                            sentences.map((sentence, index) => (
+                                <div key={index} className='rv-sen-div'>
+                                    <div style={{ alignItems: "center",marginRight:"10px" }}>
+                                        <div style={{display:"flex",alignItems: "center"}}>
+                                            <FontAwesomeIcon 
+                                            onClick={() =>settingplayertime(sentence.startTime)} 
+                                            title="해당 문장으로 이동" icon={faPlay} style={{ height: "16px",  paddingRight: "4px"}} className='n-icon'/>
+                                            <p className='pt'>{parseInt(sentence.startTime / 60)}:{String(parseInt(sentence.startTime) % 60).padStart(2, "0")}</p>
+                                        </div>
+                                        <p style={{ fontSize: "1.5rem", fontWeight: "bold", marginTop: "3px", marginBottom: "6px", color: sentence.reported ? "red":"black" }}>
+                                            {sentence.korSubtitle}
+                                        </p>
+                                    </div>
+                                    {
+                                        sentence.reported?
+                                        <div style={{marginRight:"10px"}}>
+                                            <p style={{ fontSize: "1rem", fontWeight: "bold", marginTop: "3px", marginBottom: "6px", color: sentence.reported ? "red":"black" }}>
+                                                {sentence.engSubtitle}
+                                            </p>
+                                            <div style={{display:"flex",alignItems: 'center' }}>
+                                                <input className= 'rv-inwordmean' placeholder="수정된 문장(한국어)을 적어주세요." inputMode='text' 
+                                                onChange={(event) =>sentenceAdd(event,sentence)}
+                                                >
+                                                </input>
+                                                <FontAwesomeIcon 
+                                                onClick={() =>sentenceSubmit(sentence.subtitleSentenceId,sentence.val)} 
+                                                title="수정한 문장 서버에 보내기" icon={faPaperPlane} style={{ height: "30px",  marginLeft: "14px",marginTop: "-8px"}} className='n-icon'/>
+                                            </div>
+                                        </div>
+                                        :<></>
+                                    }
+                                </div>
+                            ))
+                        }
+                        </div>
                 }
             </div>
         </div>

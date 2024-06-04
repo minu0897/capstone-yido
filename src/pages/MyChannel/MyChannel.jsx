@@ -26,6 +26,7 @@ const MyChannel = () => {
     axios.get('/api/channel')
       .then(response => {
         setData(response.data);
+        console.log(response.data)
         if(response.data.channelVideos != videos)
           setvideos(response.data.channelVideos);
         //printCurrentTime();

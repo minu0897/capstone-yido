@@ -6,7 +6,6 @@ import { BeatLoader } from 'react-spinners';
 
 
 const ChannelVideoContainer = ({ video }) => {
-    console.log(123);
     const imageUrl = `http://101.235.73.77:8088/video/thumbnail/${video.videoId}.jpg`;
     const { user } = useAuth();
     const navigate = useNavigate();
@@ -44,7 +43,18 @@ const ChannelVideoContainer = ({ video }) => {
                     <>
                         <img src={imageUrl} alt="thumbnail" height="200px" style={{objectFit: 'cover',maxWidth:"170px"}}/>
                         <span style={{fontSize:"16px",fontWeight:"bold"}}>{''+truncateTitle(video.videoTitle)}</span>
-                        <span style={{fontSize:"12px"}}>오역신고 단어:0 문장:0</span>
+                        <span style={{fontSize:"12px"}}>
+                        <div className="cvc-count-div">
+                            <span>오역신고 </span>
+                            <span style={{color:video.mistranslationSentenceCount ? "red":"",fontWeight:video.mistranslationSentenceCount ? "bold":""}}>
+                            단어:{ video.mistranslationSentenceCount ? video.mistranslationSentenceCount:"0"}
+                            </span>
+                            <span> </span>
+                            <span style={{color:video.mistranslationWordCount ? "red":"",fontWeight:video.mistranslationSentenceCount ? "bold":""}}>
+                            문장:{video.mistranslationWordCount ? video.mistranslationWordCount:"0"}
+                            </span>
+                        </div>
+                        </span>
                         <span style={{fontSize:"12px"}}>{video.views} views</span>
                     </>
                 ):(
