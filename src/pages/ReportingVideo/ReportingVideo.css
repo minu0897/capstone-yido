@@ -6,7 +6,17 @@
     margin: auto;
 }
 .rv-player {
-    width: 500px;
+    min-width: 500px;
+    /* 또는 원하는 크기 */
+    height: 350px;
+    /* 또는 원하는 크기 */
+    position: relative;
+    /* 자식 요소를 위한 위치 컨텍스트 */
+}
+.rv-reporting {
+
+    margin-left: 30px;
+    width: 800px;
     /* 또는 원하는 크기 */
     height: 350px;
     /* 또는 원하는 크기 */

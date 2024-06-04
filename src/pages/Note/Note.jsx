@@ -14,8 +14,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const Note = () => {
   const [data, setData] = useState(null);
-  const [cardui, setcardui] = useState(true);
-  const [listui, setlistui] = useState(false);
+  const [cardui, setcardui] = useState(false);
+  const [listui, setlistui] = useState(true);
   const [flippedStates, setFlippedStates] = useState([]);
 
   useEffect(() => {

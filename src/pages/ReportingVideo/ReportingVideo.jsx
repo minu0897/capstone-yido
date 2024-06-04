@@ -103,6 +103,7 @@ let count = 0;
 
 const ReportingVideo = () => {
     const [data, setData] = useState(null);
+    const [wordui, setwordui] = useState(true);//false 이면 보고된 문장으로
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const videoId = searchParams.get('id');
@@ -273,6 +274,10 @@ const ReportingVideo = () => {
 
     const totalDuration = format(duration);
 
+    const uichange = () => {
+        setwordui(!wordui);
+    };
+
     return (
         <div className='rv-con-div'>
             <div className="rv-player" style={{ height: "450px" }}>
@@ -345,6 +350,24 @@ const ReportingVideo = () => {
                 </Container>
             </div>
             <div className="rv-reporting" style={{ height: "450px" }}>
+                <div style={{ marginTop: "10px", marginBottom: "10px", display: "flex", borderBottom: "2px solid darkgray" }}>
+                    <span style={{ fontSize: "20px", fontWeight: "bold" }}>{ ( data == null ? "0" : data.length )+"\u00A0\u00A0"}</span>
+                    <span style={{ fontSize: "20px" }}>{ " 개의 "+ (wordui ? "단어가 " : "문장이 ") +"보고되었습니다."}</span>
+                    <button onClick={uichange}
+                    style={{ fontSize: "20px",marginLeft:"auto",border:"none",backgroundColor:"transparent",cursor:"pointer",textDecoration:"underline"}}>
+                        { (wordui ? "문장" : "단어") +"보기"}
+                    </button>
+                </div>
+                {
+                    wordui?
+                    <div>
+                        word
+                    </div>
+                    :
+                    <div>
+                        sentence
+                    </div>
+                }
             </div>
         </div>
     );
