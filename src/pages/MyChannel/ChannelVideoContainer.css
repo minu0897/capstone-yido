@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 1fr; 
   width: 300px;
-  border: 1px solid #ccc;
   padding: 10px;
   padding-left: 9px;
   padding-right: 10px;

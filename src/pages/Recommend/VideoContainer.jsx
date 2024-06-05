@@ -9,7 +9,7 @@ const VideoContainer = ({ video }) => {
     const navigate = useNavigate();
 
     // Helper function to truncate the title
-    const truncateTitle = (title, maxLength = 20) => {
+    const truncateTitle = (title, maxLength = 25) => {
         if (!title) return 'Untitled'; // text가 null이나 undefined인 경우 빈 문자열을 반환
         if (title.length > maxLength) {
             return title.substring(0, maxLength) + '...';
@@ -37,7 +37,7 @@ const VideoContainer = ({ video }) => {
     return (
         <div className="video-container" onClick={handleClick} style={{cursor:"pointer"}}>
             <img src={imageUrl} alt="thumbnail" height="200px" style={{objectFit: 'cover',maxWidth:"170px"}}/>
-            <span style={{fontSize:"16px",fontWeight:"bold"}}>{''+truncateTitle(video.title)}</span>
+            <span style={{fontSize:"16px",marginTop:"5px"}}>{''+truncateTitle(video.title)}</span>
             {
                 //<span>Contents : {truncateText(video.content, 15)}</span>
             }
