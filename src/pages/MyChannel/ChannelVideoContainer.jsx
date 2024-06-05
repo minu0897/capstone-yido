@@ -47,11 +47,11 @@ const ChannelVideoContainer = ({ video }) => {
                         <div className="cvc-count-div">
                             <span>오역신고 </span>
                             <span style={{color:video.mistranslationSentenceCount ? "red":"",fontWeight:video.mistranslationSentenceCount ? "bold":""}}>
-                            단어:{ video.mistranslationSentenceCount ? video.mistranslationSentenceCount:"0"}
+                            문장:{ video.mistranslationSentenceCount ? video.mistranslationSentenceCount:"0"}
                             </span>
                             <span> </span>
                             <span style={{color:video.mistranslationWordCount ? "red":"",fontWeight:video.mistranslationSentenceCount ? "bold":""}}>
-                            문장:{video.mistranslationWordCount ? video.mistranslationWordCount:"0"}
+                            단어:{video.mistranslationWordCount ? video.mistranslationWordCount:"0"}
                             </span>
                         </div>
                         </span>
