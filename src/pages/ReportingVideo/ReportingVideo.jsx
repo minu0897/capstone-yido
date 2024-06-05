@@ -303,18 +303,18 @@ const ReportingVideo = () => {
 
     const settingplayertime = (time) => {
         if (playerRef.current) {
-          playerRef.current.seekTo(time, 'seconds');
+            playerRef.current.seekTo(time, 'seconds');
         }
     };
 
-    const sentenceAdd = (event,sen) => {
+    const sentenceAdd = (event, sen) => {
         sen.val = event.target.value;
     };
-    
-    const sentenceSubmit = async (v1,v2) => {
+
+    const sentenceSubmit = async (v1, v2) => {
         const formData = {
             subtitleSentenceId: v1, // videoId가 없는 경우 null로 설정
-            correctedKorSentence:v2,
+            correctedKorSentence: v2,
         };
         console.log(formData);
 
@@ -338,14 +338,14 @@ const ReportingVideo = () => {
         }
     };
 
-    const wordAdd = (event,wor) => {
+    const wordAdd = (event, wor) => {
         wor.val = event.target.value;
     };
-    
-    const wordSubmit = async (v1,v2) => {
+
+    const wordSubmit = async (v1, v2) => {
         const formData = {
             subtitleWordId: v1, // videoId가 없는 경우 null로 설정
-            correctedMeaning:v2,
+            correctedMeaning: v2,
         };
         console.log(123);
         console.log(formData);
@@ -370,6 +370,10 @@ const ReportingVideo = () => {
         }
     };
 
+    function SentenceCounter() {
+        const tmp = sentences;
+        return tmp.filter(sentence => sentence.reported).length;
+      }
     return (
         <div className='rv-con-div'>
             <div className="rv-player" style={{ height: "450px" }}>
@@ -444,7 +448,7 @@ const ReportingVideo = () => {
             <div className="rv-reporting" style={{ height: "450px" }}>
                 <div style={{ marginTop: "10px", marginBottom: "10px", display: "flex", borderBottom: "2px solid darkgray" }}>
                     <span style={{ fontSize: "20px", fontWeight: "bold" }}>
-                        { wordui ? words.length : sentences.length + "\u00A0\u00A0" }
+                        {wordui ? words.length : SentenceCounter() + "\u00A0\u00A0"}
                     </span>
                     <span style={{ fontSize: "20px" }}>{" 개의 " + (wordui ? "단어가 " : "문장이 ") + "보고되었습니다."}
                     </span>
@@ -461,9 +465,9 @@ const ReportingVideo = () => {
                                 words.map((word, index) => (
                                     <div key={index} className='rv-word-div'>
                                         <div style={{ display: "flex", alignItems: "center" }}>
-                                            <FontAwesomeIcon 
-                                            onClick={() =>wordSubmit(word.subtitleWordId,word.val)} 
-                                            title="수정된 의미 저장" icon={faPenToSquare} style={{ height: "20px",  paddingRight: "4px"}} className='n-icon'/>
+                                            <FontAwesomeIcon
+                                                onClick={() => wordSubmit(word.subtitleWordId, word.val)}
+                                                title="수정된 의미 저장" icon={faPenToSquare} style={{ height: "20px", paddingRight: "4px" }} className='n-icon' />
                                             <p style={{ fontSize: "1.5rem", fontWeight: "bold", marginTop: "3px", marginBottom: "6px", color: "red" }}>
                                                 {
                                                     word.word
@@ -471,7 +475,7 @@ const ReportingVideo = () => {
                                             </p>
                                         </div>
                                         <textarea className='rv-inwordmean' placeholder="추가할 단어 뜻을 적어주세요." inputMode='text'
-                                        onChange={(event) =>wordAdd(event,word)}
+                                            onChange={(event) => wordAdd(event, word)}
                                         >
                                         </textarea>
                                     </div>
@@ -479,43 +483,43 @@ const ReportingVideo = () => {
                             }
                         </div>
                         :
-                        <div style={{overflowY:"scroll",maxHeight:"500px"}}>
-                        {
-                            sentences != null && !wordui &&
-                            sentences.map((sentence, index) => (
-                                <div key={index} className='rv-sen-div'>
-                                    <div style={{ alignItems: "center",marginRight:"10px" }}>
-                                        <div style={{display:"flex",alignItems: "center"}}>
-                                            <FontAwesomeIcon 
-                                            onClick={() =>settingplayertime(sentence.startTime)} 
-                                            title="해당 문장으로 이동" icon={faPlay} style={{ height: "16px",  paddingRight: "4px"}} className='n-icon'/>
-                                            <p className='pt'>{parseInt(sentence.startTime / 60)}:{String(parseInt(sentence.startTime) % 60).padStart(2, "0")}</p>
-                                        </div>
-                                        <p style={{ fontSize: "1.5rem", fontWeight: "bold", marginTop: "3px", marginBottom: "6px", color: sentence.reported ? "red":"black" }}>
-                                            {sentence.korSubtitle}
-                                        </p>
-                                    </div>
-                                    {
-                                        sentence.reported?
-                                        <div style={{marginRight:"10px"}}>
-                                            <p style={{ fontSize: "1rem", fontWeight: "bold", marginTop: "3px", marginBottom: "6px", color: sentence.reported ? "red":"black" }}>
-                                                {sentence.engSubtitle}
-                                            </p>
-                                            <div style={{display:"flex",alignItems: 'center' }}>
-                                                <input className= 'rv-inwordmean' placeholder="수정된 문장(한국어)을 적어주세요." inputMode='text' 
-                                                onChange={(event) =>sentenceAdd(event,sentence)}
-                                                >
-                                                </input>
-                                                <FontAwesomeIcon 
-                                                onClick={() =>sentenceSubmit(sentence.subtitleSentenceId,sentence.val)} 
-                                                title="수정한 문장 서버에 보내기" icon={faPaperPlane} style={{ height: "30px",  marginLeft: "14px",marginTop: "-8px"}} className='n-icon'/>
+                        <div style={{ overflowY: "scroll", maxHeight: "500px" }}>
+                            {
+                                sentences != null && !wordui &&
+                                sentences.map((sentence, index) => (
+                                    <div key={index} className='rv-sen-div'>
+                                        <div style={{ alignItems: "center", marginRight: "10px" }}>
+                                            <div style={{ display: "flex", alignItems: "center" }}>
+                                                <FontAwesomeIcon
+                                                    onClick={() => settingplayertime(sentence.startTime)}
+                                                    title="해당 문장으로 이동" icon={faPlay} style={{ height: "16px", paddingRight: "4px" }} className='n-icon' />
+                                                <p className='pt'>{parseInt(sentence.startTime / 60)}:{String(parseInt(sentence.startTime) % 60).padStart(2, "0")}</p>
                                             </div>
+                                            <p style={{ fontSize: "1.5rem", fontWeight: "bold", marginTop: "3px", marginBottom: "6px", color: sentence.reported ? "red" : "black" }}>
+                                                {sentence.korSubtitle}
+                                            </p>
                                         </div>
-                                        :<></>
-                                    }
-                                </div>
-                            ))
-                        }
+                                        {
+                                            sentence.reported ?
+                                                <div style={{ marginRight: "10px" }}>
+                                                    <p style={{ fontSize: "1rem", fontWeight: "bold", marginTop: "3px", marginBottom: "6px", color: sentence.reported ? "red" : "black" }}>
+                                                        {sentence.engSubtitle}
+                                                    </p>
+                                                    <div style={{ display: "flex", alignItems: 'center' }}>
+                                                        <input className='rv-inwordmean' placeholder="수정된 문장(한국어)을 적어주세요." inputMode='text'
+                                                            onChange={(event) => sentenceAdd(event, sentence)}
+                                                        >
+                                                        </input>
+                                                        <FontAwesomeIcon
+                                                            onClick={() => sentenceSubmit(sentence.subtitleSentenceId, sentence.val)}
+                                                            title="수정한 문장 서버에 보내기" icon={faPaperPlane} style={{ height: "30px", marginLeft: "14px", marginTop: "-8px" }} className='n-icon' />
+                                                    </div>
+                                                </div>
+                                                : <></>
+                                        }
+                                    </div>
+                                ))
+                            }
                         </div>
                 }
             </div>

@@ -55,6 +55,11 @@ const MyChannel = () => {
   }
 
   const clickvideostatus = () => {
+    if(!Videostatus){
+      setvideos(videos.filter(video => video.mistranslationWordCount > 0 || video.mistranslationSentenceCount > 0));
+    }else{
+      selectdata();
+    }
     setVideostatus(!Videostatus);
   }
   useEffect(() => {
