@@ -331,7 +331,6 @@ const ReportingVideo = () => {
                 throw new Error('Something went wrong!');
             }
 
-            const result = await response.json();
 
             alert('수정된 한국어 문장을 AI에게 번역을 요청하였습니다!');
         } catch (error) {
@@ -348,6 +347,7 @@ const ReportingVideo = () => {
             subtitleWordId: v1, // videoId가 없는 경우 null로 설정
             correctedMeaning:v2,
         };
+        console.log(123);
         console.log(formData);
 
         try {
@@ -363,7 +363,6 @@ const ReportingVideo = () => {
                 throw new Error('Something went wrong!');
             }
 
-            const result = await response.json();
 
             alert('수정된 단어 의미를 단어장에 추가하였습니다.');
         } catch (error) {
