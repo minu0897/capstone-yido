@@ -141,6 +141,7 @@ const VideoPlayer = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const videoId = searchParams.get('id');
+  const timeline = searchParams.get('timeline');
   const [subtitles, setSubtitles] = useState(null);
   //const subtitlesRef = useRef(null); // 스크롤을 위한 ref 생성
   const activeSubtitleRef = useRef(null);
@@ -364,9 +365,6 @@ const VideoPlayer = () => {
       .catch(error => {
       });
 
-    const timer = setTimeout(() => {
-      //setPlaying(true); // 1초 후 재생 상태를 true로 설정
-    }, 1000);
 
     //return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 클리어
   }, []);
@@ -376,8 +374,17 @@ const VideoPlayer = () => {
       setSubtitles(data.subtitleSentences);
       setcommunity(data.communityResponses);
       setliked(data.liked);
+      
+      if(timeline != null)
+        settingplayertime(timeline);
     }
   }, [data]);
+
+    const settingplayertime = (time) => {
+        if (playerRef.current) {
+            playerRef.current.seekTo(time, 'seconds');
+        }
+    };
 
   useEffect(() => {
     if (subtitles !== null) {

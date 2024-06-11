@@ -17,6 +17,7 @@ const Note = () => {
   const [cardui, setcardui] = useState(false);
   const [listui, setlistui] = useState(true);
   const [flippedStates, setFlippedStates] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (data) {
@@ -66,6 +67,9 @@ const dataselect = () => {
     setcardui(false);
     setlistui(true);
   }
+  const clickNoteVideo = (v1,v2) => {
+    navigate('/videoplayer?id=' + v1+"&timeline="+v2);
+  }
   return (
     <div className='note'>
       <div style={{ marginTop: "10px", marginBottom: "10px", display: "flex", borderBottom: "2px solid darkgray" }}>
@@ -88,7 +92,7 @@ const dataselect = () => {
             <p style={{ fontSize: "1.2rem", marginLeft: "15px", fontWeight: "bold", marginTop: "10px", marginBottom: "6px" }}>
               {data.wordMeaning}
             </p>
-            <p style={{ fontSize: "0.8rem", marginLeft: "15px", fontWeight: "bold", marginTop: "13px", marginBottom: "6px", textDecoration: "underline", cursor: "pointer" }}>
+            <p onClick={() => clickNoteVideo(data.videoId, data.timeline)} style={{ fontSize: "0.8rem", marginLeft: "15px", fontWeight: "bold", marginTop: "13px", marginBottom: "6px", textDecoration: "underline", cursor: "pointer" }}>
               Go to the video where this word appears
             </p>
           </div>
