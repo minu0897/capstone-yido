@@ -4,9 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../Login/AuthContext';
 import { BeatLoader } from 'react-spinners';
 
+const serverIP = process.env.REACT_APP_SERVER_IP;
 
 const ChannelVideoContainer = ({ video }) => {
-    const imageUrl = `http://101.235.73.77:8088/video/thumbnail/${video.videoId}.jpg`;
+    const imageUrl = `http://`+serverIP+`:8088/video/thumbnail/${video.videoId}.jpg`;
     const { user } = useAuth();
     const navigate = useNavigate();
 

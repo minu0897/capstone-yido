@@ -2,6 +2,7 @@ import React, { useState, useEffect,useRef } from 'react';
 import ReactPlayer from 'react-player';
 import './Player.css'; // CSS 파일을 import
 
+const serverIP = process.env.REACT_APP_SERVER_IP;
 const Player = (props) => {
     //console.log("Player render");
 
@@ -36,7 +37,7 @@ const Player = (props) => {
     return (
         <div className="player">
             <ReactPlayer
-                url={"http://101.235.73.77:8088/video/video/"+props.videoId+".mp4"}
+                url={"http://"+serverIP+":8088/video/video/"+props.videoId+".mp4"}
                 onProgress={handleProgress}
                 controls={true} 
                 progressInterval={100} // 500ms 마다 onProgress 이벤트 발생

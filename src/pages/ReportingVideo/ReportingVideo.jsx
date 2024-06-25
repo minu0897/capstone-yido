@@ -12,6 +12,7 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
+const serverIP = process.env.REACT_APP_SERVER_IP;
 const useStyles = makeStyles((theme) => ({
     playerWrapper: {
         width: "100%",
@@ -393,7 +394,7 @@ const ReportingVideo = () => {
                                     window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1")
                                 ) ?
                                     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
-                                    : "http://101.235.73.77:8088/video/video/" + videoId + ".mp4"
+                                    : "http://"+serverIP+":8088/video/video/" + videoId + ".mp4"
 
                             }
                             ref={playerRef}

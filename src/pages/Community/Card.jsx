@@ -1,6 +1,7 @@
 import React from 'react';
 import './Card.css'; // Card 컴포넌트 전용 스타일시트
 
+const serverIP = process.env.REACT_APP_SERVER_IP;
 const truncateText = (text, maxLength) => {
   if (text.length > maxLength) {
     return text.slice(0, maxLength) + '...';
@@ -11,7 +12,7 @@ const truncateText = (text, maxLength) => {
 const Card = ({ videoId, title, content, likes, tags, writer }) => {
   // 태그 배열을 하나의 문자열로 결합
   const tagsString = tags.map(tag => `#${tag}`).join(' ');
-  const imageUrl = `http://101.235.73.77:8088/video/thumbnail/${videoId}.jpg`;
+  const imageUrl = `http://`+serverIP+`:8088/video/thumbnail/${videoId}.jpg`;
 
   // content의 최대 길이 결정
   const contentMaxLength = videoId ? 25 : 100; // videoId가 null이면 100자, 아니면 25자

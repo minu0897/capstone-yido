@@ -4,6 +4,10 @@ import './ImageSlider.css'
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+const serverIP = process.env.REACT_APP_SERVER_IP;
+
+
 const ImageSlider = (props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [data, setData] = useState(null);
@@ -49,7 +53,7 @@ const ImageSlider = (props) => {
                 </span>
               </div>
               <div className='slider-img'>
-                <img className='slider-img' src={`http://101.235.73.77:8088/video/thumbnail/${arr.videoId}.jpg`} alt={`Slide ${index}`} style={{ width: '580px', height: '280px', objectFit: 'fill' }} />
+                <img className='slider-img' src={`http://`+serverIP+`:8088/video/thumbnail/${arr.videoId}.jpg`} alt={`Slide ${index}`} style={{ width: '580px', height: '280px', objectFit: 'fill' }} />
               </div>
             </div>
           </div>
