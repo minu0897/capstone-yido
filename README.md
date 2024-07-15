@@ -1,3 +1,8 @@
+### About Project
+https://velog.io/@kimiwomno/%EC%BA%A1%EC%8A%A4%ED%86%A4-%EB%94%94%EC%9E%90%EC%9D%B8-1.%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%82%AC%EC%A0%84-%EC%A4%80%EB%B9%84-%EB%B0%8F-%EC%A3%BC%EC%A0%9C
+
+https://www.erdcloud.com/d/CpbpSkNPwuroaujfF
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,7 +73,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-### About Project
-https://velog.io/@kimiwomno/%EC%BA%A1%EC%8A%A4%ED%86%A4-%EB%94%94%EC%9E%90%EC%9D%B8-1.%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%82%AC%EC%A0%84-%EC%A4%80%EB%B9%84-%EB%B0%8F-%EC%A3%BC%EC%A0%9C
-https://www.erdcloud.com/d/CpbpSkNPwuroaujfF
